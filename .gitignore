@@ -31,8 +31,3 @@
 *.out
 *.app
 
-# Added After
-*.bin
-*.elf
-*.hex
-*.map
