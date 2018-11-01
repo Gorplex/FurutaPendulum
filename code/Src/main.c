@@ -304,11 +304,31 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void const * argument)
 {
 
-  /* USER CODE BEGIN 5 */
+   /* USER CODE BEGIN 5 */
+
+   GPIO_InitTypeDef GPIO_InitStructure;
+ 
+   GPIO_InitStructure.Pin = GPIO_PIN_12;
+ 
+   GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
+   GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
+   GPIO_InitStructure.Pull = GPIO_NOPULL;
+   HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+   uint32_t count;
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
+    if ( count == 5000) {
+       HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+    }
+    if (count == 10000) {
+       HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+       count=0;
+    }
+    count++;
+
   }
   /* USER CODE END 5 */ 
 }

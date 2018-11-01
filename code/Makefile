@@ -226,4 +226,10 @@ clean:
 #######################################
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
 
+
+erase:
+	st-flash erase
+flash: 
+	st-flash write build/furutaPendulum.bin 0x8000000
+
 # *** EOF ***
