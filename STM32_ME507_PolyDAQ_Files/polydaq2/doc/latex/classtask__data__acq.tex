@@ -1,0 +1,146 @@
+\hypertarget{classtask__data__acq}{\section{task\-\_\-data\-\_\-acq Class Reference}
+\label{classtask__data__acq}\index{task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}}
+}
+
+
+Task which acquires Poly\-D\-A\-Q data at precise time intervals.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-data\-\_\-acq.\-h$>$}
+
+Inheritance diagram for task\-\_\-data\-\_\-acq\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__data__acq}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__data__acq_af8239a8ad8e9f385f42364f446a2f358}{task\-\_\-data\-\_\-acq} (const char $\ast$name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt, \hyperlink{classpolydaq2}{polydaq2} $\ast$p\-\_\-polydaq2)
+\begin{DoxyCompactList}\small\item\em This constructor creates a data acquisition task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classtask__data__acq_a8d3bef5618fc449eaa5c7e43e59e7d44}{run\-\_\-daq\-\_\-command} (char ch\-\_\-in)
+\begin{DoxyCompactList}\small\item\em Run a command from the D\-A\-Q command queue. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__data__acq_ac8d2f460a3b177a3d5d1152dcc050021}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the data acquisition task code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtask__data__acq_aa28c56651afdffa3c517b1f4a08984b2}{port\-Tick\-Type \hyperlink{classtask__data__acq_aa28c56651afdffa3c517b1f4a08984b2}{ms\-\_\-per\-\_\-sample}}\label{classtask__data__acq_aa28c56651afdffa3c517b1f4a08984b2}
+
+\begin{DoxyCompactList}\small\item\em The number of milliseconds per sample taken by this task. \end{DoxyCompactList}\item 
+\hypertarget{classtask__data__acq_a0d8e71bb08fb187b21229f7cf9e37f55}{\hyperlink{classpolydaq2}{polydaq2} $\ast$ \hyperlink{classtask__data__acq_a0d8e71bb08fb187b21229f7cf9e37f55}{my\-\_\-poly}}\label{classtask__data__acq_a0d8e71bb08fb187b21229f7cf9e37f55}
+
+\begin{DoxyCompactList}\small\item\em Pointer to a Poly\-D\-A\-Q driver used by this task. \end{DoxyCompactList}\item 
+\hypertarget{classtask__data__acq_a93280a27f68292672ab39c744182dbb0}{char \hyperlink{classtask__data__acq_a93280a27f68292672ab39c744182dbb0}{last\-\_\-data\-\_\-channel}}\label{classtask__data__acq_a93280a27f68292672ab39c744182dbb0}
+
+\begin{DoxyCompactList}\small\item\em Data channel which was most recently read, or (-\/1) for none. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task which acquires Poly\-D\-A\-Q data at precise time intervals. 
+
+This task acquires data. It is run at a high priority so that data can be taken at precise time intervals. The data is then put into queues so that other tasks can print the data through a serial port, store the data onto an S\-D card, or do whatever else is needed. 
+
+Definition at line 59 of file task\-\_\-data\-\_\-acq.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__data__acq_af8239a8ad8e9f385f42364f446a2f358}{\index{task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}!task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}}
+\index{task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}!task_data_acq@{task\-\_\-data\-\_\-acq}}
+\subsubsection[{task\-\_\-data\-\_\-acq}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-data\-\_\-acq\-::task\-\_\-data\-\_\-acq (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt, }
+\item[{{\bf polydaq2} $\ast$}]{p\-\_\-polydaq2}
+\end{DoxyParamCaption}
+)}}\label{classtask__data__acq_af8239a8ad8e9f385f42364f446a2f358}
+
+
+This constructor creates a data acquisition task. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a data acquisition task. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+{\em p\-\_\-polydaq2} & A pointer to the Poly\-D\-A\-Q 2 driver used to interface with the data acquisition board \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file task\-\_\-data\-\_\-acq.\-cpp.
+
+
+
+References last\-\_\-data\-\_\-channel, ms\-\_\-per\-\_\-sample, and my\-\_\-poly.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__data__acq_ac8d2f460a3b177a3d5d1152dcc050021}{\index{task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}!run@{run}}
+\index{run@{run}!task_data_acq@{task\-\_\-data\-\_\-acq}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-data\-\_\-acq\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classtask__data__acq_ac8d2f460a3b177a3d5d1152dcc050021}
+
+
+The run method that runs the data acquisition task code. 
+
+This method sets up the A/\-D converter, then waits for a signal to take data. Then it takes data and fills up a buffer with that data. 
+
+Definition at line 118 of file task\-\_\-data\-\_\-acq.\-cpp.
+
+
+
+References p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue, and run\-\_\-daq\-\_\-command().
+
+\hypertarget{classtask__data__acq_a8d3bef5618fc449eaa5c7e43e59e7d44}{\index{task\-\_\-data\-\_\-acq@{task\-\_\-data\-\_\-acq}!run\-\_\-daq\-\_\-command@{run\-\_\-daq\-\_\-command}}
+\index{run\-\_\-daq\-\_\-command@{run\-\_\-daq\-\_\-command}!task_data_acq@{task\-\_\-data\-\_\-acq}}
+\subsubsection[{run\-\_\-daq\-\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-data\-\_\-acq\-::run\-\_\-daq\-\_\-command (
+\begin{DoxyParamCaption}
+\item[{char}]{ch\-\_\-in}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classtask__data__acq_a8d3bef5618fc449eaa5c7e43e59e7d44}
+
+
+Run a command from the D\-A\-Q command queue. 
+
+This method runs a command which has been found in the D\-A\-Q command queue. The command will have been sent from the U\-I task, {\ttfamily \hyperlink{classtask__user}{task\-\_\-user}}. 
+\begin{DoxyParams}{Parameters}
+{\em ch\-\_\-in} & A character containing the command to be run \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file task\-\_\-data\-\_\-acq.\-cpp.
+
+
+
+References polydaq2\-::get\-\_\-accel(), polydaq2\-::get\-\_\-data(), last\-\_\-data\-\_\-channel, my\-\_\-poly, and polydaq2\-::strain\-\_\-auto\-\_\-balance().
+
+
+
+Referenced by run().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__data__acq_8h}{task\-\_\-data\-\_\-acq.\-h}\item 
+\hyperlink{task__data__acq_8cpp}{task\-\_\-data\-\_\-acq.\-cpp}\end{DoxyCompactItemize}

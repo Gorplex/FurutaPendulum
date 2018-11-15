@@ -1,0 +1,34 @@
+This page contains tables showing which channels are accessed by which channel commands on different versions of the Poly\-D\-A\-Q 2 board. These channel commands can be used in the data logger configuration file and when communicating with a Poly\-D\-A\-Q through the dumb terminal.
+
+All commands are {\bfseries case} {\bfseries sensitive}. For example, typing {\bfseries D} will cause the Poly\-D\-A\-Q to perform an A/\-D conversion on the channel specified by the hexadecimal number D (decimal 13), but typing {\bfseries d} will cause the Poly\-D\-A\-Q to show the results of a memory dump (a programming diagnostic tool).
+
+When a command is not understood by the Poly\-D\-A\-Q, it shows the command which has confused it and asks, \char`\"{}\-What's That Function?\char`\"{}\hypertarget{pd_channels_pd_044}{}\section{Poly\-D\-A\-Q 0-\/4-\/4}\label{pd_channels_pd_044}
+This version of the Poly\-D\-A\-Q 2 board is designed for use in the M\-E 410 course, which makes heavy use of strain gauges. It has four strain gauge bridge amplifiers and four voltage inputs. Two of the voltage inputs accept -\/10 to +10\-V inputs and the other two accept 0 to 3.\-3\-V inputs with finer resolution. If present, an onboard M\-M\-A8452\-Q accelerometer provides 3 axes of acceleration data. An external M\-M\-A8452\-Q accelerometer can be connected to the board's I2\-C bus; if present, the external accelerometer is accessed as shown in the table.
+
+The given calibration numbers (slope and offset) are approximate and for convenience only. The user should check all calibrations carefully using a high-\/accuracy voltmeter. In many cases, entering a slope of 1.\-0 and offset of 0.\-0 to cause raw A/\-D output numbers to be recorded is the best option.
+
+\begin{TabularC}{5}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Channel }&\PBS\centering {\bf Command }&\PBS\centering {\bf Slope }&\PBS\centering {\bf Offset }&{\bf Description  }\\\cline{1-5}
+\PBS\centering {\ttfamily S1} &\PBS\centering {\ttfamily E} &\PBS\centering 0.\-00806 (1) &\PBS\centering (2) &Strain gauge bridge 1 \\\cline{1-5}
+\PBS\centering {\ttfamily S2} &\PBS\centering {\ttfamily F} &\PBS\centering 0.\-00806 (1) &\PBS\centering (2) &Strain gauge bridge 2 \\\cline{1-5}
+\PBS\centering {\ttfamily S3} &\PBS\centering {\ttfamily 9} &\PBS\centering 0.\-00806 (1) &\PBS\centering (2) &Strain gauge bridge 3 \\\cline{1-5}
+\PBS\centering {\ttfamily S4} &\PBS\centering {\ttfamily 8} &\PBS\centering 0.\-00806 (1) &\PBS\centering (2) &Strain gauge bridge 4 \\\cline{1-5}
+\PBS\centering &\PBS\centering &\PBS\centering &\PBS\centering &\\\cline{1-5}
+\PBS\centering {\ttfamily V1} &\PBS\centering {\ttfamily A} &\PBS\centering 0.\-00513 &\PBS\centering -\/8.\-8537 &Voltage channel 1 (-\/10 to +10\-V) \\\cline{1-5}
+\PBS\centering {\ttfamily V2} &\PBS\centering {\ttfamily B} &\PBS\centering 0.\-00513 &\PBS\centering -\/8.\-8537 &Voltage channel 2 (-\/10 to +10\-V) \\\cline{1-5}
+\PBS\centering {\ttfamily V3} &\PBS\centering {\ttfamily C} &\PBS\centering 0.\-000806 &\PBS\centering 0.\-0 &Voltage channel 3 (0 to +3.3\-V) \\\cline{1-5}
+\PBS\centering {\ttfamily V4} &\PBS\centering {\ttfamily D} &\PBS\centering 0.\-000806 &\PBS\centering 0.\-0 &Voltage channel 4 (0 to +3.3\-V) \\\cline{1-5}
+\PBS\centering &\PBS\centering &\PBS\centering &\PBS\centering &\\\cline{1-5}
+\PBS\centering {\ttfamily X} &\PBS\centering {\ttfamily X} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &Onboard accelerometer X axis \\\cline{1-5}
+\PBS\centering {\ttfamily Y} &\PBS\centering {\ttfamily Y} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &Onboard accelerometer Y axis \\\cline{1-5}
+\PBS\centering {\ttfamily Z} &\PBS\centering {\ttfamily Z} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &Onboard accelerometer Z axis \\\cline{1-5}
+\PBS\centering &\PBS\centering &\PBS\centering &\PBS\centering &\\\cline{1-5}
+\PBS\centering {\ttfamily x} &\PBS\centering {\ttfamily x} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &External accelerometer X axis \\\cline{1-5}
+\PBS\centering {\ttfamily y} &\PBS\centering {\ttfamily y} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &External accelerometer Y axis \\\cline{1-5}
+\PBS\centering {\ttfamily z} &\PBS\centering {\ttfamily z} &\PBS\centering 0.\-000061 (3) &\PBS\centering 0.\-0 &External accelerometer Z axis \\\cline{1-5}
+\end{TabularC}
+Notes\-: \par
+ (1) The given slope converts A/\-D output to bridge differential voltage in m\-V. \par
+ (2) Bridge amplifier offset varies depending on bridge balance. \par
+ (3) When the accelerometer is configured for +/-\/2g range, as is its default. 

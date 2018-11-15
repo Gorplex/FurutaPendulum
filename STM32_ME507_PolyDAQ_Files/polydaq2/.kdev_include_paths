@@ -1,0 +1,14 @@
+RESOLVE: SOURCE=/home/jr/src/free/polydaq2/ BUILD=/home/jr/src/free/polydaq2/build/
+../lib/STM32F4xx
+../lib/CMSIS
+../lib/STM32F4xx_StdPeriph_Driver
+../lib/ME405/misc
+../lib/ME405/serial
+../lib/ME405/rtcpp
+../lib/ME405/drivers
+../lib/ME405/drivers/sd_card
+../lib/ME405/drivers/i2c
+../lib/freertos
+../lib/freertos/inc
+../lib/freertos/src
+../lib/freertos/ports/GCC/ARM_CM4F

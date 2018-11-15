@@ -1,0 +1,70 @@
+\hypertarget{logger__config_8h}{\section{logger\-\_\-config.\-h File Reference}
+\label{logger__config_8h}\index{logger\-\_\-config.\-h@{logger\-\_\-config.\-h}}
+}
+
+
+Headers for a parser for data logging configuration files.  
+
+
+{\ttfamily \#include \char`\"{}string.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Free\-R\-T\-O\-S.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sdio\-\_\-card.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}config\-\_\-file.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg}
+\begin{DoxyCompactList}\small\item\em Data for one sensor line in the logger configuration file. \end{DoxyCompactList}\item 
+class \hyperlink{classlogger__config}{logger\-\_\-config}
+\begin{DoxyCompactList}\small\item\em Parser for simple data logger configuration files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{logger__config_8h_a25693e2c13cc772306944d3742d141f3}{emstream \& \hyperlink{logger__config_8h_a25693e2c13cc772306944d3742d141f3}{operator$<$$<$} (emstream \&str, \hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} \&log\-\_\-cfg)}\label{logger__config_8h_a25693e2c13cc772306944d3742d141f3}
+
+\begin{DoxyCompactList}\small\item\em Diagnostic printout of all the data from a logger column configuration. \end{DoxyCompactList}\item 
+\hypertarget{logger__config_8h_ac45c71eed6e2714623a9ab5badf2e9e4}{emstream \& \hyperlink{logger__config_8h_ac45c71eed6e2714623a9ab5badf2e9e4}{operator$<$$<$} (emstream \&str, \hyperlink{classlogger__config}{logger\-\_\-config} \&log\-\_\-cfg)}\label{logger__config_8h_ac45c71eed6e2714623a9ab5badf2e9e4}
+
+\begin{DoxyCompactList}\small\item\em Diagnostic printout of all the data from a logger configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\-\_\-t \hyperlink{logger__config_8h_a6e22f5bb2c1135443eff930d493ac5d5}{M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G} = 5
+\begin{DoxyCompactList}\small\item\em This define prevents this .h file from being included more than once in a .cpp file. \end{DoxyCompactList}\item 
+\hypertarget{logger__config_8h_af17dc216e2e3c1dd97e9464b68603662}{const uint16\-\_\-t \hyperlink{logger__config_8h_af17dc216e2e3c1dd97e9464b68603662}{M\-A\-X\-\_\-\-M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G} = 60000}\label{logger__config_8h_af17dc216e2e3c1dd97e9464b68603662}
+
+\begin{DoxyCompactList}\small\item\em The maximum number of milliseconds per data point, giving the slowest acceptable sample rate. \end{DoxyCompactList}\item 
+\hypertarget{logger__config_8h_a69260c3c7eda35be3e545ce033ace92e}{const uint16\-\_\-t \hyperlink{logger__config_8h_a69260c3c7eda35be3e545ce033ace92e}{M\-I\-N\-\_\-\-M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G} = 1}\label{logger__config_8h_a69260c3c7eda35be3e545ce033ace92e}
+
+\begin{DoxyCompactList}\small\item\em The minimum number of milliseconds per data point, giving the fastest acceptable sample rate. \end{DoxyCompactList}\item 
+\hypertarget{logger__config_8h_ab2c04cf5be4dd998cbe49b24e2eb6423}{const uint8\-\_\-t \hyperlink{logger__config_8h_ab2c04cf5be4dd998cbe49b24e2eb6423}{N\-\_\-\-A2\-D\-\_\-\-C\-H\-A\-N\-N\-E\-L\-S} = 16}\label{logger__config_8h_ab2c04cf5be4dd998cbe49b24e2eb6423}
+
+\begin{DoxyCompactList}\small\item\em The number of A/\-D channels in the on/off list; for A\-V\-R processors this should almost always be 8 and for A\-R\-M processors 18 or so. \end{DoxyCompactList}\item 
+\hypertarget{logger__config_8h_a432aab9bd49810179ffac888ddb811b7}{const uint8\-\_\-t \hyperlink{logger__config_8h_a432aab9bd49810179ffac888ddb811b7}{M\-A\-X\-\_\-\-C\-O\-L\-\_\-\-L\-A\-B\-E\-L\-\_\-\-L\-E\-N} = 24}\label{logger__config_8h_a432aab9bd49810179ffac888ddb811b7}
+
+\begin{DoxyCompactList}\small\item\em The maximum length of a column's label (i.\-e. the name of one column of data). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Headers for a parser for data logging configuration files. This file contains headers for a parser for simple configuration files that set up channels on a simple data logger using a Poly\-D\-A\-Q 2 data acquisition board.
+
+Revisions\-: \begin{DoxyItemize}
+\item 12-\/30-\/2009 J\-R\-R Original file \item 05-\/23-\/2011 J\-R\-R Modified for use with interrupt timed data acquisition \item 02-\/23-\/2015 J\-R\-R Rearranged for Poly\-D\-A\-Q 2 with more channels and calibration\end{DoxyItemize}
+License\-: This file is copyright 2015 by J\-R Ridgely and released under the Lesser G\-N\-U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{logger__config_8h_source}{logger\-\_\-config.\-h}.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{logger__config_8h_a6e22f5bb2c1135443eff930d493ac5d5}{\index{logger\-\_\-config.\-h@{logger\-\_\-config.\-h}!M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G@{M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G}}
+\index{M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G@{M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G}!logger_config.h@{logger\-\_\-config.\-h}}
+\subsubsection[{M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}const uint8\-\_\-t M\-S\-\_\-\-P\-E\-R\-\_\-\-R\-E\-A\-D\-I\-N\-G = 5}}\label{logger__config_8h_a6e22f5bb2c1135443eff930d493ac5d5}
+
+
+This define prevents this .h file from being included more than once in a .cpp file. 
+
+This is the number of milliseconds per interrupt. It's controlled elsewhere, and the correct value needs to be set here for proprely calibrated timing. As of the creation of this variable, interrupt timing is set in \hyperlink{task__sd__card_8cpp}{task\-\_\-sd\-\_\-card.\-cpp}. 
+
+Definition at line 43 of file logger\-\_\-config.\-h.
+

@@ -1,0 +1,221 @@
+\hypertarget{classconfig__file}{\section{config\-\_\-file Class Reference}
+\label{classconfig__file}\index{config\-\_\-file@{config\-\_\-file}}
+}
+
+
+Base class for a configuration file reader and parser.  
+
+
+
+
+{\ttfamily \#include $<$config\-\_\-file.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classconfig__file_ac2724c3ca140fd2932cb956d0f06e315}{config\-\_\-file} (sd\-\_\-card $\ast$p\-\_\-sd\-\_\-card, emstream $\ast$p\-\_\-ser\-\_\-dev)
+\begin{DoxyCompactList}\small\item\em Constructor for a base configuration file parser. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classconfig__file_a55798c93bc529cfa7d79e199f1ad7925}{read} (char const $\ast$)
+\begin{DoxyCompactList}\small\item\em Read a configuration file, parsing each line to find settings. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classconfig__file_aa0c5fee1c2a104dd501f4499b526b184}{skip\-\_\-to\-\_\-next\-\_\-line} (void)
+\begin{DoxyCompactList}\small\item\em Skip whitespace characters and comments until data is found. \end{DoxyCompactList}\item 
+void \hyperlink{classconfig__file_a05bfc7892289bec6441710bf7f2c092b}{skip\-\_\-to\-\_\-\-E\-O\-L} (void)
+\begin{DoxyCompactList}\small\item\em Skip from a comment delimiter character to the end of a line. \end{DoxyCompactList}\item 
+uint8\-\_\-t \hyperlink{classconfig__file_a672af5504446db5f89896aada5980468}{read\-\_\-bool} (uint16\-\_\-t)
+\begin{DoxyCompactList}\small\item\em Read one boolean value from a configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sd\-\_\-card $\ast$ \hyperlink{classconfig__file_a7f5e8d1a7a4b760531853d43857fc527}{p\-\_\-card}
+\begin{DoxyCompactList}\small\item\em A pointer to the S\-D card driver. \end{DoxyCompactList}\item 
+emstream $\ast$ \hyperlink{classconfig__file_a529cb0760d01190b93076cb9e7da4746}{p\-\_\-serial}
+\begin{DoxyCompactList}\small\item\em Pointer to a serial device used for debugging messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for a configuration file reader and parser. 
+
+This class parses a configuration file which is kept on some type of serially accessed device such as an S\-D card. The configuration file is made up in sections, with sections being indicated by a text header in brackets; the file contains items which map to variables that will be kept in the configuration, generally numbers and flags (boolean values) and, in the future, perhaps text strings and comments. The items are distinguished as follows\-: \begin{DoxyItemize}
+\item Comments are put in the file line by line; they begin with a number sign ({\ttfamily \#}). When a number sign is found, the rest of the line is ignored. A comment may be on a line after a data item. \item Numbers are expected to be integers (floats may be supported in the future). They are given one per line. It's O\-K to have comments after the numbers. \item Boolean values can be given as text which begins with {\ttfamily Y}, {\ttfamily y}, {\ttfamily T}, {\ttfamily t}, or {\ttfamily On} for values which are true; {\ttfamily N}, {\ttfamily n}, {\ttfamily F}, {\ttfamily f}, and {\ttfamily Off} represent false values.\end{DoxyItemize}
+An example file looks like the following\-: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{# Sample configuration file}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# This comment explains something really important.}
+\textcolor{preprocessor}{}157            # Numerator
+100            # Denominator
+-13            # Offset
+
+\textcolor{preprocessor}{# End of file}
+\end{DoxyCode}
+ 
+
+Definition at line 94 of file config\-\_\-file.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classconfig__file_ac2724c3ca140fd2932cb956d0f06e315}{\index{config\-\_\-file@{config\-\_\-file}!config\-\_\-file@{config\-\_\-file}}
+\index{config\-\_\-file@{config\-\_\-file}!config_file@{config\-\_\-file}}
+\subsubsection[{config\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}config\-\_\-file\-::config\-\_\-file (
+\begin{DoxyParamCaption}
+\item[{sd\-\_\-card $\ast$}]{p\-\_\-sd\-\_\-card, }
+\item[{emstream $\ast$}]{p\-\_\-ser\-\_\-dev}
+\end{DoxyParamCaption}
+)}}\label{classconfig__file_ac2724c3ca140fd2932cb956d0f06e315}
+
+
+Constructor for a base configuration file parser. 
+
+This constructor creates the base class portion of a configuration file parser which reads files on a given serial decice. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-sd\-\_\-card} & Pointer to a device such as an S\-D card on which the file is kept \\
+\hline
+{\em p\-\_\-ser\-\_\-dev} & Serial device (such as a port) on which to show debugging information \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file config\-\_\-file.\-cpp.
+
+
+
+References p\-\_\-card, and p\-\_\-serial.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classconfig__file_a55798c93bc529cfa7d79e199f1ad7925}{\index{config\-\_\-file@{config\-\_\-file}!read@{read}}
+\index{read@{read}!config_file@{config\-\_\-file}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}void config\-\_\-file\-::read (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{file\-\_\-name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classconfig__file_a55798c93bc529cfa7d79e199f1ad7925}
+
+
+Read a configuration file, parsing each line to find settings. 
+
+This is a base class method to read a configuration file. It only reads and prints out the file, if debugging is properly enabled. Descendent classes need to implement their own versions of {\ttfamily \hyperlink{classconfig__file_a55798c93bc529cfa7d79e199f1ad7925}{read()}} which are appropriate for configurations of specific systems. 
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & Pointer to a string containing the name of the file to be read \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file config\-\_\-file.\-cpp.
+
+
+
+References C\-F\-G\-F\-\_\-\-D\-B\-G, and p\-\_\-card.
+
+\hypertarget{classconfig__file_a672af5504446db5f89896aada5980468}{\index{config\-\_\-file@{config\-\_\-file}!read\-\_\-bool@{read\-\_\-bool}}
+\index{read\-\_\-bool@{read\-\_\-bool}!config_file@{config\-\_\-file}}
+\subsubsection[{read\-\_\-bool}]{\setlength{\rightskip}{0pt plus 5cm}uint8\-\_\-t config\-\_\-file\-::read\-\_\-bool (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{a\-\_\-char}
+\end{DoxyParamCaption}
+)}}\label{classconfig__file_a672af5504446db5f89896aada5980468}
+
+
+Read one boolean value from a configuration file. 
+
+This method reads a Boolean value from the configuration file. The value may be represented by various symbols; anything beginning with {\ttfamily }\mbox{[}Yy\-Tt\mbox{]} is taken as meaning true; anything beginning with {\ttfamily }\mbox{[}Nn\-Ff\mbox{]} is taken as false; if the first letter is {\ttfamily }\mbox{[}Oo\mbox{]} then the second letter is checked, as we've probably got {\ttfamily On} or {\ttfamily Off}. 
+\begin{DoxyParams}{Parameters}
+{\em a\-\_\-char} & The first character of the item, often found by \hyperlink{classconfig__file_aa0c5fee1c2a104dd501f4499b526b184}{skip\-\_\-to\-\_\-next\-\_\-line()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for false, 1 for true, and 0x\-F\-F for undetermined (not a valid Boolean) 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file config\-\_\-file.\-cpp.
+
+
+
+References p\-\_\-card.
+
+\hypertarget{classconfig__file_a05bfc7892289bec6441710bf7f2c092b}{\index{config\-\_\-file@{config\-\_\-file}!skip\-\_\-to\-\_\-\-E\-O\-L@{skip\-\_\-to\-\_\-\-E\-O\-L}}
+\index{skip\-\_\-to\-\_\-\-E\-O\-L@{skip\-\_\-to\-\_\-\-E\-O\-L}!config_file@{config\-\_\-file}}
+\subsubsection[{skip\-\_\-to\-\_\-\-E\-O\-L}]{\setlength{\rightskip}{0pt plus 5cm}void config\-\_\-file\-::skip\-\_\-to\-\_\-\-E\-O\-L (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classconfig__file_a05bfc7892289bec6441710bf7f2c092b}
+
+
+Skip from a comment delimiter character to the end of a line. 
+
+This method is called when a comment character has been found. It reads and ignores all characters up to the end of the current line. The file pointer is moved forward in the file, but nothing else is changed. 
+
+Definition at line 151 of file config\-\_\-file.\-cpp.
+
+
+
+References C\-F\-G\-\_\-\-E\-N\-D\-\_\-\-O\-F\-\_\-\-L\-I\-N\-E, and p\-\_\-card.
+
+
+
+Referenced by skip\-\_\-to\-\_\-next\-\_\-line().
+
+\hypertarget{classconfig__file_aa0c5fee1c2a104dd501f4499b526b184}{\index{config\-\_\-file@{config\-\_\-file}!skip\-\_\-to\-\_\-next\-\_\-line@{skip\-\_\-to\-\_\-next\-\_\-line}}
+\index{skip\-\_\-to\-\_\-next\-\_\-line@{skip\-\_\-to\-\_\-next\-\_\-line}!config_file@{config\-\_\-file}}
+\subsubsection[{skip\-\_\-to\-\_\-next\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t config\-\_\-file\-::skip\-\_\-to\-\_\-next\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classconfig__file_aa0c5fee1c2a104dd501f4499b526b184}
+
+
+Skip whitespace characters and comments until data is found. 
+
+This method reads characters, skipping whitespace (spaces and returns) and ignoring lines which are comments, until it has found the first character on the next active (non-\/comment) line. That first character is returned, and the file pointer is left pointing to the character after that first character. \begin{DoxyReturn}{Returns}
+The first non-\/comment character found, or (-\/1) if error or end of file 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file config\-\_\-file.\-cpp.
+
+
+
+References C\-F\-G\-\_\-\-C\-O\-M\-M\-E\-N\-T\-\_\-\-C\-H\-A\-R, C\-F\-G\-\_\-\-E\-N\-D\-\_\-\-O\-F\-\_\-\-L\-I\-N\-E, p\-\_\-card, and skip\-\_\-to\-\_\-\-E\-O\-L().
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classconfig__file_a7f5e8d1a7a4b760531853d43857fc527}{\index{config\-\_\-file@{config\-\_\-file}!p\-\_\-card@{p\-\_\-card}}
+\index{p\-\_\-card@{p\-\_\-card}!config_file@{config\-\_\-file}}
+\subsubsection[{p\-\_\-card}]{\setlength{\rightskip}{0pt plus 5cm}sd\-\_\-card$\ast$ config\-\_\-file\-::p\-\_\-card\hspace{0.3cm}{\ttfamily [protected]}}}\label{classconfig__file_a7f5e8d1a7a4b760531853d43857fc527}
+
+
+A pointer to the S\-D card driver. 
+
+This pointer points to the S\-D card driver which is used to access the configuration file. 
+
+Definition at line 101 of file config\-\_\-file.\-h.
+
+
+
+Referenced by config\-\_\-file(), read(), read\-\_\-bool(), skip\-\_\-to\-\_\-\-E\-O\-L(), and skip\-\_\-to\-\_\-next\-\_\-line().
+
+\hypertarget{classconfig__file_a529cb0760d01190b93076cb9e7da4746}{\index{config\-\_\-file@{config\-\_\-file}!p\-\_\-serial@{p\-\_\-serial}}
+\index{p\-\_\-serial@{p\-\_\-serial}!config_file@{config\-\_\-file}}
+\subsubsection[{p\-\_\-serial}]{\setlength{\rightskip}{0pt plus 5cm}emstream$\ast$ config\-\_\-file\-::p\-\_\-serial\hspace{0.3cm}{\ttfamily [protected]}}}\label{classconfig__file_a529cb0760d01190b93076cb9e7da4746}
+
+
+Pointer to a serial device used for debugging messages. 
+
+This pointer points to a serial port which can be used for debugging. If left at {\ttfamily N\-U\-L\-L}, debugging printouts won't take place. 
+
+Definition at line 108 of file config\-\_\-file.\-h.
+
+
+
+Referenced by config\-\_\-file().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{config__file_8h}{config\-\_\-file.\-h}\item 
+\hyperlink{config__file_8cpp}{config\-\_\-file.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,245 @@
+\hypertarget{FreeRTOSConfig_8h}{\section{Free\-R\-T\-O\-S\-Config.\-h File Reference}
+\label{FreeRTOSConfig_8h}\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}}
+}
+
+
+Configuration settings for Free\-R\-T\-O\-S as it's used in this project.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{FreeRTOSConfig_8h_adde83486022745409c40605922b0bdd6}{\#define \hyperlink{FreeRTOSConfig_8h_adde83486022745409c40605922b0bdd6}{config\-U\-S\-E\-\_\-\-P\-R\-E\-E\-M\-P\-T\-I\-O\-N}~1}\label{FreeRTOSConfig_8h_adde83486022745409c40605922b0bdd6}
+
+\begin{DoxyCompactList}\small\item\em Flag which enables pre-\/emptive (interrupt based) multitasking in Free\-R\-T\-O\-S. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ac637ae45863c19fa2e919db0ed49301f}{\#define \hyperlink{FreeRTOSConfig_8h_ac637ae45863c19fa2e919db0ed49301f}{config\-U\-S\-E\-\_\-\-I\-D\-L\-E\-\_\-\-H\-O\-O\-K}~0}\label{FreeRTOSConfig_8h_ac637ae45863c19fa2e919db0ed49301f}
+
+\begin{DoxyCompactList}\small\item\em Flag which causes the idle hook function to be called by Free\-R\-T\-O\-S. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a23c5922c077106fad3f70b54d9071466}{\#define \hyperlink{FreeRTOSConfig_8h_a23c5922c077106fad3f70b54d9071466}{config\-U\-S\-E\-\_\-\-T\-I\-C\-K\-\_\-\-H\-O\-O\-K}~0}\label{FreeRTOSConfig_8h_a23c5922c077106fad3f70b54d9071466}
+
+\begin{DoxyCompactList}\small\item\em Flag which causes the timer tick hook function to be called by Free\-R\-T\-O\-S. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_aa68082df879e6fc96bcb9b26513639e7}{config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}~( 168000000\-U\-L )
+\begin{DoxyCompactList}\small\item\em The rate at which the C\-P\-U core's clock runs. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_aa6c52b1b434ca2a708c56fdee02e7946}{config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}~( 10000000\-U\-L )
+\begin{DoxyCompactList}\small\item\em The rate in Hertz at which the S\-T\-M32 Sys\-Tick clock runs. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_a2f0258dd1e3b877e5bc013be54c2db6a}{config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z}~( ( port\-Tick\-Type ) 10000 )
+\begin{DoxyCompactList}\small\item\em The rate in Hertz at which R\-T\-O\-S ticks are to occur. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a9a78f5ac61e6cb172dadf2a51f11db38}{\#define \hyperlink{FreeRTOSConfig_8h_a9a78f5ac61e6cb172dadf2a51f11db38}{config\-M\-A\-X\-\_\-\-P\-R\-I\-O\-R\-I\-T\-I\-E\-S}~( ( unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E ) 5 )}\label{FreeRTOSConfig_8h_a9a78f5ac61e6cb172dadf2a51f11db38}
+
+\begin{DoxyCompactList}\small\item\em The maximum number of priority levels which can be used in the program. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a6c534a6cf8a00528fe0be42083484f9a}{\#define \hyperlink{FreeRTOSConfig_8h_a6c534a6cf8a00528fe0be42083484f9a}{config\-M\-I\-N\-I\-M\-A\-L\-\_\-\-S\-T\-A\-C\-K\-\_\-\-S\-I\-Z\-E}~( ( unsigned short ) 320 )}\label{FreeRTOSConfig_8h_a6c534a6cf8a00528fe0be42083484f9a}
+
+\begin{DoxyCompactList}\small\item\em The size in bytes of the stack area used by the idle task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a9f213227674effff0122a75d94d87938}{\#define \hyperlink{FreeRTOSConfig_8h_a9f213227674effff0122a75d94d87938}{config\-T\-O\-T\-A\-L\-\_\-\-H\-E\-A\-P\-\_\-\-S\-I\-Z\-E}~( ( size\-\_\-t ) ( 50 $\ast$ 1024 ) )}\label{FreeRTOSConfig_8h_a9f213227674effff0122a75d94d87938}
+
+\begin{DoxyCompactList}\small\item\em The number of bytes to be managed by the dynamic memory allocator. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ac388dc4041aab6997348828eb27fc1a8}{\#define \hyperlink{FreeRTOSConfig_8h_ac388dc4041aab6997348828eb27fc1a8}{config\-M\-A\-X\-\_\-\-T\-A\-S\-K\-\_\-\-N\-A\-M\-E\-\_\-\-L\-E\-N}~( 10 )}\label{FreeRTOSConfig_8h_ac388dc4041aab6997348828eb27fc1a8}
+
+\begin{DoxyCompactList}\small\item\em The number of bytes to be reserved for each task's name. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a27f5ee137dc9f125681a31f0b0a4b3be}{\#define \hyperlink{FreeRTOSConfig_8h_a27f5ee137dc9f125681a31f0b0a4b3be}{config\-U\-S\-E\-\_\-\-T\-R\-A\-C\-E\-\_\-\-F\-A\-C\-I\-L\-I\-T\-Y}~0}\label{FreeRTOSConfig_8h_a27f5ee137dc9f125681a31f0b0a4b3be}
+
+\begin{DoxyCompactList}\small\item\em Switch that activates extra code for execution tracing and visualization. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_aac311ed9b9e5ae4d2d9648b33a24acce}{\#define \hyperlink{FreeRTOSConfig_8h_aac311ed9b9e5ae4d2d9648b33a24acce}{config\-U\-S\-E\-\_\-16\-\_\-\-B\-I\-T\-\_\-\-T\-I\-C\-K\-S}~0}\label{FreeRTOSConfig_8h_aac311ed9b9e5ae4d2d9648b33a24acce}
+
+\begin{DoxyCompactList}\small\item\em Switch that forces the tick counter to be a 16 bit instead of 32 bit number. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ad6a5061a742fee450ac455e4ad0f4b6c}{\#define \hyperlink{FreeRTOSConfig_8h_ad6a5061a742fee450ac455e4ad0f4b6c}{config\-I\-D\-L\-E\-\_\-\-S\-H\-O\-U\-L\-D\-\_\-\-Y\-I\-E\-L\-D}~1}\label{FreeRTOSConfig_8h_ad6a5061a742fee450ac455e4ad0f4b6c}
+
+\begin{DoxyCompactList}\small\item\em Switch that causes the idle task to yield for other lowest priority tasks. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a543bf3c79008974cc1d36bab51d94fbf}{\#define \hyperlink{FreeRTOSConfig_8h_a543bf3c79008974cc1d36bab51d94fbf}{config\-U\-S\-E\-\_\-\-M\-U\-T\-E\-X\-E\-S}~1}\label{FreeRTOSConfig_8h_a543bf3c79008974cc1d36bab51d94fbf}
+
+\begin{DoxyCompactList}\small\item\em Switch that enables mutexes to be used in the program. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_aa4b5138c4e42a180f0abd4f2455f90fb}{\#define \hyperlink{FreeRTOSConfig_8h_aa4b5138c4e42a180f0abd4f2455f90fb}{config\-Q\-U\-E\-U\-E\-\_\-\-R\-E\-G\-I\-S\-T\-R\-Y\-\_\-\-S\-I\-Z\-E}~0}\label{FreeRTOSConfig_8h_aa4b5138c4e42a180f0abd4f2455f90fb}
+
+\begin{DoxyCompactList}\small\item\em The maximum number of queues and semaphores that can be used {\itshape with} {\itshape a} {\itshape kernel} {\itshape aware} {\itshape debugger}. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ad8081822f3ebc7c917b63bd7bdd7bc58}{\#define \hyperlink{FreeRTOSConfig_8h_ad8081822f3ebc7c917b63bd7bdd7bc58}{config\-G\-E\-N\-E\-R\-A\-T\-E\-\_\-\-R\-U\-N\-\_\-\-T\-I\-M\-E\-\_\-\-S\-T\-A\-T\-S}~0}\label{FreeRTOSConfig_8h_ad8081822f3ebc7c917b63bd7bdd7bc58}
+
+\begin{DoxyCompactList}\small\item\em Switch that enables R\-T\-O\-S code to be compiled to keep run time statistics. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a847511ee433494b1e32c90602c967ae7}{\#define \hyperlink{FreeRTOSConfig_8h_a847511ee433494b1e32c90602c967ae7}{config\-C\-H\-E\-C\-K\-\_\-\-F\-O\-R\-\_\-\-S\-T\-A\-C\-K\-\_\-\-O\-V\-E\-R\-F\-L\-O\-W}~0}\label{FreeRTOSConfig_8h_a847511ee433494b1e32c90602c967ae7}
+
+\begin{DoxyCompactList}\small\item\em Switch which enables run-\/time checking for stack overflows. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a9fe02d866cb1c4fbaa0c3de79f53d42d}{\#define \hyperlink{FreeRTOSConfig_8h_a9fe02d866cb1c4fbaa0c3de79f53d42d}{config\-U\-S\-E\-\_\-\-R\-E\-C\-U\-R\-S\-I\-V\-E\-\_\-\-M\-U\-T\-E\-X\-E\-S}~0}\label{FreeRTOSConfig_8h_a9fe02d866cb1c4fbaa0c3de79f53d42d}
+
+\begin{DoxyCompactList}\small\item\em Switch which enables the use of recursive mutexes. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_abdf48e7c9cf513f083aa9cbed0dd7cd7}{\#define \hyperlink{FreeRTOSConfig_8h_abdf48e7c9cf513f083aa9cbed0dd7cd7}{config\-U\-S\-E\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L\-E\-D\-\_\-\-H\-O\-O\-K}~0}\label{FreeRTOSConfig_8h_abdf48e7c9cf513f083aa9cbed0dd7cd7}
+
+\begin{DoxyCompactList}\small\item\em Switch which enables the use of a function that runs in case of memory allocation failure. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a2eb2a0baf886a7adab15b5735029434b}{\#define \hyperlink{FreeRTOSConfig_8h_a2eb2a0baf886a7adab15b5735029434b}{config\-U\-S\-E\-\_\-\-A\-P\-P\-L\-I\-C\-A\-T\-I\-O\-N\-\_\-\-T\-A\-S\-K\-\_\-\-T\-A\-G}~0}\label{FreeRTOSConfig_8h_a2eb2a0baf886a7adab15b5735029434b}
+
+\begin{DoxyCompactList}\small\item\em Switch which allows user-\/defined tags to be attached to tasks. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a55778995203c57369d2fbfb10224943d}{\#define \hyperlink{FreeRTOSConfig_8h_a55778995203c57369d2fbfb10224943d}{config\-U\-S\-E\-\_\-\-C\-O\-U\-N\-T\-I\-N\-G\-\_\-\-S\-E\-M\-A\-P\-H\-O\-R\-E\-S}~1}\label{FreeRTOSConfig_8h_a55778995203c57369d2fbfb10224943d}
+
+\begin{DoxyCompactList}\small\item\em Switch which allows the use of counting semaphores. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a57990715eb06402474b8b47e1d562616}{\#define \hyperlink{FreeRTOSConfig_8h_a57990715eb06402474b8b47e1d562616}{config\-U\-S\-E\-\_\-\-C\-O\-\_\-\-R\-O\-U\-T\-I\-N\-E\-S}~0}\label{FreeRTOSConfig_8h_a57990715eb06402474b8b47e1d562616}
+
+\begin{DoxyCompactList}\small\item\em Switch which allows the use of co-\/routines for cooperative multitasking. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ae8f3fd645e6e78dfeb8a6e874af6195a}{\#define \hyperlink{FreeRTOSConfig_8h_ae8f3fd645e6e78dfeb8a6e874af6195a}{config\-M\-A\-X\-\_\-\-C\-O\-\_\-\-R\-O\-U\-T\-I\-N\-E\-\_\-\-P\-R\-I\-O\-R\-I\-T\-I\-E\-S}~( 2 )}\label{FreeRTOSConfig_8h_ae8f3fd645e6e78dfeb8a6e874af6195a}
+
+\begin{DoxyCompactList}\small\item\em The maximum number of co-\/routine priorities which can be used. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ac342ae309b0c53828d2ecad3e6de355b}{\#define \hyperlink{FreeRTOSConfig_8h_ac342ae309b0c53828d2ecad3e6de355b}{config\-U\-S\-E\-\_\-\-T\-I\-M\-E\-R\-S}~0}\label{FreeRTOSConfig_8h_ac342ae309b0c53828d2ecad3e6de355b}
+
+\begin{DoxyCompactList}\small\item\em Switch which allows the use of software timers. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a05c75ff9029ba3f0ab5bde9196f1e873}{\#define \hyperlink{FreeRTOSConfig_8h_a05c75ff9029ba3f0ab5bde9196f1e873}{config\-T\-I\-M\-E\-R\-\_\-\-T\-A\-S\-K\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~( 3 )}\label{FreeRTOSConfig_8h_a05c75ff9029ba3f0ab5bde9196f1e873}
+
+\begin{DoxyCompactList}\small\item\em Priority for task which runs software timers (if timers are enabled). \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_abb9aa0f31c1f3b14a15083a3c6120918}{\#define \hyperlink{FreeRTOSConfig_8h_abb9aa0f31c1f3b14a15083a3c6120918}{config\-T\-I\-M\-E\-R\-\_\-\-Q\-U\-E\-U\-E\-\_\-\-L\-E\-N\-G\-T\-H}~6}\label{FreeRTOSConfig_8h_abb9aa0f31c1f3b14a15083a3c6120918}
+
+\begin{DoxyCompactList}\small\item\em Size of queue buffer for software timers (if timers are enabled). \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_aed7c7ebcdee603583a55e8ce04e55841}{\#define \hyperlink{FreeRTOSConfig_8h_aed7c7ebcdee603583a55e8ce04e55841}{config\-T\-I\-M\-E\-R\-\_\-\-T\-A\-S\-K\-\_\-\-S\-T\-A\-C\-K\-\_\-\-D\-E\-P\-T\-H}~( \hyperlink{FreeRTOSConfig_8h_a6c534a6cf8a00528fe0be42083484f9a}{config\-M\-I\-N\-I\-M\-A\-L\-\_\-\-S\-T\-A\-C\-K\-\_\-\-S\-I\-Z\-E} )}\label{FreeRTOSConfig_8h_aed7c7ebcdee603583a55e8ce04e55841}
+
+\begin{DoxyCompactList}\small\item\em Size of stack for software timer task (if timers are enabled). \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ad6858ac8aaf726007fd19752956ef1bd}{\#define \hyperlink{FreeRTOSConfig_8h_ad6858ac8aaf726007fd19752956ef1bd}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Priority\-Set}~1}\label{FreeRTOSConfig_8h_ad6858ac8aaf726007fd19752956ef1bd}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of task priority setting function. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a1279eb797355460aeeec06aa524e91df}{\#define \hyperlink{FreeRTOSConfig_8h_a1279eb797355460aeeec06aa524e91df}{I\-N\-C\-L\-U\-D\-E\-\_\-ux\-Task\-Priority\-Get}~1}\label{FreeRTOSConfig_8h_a1279eb797355460aeeec06aa524e91df}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of task priority retrieving function. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a5ae1434fdf995108dc749ff9329f53bd}{\#define \hyperlink{FreeRTOSConfig_8h_a5ae1434fdf995108dc749ff9329f53bd}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Delete}~0}\label{FreeRTOSConfig_8h_a5ae1434fdf995108dc749ff9329f53bd}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of function that deletes a task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a7ee138825e57f243c8ee5fd4207b9e26}{\#define \hyperlink{FreeRTOSConfig_8h_a7ee138825e57f243c8ee5fd4207b9e26}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Clean\-Up\-Resources}~0}\label{FreeRTOSConfig_8h_a7ee138825e57f243c8ee5fd4207b9e26}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that cleans up after a task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_aef8fbb97819ad3d962f334ac298206d1}{\#define \hyperlink{FreeRTOSConfig_8h_aef8fbb97819ad3d962f334ac298206d1}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Suspend}~1}\label{FreeRTOSConfig_8h_aef8fbb97819ad3d962f334ac298206d1}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that suspends a task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ae8459bfd5b428319bb10de9f504a53aa}{\#define \hyperlink{FreeRTOSConfig_8h_ae8459bfd5b428319bb10de9f504a53aa}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Delay\-Until}~1}\label{FreeRTOSConfig_8h_ae8459bfd5b428319bb10de9f504a53aa}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that delays a task for a precise time interval since the previous task run. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a24361a6eb816a965f1ee4e2e08e364f8}{\#define \hyperlink{FreeRTOSConfig_8h_a24361a6eb816a965f1ee4e2e08e364f8}{I\-N\-C\-L\-U\-D\-E\-\_\-v\-Task\-Delay}~1}\label{FreeRTOSConfig_8h_a24361a6eb816a965f1ee4e2e08e364f8}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that delays a task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a23c7b4b41fe9b575cf2329c7cbe78b86}{\#define \hyperlink{FreeRTOSConfig_8h_a23c7b4b41fe9b575cf2329c7cbe78b86}{I\-N\-C\-L\-U\-D\-E\-\_\-ux\-Task\-Get\-Stack\-High\-Water\-Mark}~1}\label{FreeRTOSConfig_8h_a23c7b4b41fe9b575cf2329c7cbe78b86}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that checks maximum stack usage by a task. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a4a5ddd1e32d2945d509a19e4a14dccc7}{\#define \hyperlink{FreeRTOSConfig_8h_a4a5ddd1e32d2945d509a19e4a14dccc7}{I\-N\-C\-L\-U\-D\-E\-\_\-pc\-Task\-Get\-Task\-Name}~1}\label{FreeRTOSConfig_8h_a4a5ddd1e32d2945d509a19e4a14dccc7}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that gets a task's name string. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ae8811def4dd6983011fed9ef8686f18f}{\#define \hyperlink{FreeRTOSConfig_8h_ae8811def4dd6983011fed9ef8686f18f}{I\-N\-C\-L\-U\-D\-E\-\_\-x\-Task\-Get\-Idle\-Task\-Handle}~1}\label{FreeRTOSConfig_8h_ae8811def4dd6983011fed9ef8686f18f}
+
+\begin{DoxyCompactList}\small\item\em Switch to enable inclusion of a function that gets the idle task's handle. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_a5796db11ec6f9aa38d017d2ac393c5ba}{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}~4
+\begin{DoxyCompactList}\small\item\em Macro that defines how many bits are used to specify interrupt priorities. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_a10da20f180ec9bd131b0052a802dbc39}{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~15
+\begin{DoxyCompactList}\small\item\em Macro that specifies the lowest interrupt priority used by Free\-R\-T\-O\-S. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_a2254bd235d882be3061bcad0b1e8be98}{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~5
+\begin{DoxyCompactList}\small\item\em The highest system interrupt priority used by Free\-R\-T\-O\-S. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ac42cff506ad61d4174fa23e952e3225e}{\#define \hyperlink{FreeRTOSConfig_8h_ac42cff506ad61d4174fa23e952e3225e}{config\-K\-E\-R\-N\-E\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~( \hyperlink{FreeRTOSConfig_8h_a10da20f180ec9bd131b0052a802dbc39}{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y} $<$$<$ (8 -\/ \hyperlink{FreeRTOSConfig_8h_a5796db11ec6f9aa38d017d2ac393c5ba}{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}) )}\label{FreeRTOSConfig_8h_ac42cff506ad61d4174fa23e952e3225e}
+
+\begin{DoxyCompactList}\small\item\em The lowest interrupt priority, in hardware terms (not a C\-M\-S\-I\-S macro). \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a54bfc31c410ee452577a25a4552c3704}{\#define \hyperlink{FreeRTOSConfig_8h_a54bfc31c410ee452577a25a4552c3704}{config\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~( \hyperlink{FreeRTOSConfig_8h_a2254bd235d882be3061bcad0b1e8be98}{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y} $<$$<$ (8 -\/ \hyperlink{FreeRTOSConfig_8h_a5796db11ec6f9aa38d017d2ac393c5ba}{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}) )}\label{FreeRTOSConfig_8h_a54bfc31c410ee452577a25a4552c3704}
+
+\begin{DoxyCompactList}\small\item\em Priority 5, or 95 as only the top four bits are implemented. \end{DoxyCompactList}\item 
+\#define \hyperlink{FreeRTOSConfig_8h_a228c70cd48927d6ab730ed1a6dfbe35f}{config\-A\-S\-S\-E\-R\-T}(x)
+\begin{DoxyCompactList}\small\item\em Macro which implements a simple assertion that {\itshape must} be true. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ad43047b3ea0a146673e30637488bf754}{\#define \hyperlink{FreeRTOSConfig_8h_ad43047b3ea0a146673e30637488bf754}{v\-Port\-S\-V\-C\-Handler}~S\-V\-C\-\_\-\-Handler}\label{FreeRTOSConfig_8h_ad43047b3ea0a146673e30637488bf754}
+
+\begin{DoxyCompactList}\small\item\em Interrupt handler for the S\-V\-Call interrupt. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_a6f30022da7d797dd31f1b8a11cae9a35}{\#define \hyperlink{FreeRTOSConfig_8h_a6f30022da7d797dd31f1b8a11cae9a35}{x\-Port\-Pend\-S\-V\-Handler}~Pend\-S\-V\-\_\-\-Handler}\label{FreeRTOSConfig_8h_a6f30022da7d797dd31f1b8a11cae9a35}
+
+\begin{DoxyCompactList}\small\item\em Interrupt handler for the Pend\-S\-V interrupt. \end{DoxyCompactList}\item 
+\hypertarget{FreeRTOSConfig_8h_ae42e6318b5d564e44f97f8c765859448}{\#define \hyperlink{FreeRTOSConfig_8h_ae42e6318b5d564e44f97f8c765859448}{x\-Port\-Sys\-Tick\-Handler}~Sys\-Tick\-\_\-\-Handler}\label{FreeRTOSConfig_8h_ae42e6318b5d564e44f97f8c765859448}
+
+\begin{DoxyCompactList}\small\item\em Intterrupt handler for the Sys\-Tick interrupt that runs the R\-T\-O\-S scheduler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration settings for Free\-R\-T\-O\-S as it's used in this project. This file contains defines which are used to tune Free\-R\-T\-O\-S for the processor and performance needs of this project. This includes configuring the R\-T\-O\-S kernel's performance and specifying which of the many optional features to compile into the program. 
+
+Definition in file \hyperlink{FreeRTOSConfig_8h_source}{Free\-R\-T\-O\-S\-Config.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{FreeRTOSConfig_8h_a228c70cd48927d6ab730ed1a6dfbe35f}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-A\-S\-S\-E\-R\-T@{config\-A\-S\-S\-E\-R\-T}}
+\index{config\-A\-S\-S\-E\-R\-T@{config\-A\-S\-S\-E\-R\-T}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-A\-S\-S\-E\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-A\-S\-S\-E\-R\-T(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}\label{FreeRTOSConfig_8h_a228c70cd48927d6ab730ed1a6dfbe35f}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if}( ( x ) == 0 )               \(\backslash\)
+    \{                              \(\backslash\)
+        taskDISABLE\_INTERRUPTS();  \(\backslash\)
+        for( ;; );                 \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+Macro which implements a simple assertion that {\itshape must} be true. 
+
+This macro hangs the system when the value of an assertion is false. 
+
+Definition at line 244 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_aa68082df879e6fc96bcb9b26513639e7}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z@{config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}}
+\index{config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z@{config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-C\-P\-U\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z~( 168000000\-U\-L )}}\label{FreeRTOSConfig_8h_aa68082df879e6fc96bcb9b26513639e7}
+
+
+The rate at which the C\-P\-U core's clock runs. 
+
+The C\-P\-U core clock is timed by a P\-L\-L and runs at a multiple of the frequency of the quartz crystal oscillator on the circuit board. An S\-T\-M32\-F4 can be configured to run at up to 168 M\-Hz. 
+
+Definition at line 103 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_a10da20f180ec9bd131b0052a802dbc39}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y@{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}}
+\index{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y@{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-L\-O\-W\-E\-S\-T\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y~15}}\label{FreeRTOSConfig_8h_a10da20f180ec9bd131b0052a802dbc39}
+
+
+Macro that specifies the lowest interrupt priority used by Free\-R\-T\-O\-S. 
+
+This is equivalent to {\ttfamily config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}. Details are at \href{http://www.freertos.org/FreeRTOS_Support_Forum_Archive/February_2012/freertos_STM32_Interrupt_Priorites_5052889.html}{\tt http\-://www.\-freertos.\-org/\-Free\-R\-T\-O\-S\-\_\-\-Support\-\_\-\-Forum\-\_\-\-Archive/\-February\-\_\-2012/freertos\-\_\-\-S\-T\-M32\-\_\-\-Interrupt\-\_\-\-Priorites\-\_\-5052889.\-html} 
+
+Definition at line 226 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_a2254bd235d882be3061bcad0b1e8be98}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y@{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}}
+\index{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y@{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-L\-I\-B\-R\-A\-R\-Y\-\_\-\-M\-A\-X\-\_\-\-S\-Y\-S\-C\-A\-L\-L\-\_\-\-I\-N\-T\-E\-R\-R\-U\-P\-T\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y~5}}\label{FreeRTOSConfig_8h_a2254bd235d882be3061bcad0b1e8be98}
+
+
+The highest system interrupt priority used by Free\-R\-T\-O\-S. 
+
+Details are at \href{http://www.freertos.org/FreeRTOS_Support_Forum_Archive/February_2012/freertos_STM32_Interrupt_Priorites_5052889.html}{\tt http\-://www.\-freertos.\-org/\-Free\-R\-T\-O\-S\-\_\-\-Support\-\_\-\-Forum\-\_\-\-Archive/\-February\-\_\-2012/freertos\-\_\-\-S\-T\-M32\-\_\-\-Interrupt\-\_\-\-Priorites\-\_\-5052889.\-html} 
+
+Definition at line 232 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_a5796db11ec6f9aa38d017d2ac393c5ba}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S@{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}}
+\index{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S@{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-P\-R\-I\-O\-\_\-\-B\-I\-T\-S~4}}\label{FreeRTOSConfig_8h_a5796db11ec6f9aa38d017d2ac393c5ba}
+
+
+Macro that defines how many bits are used to specify interrupt priorities. 
+
+We use the system definition, if there is one. 
+
+Definition at line 218 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_aa6c52b1b434ca2a708c56fdee02e7946}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z@{config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}}
+\index{config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z@{config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-S\-Y\-S\-T\-I\-C\-K\-\_\-\-C\-L\-O\-C\-K\-\_\-\-H\-Z~( 10000000\-U\-L )}}\label{FreeRTOSConfig_8h_aa6c52b1b434ca2a708c56fdee02e7946}
+
+
+The rate in Hertz at which the S\-T\-M32 Sys\-Tick clock runs. 
+
+The Sys\-Tick is a timer that is used to create the R\-T\-O\-S timer tick interrupt. 
+
+Definition at line 108 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+\hypertarget{FreeRTOSConfig_8h_a2f0258dd1e3b877e5bc013be54c2db6a}{\index{Free\-R\-T\-O\-S\-Config.\-h@{Free\-R\-T\-O\-S\-Config.\-h}!config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z@{config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z}}
+\index{config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z@{config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z}!FreeRTOSConfig.h@{Free\-R\-T\-O\-S\-Config.\-h}}
+\subsubsection[{config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z~( ( port\-Tick\-Type ) 10000 )}}\label{FreeRTOSConfig_8h_a2f0258dd1e3b877e5bc013be54c2db6a}
+
+
+The rate in Hertz at which R\-T\-O\-S ticks are to occur. 
+
+R\-T\-O\-S ticks are the events where a timer interrupt (a Sys\-Tick on S\-T\-M32's) interrupts the processor and allows the R\-T\-O\-S to take control. The R\-T\-O\-S then does internal housekeeping and decides which task is to run next. 
+
+Definition at line 114 of file Free\-R\-T\-O\-S\-Config.\-h.
+
+
+
+Referenced by logger\-\_\-config\-::read\-\_\-line().
+

@@ -1,0 +1,200 @@
+\hypertarget{main_8cpp}{\section{main.\-cpp File Reference}
+\label{main_8cpp}\index{main.\-cpp@{main.\-cpp}}
+}
+
+
+The main file for the Poly\-D\-A\-Q 2 firmware.  
+
+
+{\ttfamily \#include \char`\"{}Free\-R\-T\-O\-S.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rs232.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}taskbase.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}taskqueue.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}textqueue.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}appconfig.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task\-\_\-leds.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task\-\_\-user.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task\-\_\-data\-\_\-acq.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task\-\_\-sd\-\_\-card.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task\-\_\-sd\-\_\-daq.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{main_8cpp_a31f547633351eed43cec5cda4af78a26}{void \hyperlink{main_8cpp_a31f547633351eed43cec5cda4af78a26}{set\-\_\-\-R\-T\-S\-\_\-\-C\-T\-S} (void)}\label{main_8cpp_a31f547633351eed43cec5cda4af78a26}
+
+\begin{DoxyCompactList}\small\item\em Test function to set R\-T\-S and C\-T\-S of R\-N-\/42 bluetooth module. \end{DoxyCompactList}\item 
+int \hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em This function runs when the application is started up. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Text\-Queue $\ast$ \hyperlink{main_8cpp_a493e31a978b386d37612e8e61de815f9}{p\-\_\-main\-\_\-text\-\_\-queue}
+\begin{DoxyCompactList}\small\item\em Pointer to a queue for text to be displayed by the U\-I. \end{DoxyCompactList}\item 
+Task\-Queue$<$ char $>$ $\ast$ \hyperlink{main_8cpp_ae5fd2912a6cce5a20f11cb96bd374f78}{p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue}
+\begin{DoxyCompactList}\small\item\em Queue for commands given to the data acquisition task. \end{DoxyCompactList}\item 
+Text\-Queue $\ast$ \hyperlink{main_8cpp_a7818592796566175f6bff8558f28090c}{p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue}
+\begin{DoxyCompactList}\small\item\em Queue for text to be written to the S\-D card. \end{DoxyCompactList}\item 
+Task\-Share$<$ \hyperlink{classlogger__config}{logger\-\_\-config} $\ast$ $>$ $\ast$ \hyperlink{main_8cpp_a8f511d29d589d6ad572e518f80e84b6d}{p\-\_\-logger\-\_\-config}
+\begin{DoxyCompactList}\small\item\em Pointer to the S\-D card data logger configuration if one exists. \end{DoxyCompactList}\item 
+Task\-Share$<$ uint16\-\_\-t $>$ $\ast$ \hyperlink{main_8cpp_a59de7a38c9368e67ae67329d2f5df940}{p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data}
+\begin{DoxyCompactList}\small\item\em Pointer to a share holding milliseconds per S\-D card data row. \end{DoxyCompactList}\item 
+Task\-Queue$<$ uint8\-\_\-t $>$ $\ast$ \hyperlink{main_8cpp_ac58eeaf47d3d9f5a49ba5d3c68a8066e}{p\-\_\-led\-\_\-command\-\_\-queue}
+\begin{DoxyCompactList}\small\item\em Pointer to a queue for commands to the indicator L\-E\-D control task. \end{DoxyCompactList}\item 
+bool \hyperlink{main_8cpp_aace7e3d8c204a541c01aed0a633c3bb0}{sd\-\_\-card\-\_\-\-L\-E\-D}
+\begin{DoxyCompactList}\small\item\em Flag which causes L\-E\-D task to turn the S\-D card activity L\-E\-D on and off. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main file for the Poly\-D\-A\-Q 2 firmware. This is the main file for the Poly\-D\-A\-Q2 firmware, Free\-R\-T\-O\-S version. It contains the declarations to globally accessible pointers to the shared data items and queues which are used to exchange information between tasks; code which creates the pointers to the shares and queues; and the function {\ttfamily \hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main()}}, which is the first function to run when the program is started up. Inside {\ttfamily \hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main()}}, code does initial setup, creates the task objects which are used in the program, and starts the R\-T\-O\-S scheduler.
+
+Revisions\-: \begin{DoxyItemize}
+\item 08-\/26-\/2014 J\-R\-R Original file, based on earlier Poly\-D\-A\-Q2 project files\end{DoxyItemize}
+License\-: This file is copyright 2014 by J\-R Ridgely and released under the Lesser G\-N\-U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{main_8cpp_source}{main.\-cpp}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{\index{main.\-cpp@{main.\-cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+This function runs when the application is started up. 
+
+The {\ttfamily \hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main()}} function instantiates shared variables and queues, sets up serial ports and other drivers (if needed), creates the task objects which will run {\itshape ad} {\itshape infinitum}, and starts the R\-T\-O\-S scheduler. \begin{DoxyReturn}{Returns}
+Although the scheduler never exits and this function never returns, it's C/\-C++ tradition for {\ttfamily \hyperlink{main_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main()}} to return an integer, so we (don't) return zero; if the return statement is missing the compiler issues a warning. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file main.\-cpp.
+
+
+
+References p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue, p\-\_\-led\-\_\-command\-\_\-queue, p\-\_\-logger\-\_\-config, p\-\_\-main\-\_\-text\-\_\-queue, p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue, and p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{main_8cpp_ae5fd2912a6cce5a20f11cb96bd374f78}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue@{p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue}}
+\index{p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue@{p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Queue$<$char$>$$\ast$ p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue}}\label{main_8cpp_ae5fd2912a6cce5a20f11cb96bd374f78}
+
+
+Queue for commands given to the data acquisition task. 
+
+This pointer points to a queue that transfers commands from the P\-C interface task and/or user interface task to the data acquisition task. 
+
+Definition at line 62 of file main.\-cpp.
+
+
+
+Referenced by main(), task\-\_\-user\-::run(), and task\-\_\-data\-\_\-acq\-::run().
+
+\hypertarget{main_8cpp_ac58eeaf47d3d9f5a49ba5d3c68a8066e}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-led\-\_\-command\-\_\-queue@{p\-\_\-led\-\_\-command\-\_\-queue}}
+\index{p\-\_\-led\-\_\-command\-\_\-queue@{p\-\_\-led\-\_\-command\-\_\-queue}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-led\-\_\-command\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Queue$<$uint8\-\_\-t$>$$\ast$ p\-\_\-led\-\_\-command\-\_\-queue}}\label{main_8cpp_ac58eeaf47d3d9f5a49ba5d3c68a8066e}
+
+
+Pointer to a queue for commands to the indicator L\-E\-D control task. 
+
+The queue pointed to by this pointer holds commands for the task which controls the orange L\-E\-D on the Poly\-D\-A\-Q board. A command byte consists of a 3-\/bit command in the most significant bits and a 5-\/bit number in the least significant bits. Commands are\-:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Number }&{\bf Command  }\\\cline{1-2}
+\PBS\centering 000 &Turn off and stay off until another command arrives \\\cline{1-2}
+\PBS\centering 001 &Turn on and stay on until another command arrives \\\cline{1-2}
+\PBS\centering 010 &Go to \char`\"{}heartbeat\char`\"{} mode, smooth on-\/and-\/off blinking \\\cline{1-2}
+\PBS\centering 011 &Blink the number of times in the 5-\/bit number \\\cline{1-2}
+\PBS\centering 1\-X\-X &Other commands are ignored for now \\\cline{1-2}
+\end{TabularC}
+
+
+Definition at line 100 of file main.\-cpp.
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::acquire\-\_\-sd\-\_\-data(), main(), task\-\_\-leds\-::run(), and task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{main_8cpp_a8f511d29d589d6ad572e518f80e84b6d}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-logger\-\_\-config@{p\-\_\-logger\-\_\-config}}
+\index{p\-\_\-logger\-\_\-config@{p\-\_\-logger\-\_\-config}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-logger\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Share$<${\bf logger\-\_\-config}$\ast$$>$$\ast$ p\-\_\-logger\-\_\-config}}\label{main_8cpp_a8f511d29d589d6ad572e518f80e84b6d}
+
+
+Pointer to the S\-D card data logger configuration if one exists. 
+
+This shared pointer contains the memory address of the S\-D card data logger configuration if one exists. If there is no S\-D card in the slot with a valid logger configuration file, this pointer is N\-U\-L\-L to indicate that no S\-D card data logging is to be done. 
+
+Definition at line 77 of file main.\-cpp.
+
+
+
+Referenced by main(), task\-\_\-sd\-\_\-daq\-::run(), task\-\_\-sd\-\_\-card\-::run(), and task\-\_\-sd\-\_\-card\-::write\-\_\-header().
+
+\hypertarget{main_8cpp_a493e31a978b386d37612e8e61de815f9}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-main\-\_\-text\-\_\-queue@{p\-\_\-main\-\_\-text\-\_\-queue}}
+\index{p\-\_\-main\-\_\-text\-\_\-queue@{p\-\_\-main\-\_\-text\-\_\-queue}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-main\-\_\-text\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Queue$\ast$ p\-\_\-main\-\_\-text\-\_\-queue}}\label{main_8cpp_a493e31a978b386d37612e8e61de815f9}
+
+
+Pointer to a queue for text to be displayed by the U\-I. 
+
+This queue can be used by all the tasks to print messages without having to wait for the comparatively slow serial port. 
+
+Definition at line 56 of file main.\-cpp.
+
+
+
+Referenced by main(), task\-\_\-user\-::run(), task\-\_\-pc\-::run(), and task\-\_\-print\-::run().
+
+\hypertarget{main_8cpp_a7818592796566175f6bff8558f28090c}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue@{p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue}}
+\index{p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue@{p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue}]{\setlength{\rightskip}{0pt plus 5cm}Text\-Queue$\ast$ p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue}}\label{main_8cpp_a7818592796566175f6bff8558f28090c}
+
+
+Queue for text to be written to the S\-D card. 
+
+This pointer points to a queue which carries text that will be written to an S\-D card if a card is in the socket. Of no card is in the socket, some data will just be lost. 
+
+Definition at line 69 of file main.\-cpp.
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::acquire\-\_\-sd\-\_\-data(), main(), and task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{main_8cpp_a59de7a38c9368e67ae67329d2f5df940}{\index{main.\-cpp@{main.\-cpp}!p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data@{p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data}}
+\index{p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data@{p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data}!main.cpp@{main.\-cpp}}
+\subsubsection[{p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}Task\-Share$<$uint16\-\_\-t$>$$\ast$ p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data}}\label{main_8cpp_a59de7a38c9368e67ae67329d2f5df940}
+
+
+Pointer to a share holding milliseconds per S\-D card data row. 
+
+This item holds the number of milliseconds between data rows collected for storage on the S\-D card. It is set by the logger configuration reader in the S\-D card task and used by the data acquisition task. 
+
+Definition at line 84 of file main.\-cpp.
+
+
+
+Referenced by main(), and task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{main_8cpp_aace7e3d8c204a541c01aed0a633c3bb0}{\index{main.\-cpp@{main.\-cpp}!sd\-\_\-card\-\_\-\-L\-E\-D@{sd\-\_\-card\-\_\-\-L\-E\-D}}
+\index{sd\-\_\-card\-\_\-\-L\-E\-D@{sd\-\_\-card\-\_\-\-L\-E\-D}!main.cpp@{main.\-cpp}}
+\subsubsection[{sd\-\_\-card\-\_\-\-L\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}bool sd\-\_\-card\-\_\-\-L\-E\-D}}\label{main_8cpp_aace7e3d8c204a541c01aed0a633c3bb0}
+
+
+Flag which causes L\-E\-D task to turn the S\-D card activity L\-E\-D on and off. 
+
+This flag allows the S\-D card driver to control the S\-D card activity L\-E\-D. Although scoped globally, it's not a task share because access to a bool is atomic, so the data can't be corrupted by a context switch. 
+
+Definition at line 107 of file main.\-cpp.
+
+
+
+Referenced by task\-\_\-leds\-::run(), and task\-\_\-sd\-\_\-card\-::run().
+

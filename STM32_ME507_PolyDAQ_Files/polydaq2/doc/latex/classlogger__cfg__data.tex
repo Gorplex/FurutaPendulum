@@ -1,0 +1,50 @@
+\hypertarget{classlogger__cfg__data}{\section{logger\-\_\-cfg\-\_\-data Class Reference}
+\label{classlogger__cfg__data}\index{logger\-\_\-cfg\-\_\-data@{logger\-\_\-cfg\-\_\-data}}
+}
+
+
+Data for one sensor line in the logger configuration file.  
+
+
+
+
+{\ttfamily \#include $<$logger\-\_\-config.\-h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlogger__cfg__data_a893f053c8239c8bb351434948330c0b5}{char \hyperlink{classlogger__cfg__data_a893f053c8239c8bb351434948330c0b5}{command}}\label{classlogger__cfg__data_a893f053c8239c8bb351434948330c0b5}
+
+\begin{DoxyCompactList}\small\item\em The command character which causes the Poly\-D\-A\-Q to read the channel. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__cfg__data_ac0defeece39d95dafc73278e1851312b}{float \hyperlink{classlogger__cfg__data_ac0defeece39d95dafc73278e1851312b}{slope}}\label{classlogger__cfg__data_ac0defeece39d95dafc73278e1851312b}
+
+\begin{DoxyCompactList}\small\item\em The slope for converting raw data to what is saved. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__cfg__data_a8ebe35406e6ad305444833dd87b80d72}{float \hyperlink{classlogger__cfg__data_a8ebe35406e6ad305444833dd87b80d72}{offset}}\label{classlogger__cfg__data_a8ebe35406e6ad305444833dd87b80d72}
+
+\begin{DoxyCompactList}\small\item\em The offset for converting the scaled data to what is saved. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__cfg__data_a6c53a0edb066f71f985a14184da09d39}{\hyperlink{classlogger__cfg__data}{logger\-\_\-cfg\-\_\-data} $\ast$ \hyperlink{classlogger__cfg__data_a6c53a0edb066f71f985a14184da09d39}{p\-\_\-next}}\label{classlogger__cfg__data_a6c53a0edb066f71f985a14184da09d39}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the next configuration, or {\ttfamily N\-U\-L\-L} if this is the last one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data for one sensor line in the logger configuration file. 
+
+This structure holds the data which is read from a single line of the logger configuration file. Each line configures one sensor with the following data\-:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Item }&{\bf Description  }\\\cline{1-2}
+Command &A one-\/character command that causes logging of this channel \\\cline{1-2}
+Slope &The slope for conversions from raw data to what is saved \\\cline{1-2}
+Offset &The number added to the scaled (by slope) data before saving \\\cline{1-2}
+\end{TabularC}
+This class is used as a simple data structure, so its data is public and methods aren't needed. 
+
+Definition at line 76 of file logger\-\_\-config.\-h.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{logger__config_8h}{logger\-\_\-config.\-h}\end{DoxyCompactItemize}

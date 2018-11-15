@@ -1,0 +1,131 @@
+\hypertarget{classtask__user}{\section{task\-\_\-user Class Reference}
+\label{classtask__user}\index{task\-\_\-user@{task\-\_\-user}}
+}
+
+
+Task for communication with the user or a P\-C based user interface.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-user.\-h$>$}
+
+Inheritance diagram for task\-\_\-user\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__user}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__user_a17401926939e6b241f7b32397e020b2f}{task\-\_\-user} (const char $\ast$name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt, \hyperlink{classpolydaq2}{polydaq2} $\ast$p\-\_\-poly\-\_\-driver)
+\begin{DoxyCompactList}\small\item\em Creates a user interface task object. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__user_adca6429d57be25e8d411414fc8ad75af}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the user interface thread. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__user_ae80867cb9ac50e8f1df7ba391ce7723d}{show\-\_\-help} (void)
+\begin{DoxyCompactList}\small\item\em Show a help menu for the user interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtask__user_ad3fe7583eeb5a45dfd87e6b6e4686bc7}{\hyperlink{classpolydaq2}{polydaq2} $\ast$ \hyperlink{classtask__user_ad3fe7583eeb5a45dfd87e6b6e4686bc7}{p\-\_\-poly}}\label{classtask__user_ad3fe7583eeb5a45dfd87e6b6e4686bc7}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the Poly\-D\-A\-Q 2 board driver from which to get data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task for communication with the user or a P\-C based user interface. 
+
+This task interacts with the user. User input, which may be input from another computer, such as a P\-C running interface software written in Python, Matlab(tm) or Lab\-View(tm), is usually given as single character commands. The user interface responds with whatever the designer wishes to send to the user or other computer. The use of states is optional, unless this task implements the \char`\"{}vi\char`\"{} editor, in which case it's pretty much mandatory. 
+
+Definition at line 45 of file task\-\_\-user.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__user_a17401926939e6b241f7b32397e020b2f}{\index{task\-\_\-user@{task\-\_\-user}!task\-\_\-user@{task\-\_\-user}}
+\index{task\-\_\-user@{task\-\_\-user}!task_user@{task\-\_\-user}}
+\subsubsection[{task\-\_\-user}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-user\-::task\-\_\-user (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt, }
+\item[{{\bf polydaq2} $\ast$}]{p\-\_\-poly\-\_\-driver}
+\end{DoxyParamCaption}
+)}}\label{classtask__user_a17401926939e6b241f7b32397e020b2f}
+
+
+Creates a user interface task object. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a user interface task object. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (quite a bit, actually) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+{\em p\-\_\-poly\-\_\-driver} & Pointer to a Poly\-D\-A\-Q 2 driver which runs the Poly\-D\-A\-Q board \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file task\-\_\-user.\-cpp.
+
+
+
+References p\-\_\-poly.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__user_adca6429d57be25e8d411414fc8ad75af}{\index{task\-\_\-user@{task\-\_\-user}!run@{run}}
+\index{run@{run}!task_user@{task\-\_\-user}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-user\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__user_adca6429d57be25e8d411414fc8ad75af}
+
+
+The run method that runs the user interface thread. 
+
+This method checks for characters typed by the user and responds to any typed characters. \begin{DoxyReturn}{Returns}
+This method should never return; if it hypothetically did, it would return an O\-S message of zero. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file task\-\_\-user.\-cpp.
+
+
+
+References polydaq2\-::get\-\_\-data(), polydaq2\-::get\-\_\-data\-\_\-oversampled(), polydaq2\-::get\-\_\-\-I\-R\-\_\-temperature(), p\-\_\-daq\-\_\-\-U\-I\-\_\-command\-\_\-queue, p\-\_\-main\-\_\-text\-\_\-queue, p\-\_\-poly, polydaq2\-::scan\-\_\-\-I2\-C\-\_\-bus(), polydaq2\-::set\-\_\-\-D\-A\-C(), show\-\_\-help(), polydaq2\-::strain\-\_\-auto\-\_\-balance(), and V\-E\-R\-S\-I\-O\-N\-\_\-\-S\-T\-R\-I\-N\-G.
+
+\hypertarget{classtask__user_ae80867cb9ac50e8f1df7ba391ce7723d}{\index{task\-\_\-user@{task\-\_\-user}!show\-\_\-help@{show\-\_\-help}}
+\index{show\-\_\-help@{show\-\_\-help}!task_user@{task\-\_\-user}}
+\subsubsection[{show\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-user\-::show\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__user_ae80867cb9ac50e8f1df7ba391ce7723d}
+
+
+Show a help menu for the user interface. 
+
+This method writes a list of commands and their functions so that a user can see how to make the program do whatever it can do. 
+
+Definition at line 57 of file task\-\_\-user.\-cpp.
+
+
+
+Referenced by run().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__user_8h}{task\-\_\-user.\-h}\item 
+\hyperlink{task__user_8cpp}{task\-\_\-user.\-cpp}\end{DoxyCompactItemize}

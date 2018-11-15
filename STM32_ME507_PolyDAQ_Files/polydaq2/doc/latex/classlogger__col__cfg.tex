@@ -1,0 +1,59 @@
+\hypertarget{classlogger__col__cfg}{\section{logger\-\_\-col\-\_\-cfg Class Reference}
+\label{classlogger__col__cfg}\index{logger\-\_\-col\-\_\-cfg@{logger\-\_\-col\-\_\-cfg}}
+}
+
+
+Data for one sensor line in the logger configuration file.  
+
+
+
+
+{\ttfamily \#include $<$logger\-\_\-config.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlogger__col__cfg_a6e7d9e299aee792b6914dcde5868ebe4}{\hyperlink{classlogger__col__cfg_a6e7d9e299aee792b6914dcde5868ebe4}{logger\-\_\-col\-\_\-cfg} (void)}\label{classlogger__col__cfg_a6e7d9e299aee792b6914dcde5868ebe4}
+
+\begin{DoxyCompactList}\small\item\em The constructor sets default values for everything. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlogger__col__cfg_a6e82dca8f3cc2f5ad53c3596f37dee25}{char \hyperlink{classlogger__col__cfg_a6e82dca8f3cc2f5ad53c3596f37dee25}{command}}\label{classlogger__col__cfg_a6e82dca8f3cc2f5ad53c3596f37dee25}
+
+\begin{DoxyCompactList}\small\item\em The command character which causes the Poly\-D\-A\-Q to read the channel. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__col__cfg_ae4b90337e551749b1be1ab3a967f8a73}{float \hyperlink{classlogger__col__cfg_ae4b90337e551749b1be1ab3a967f8a73}{slope}}\label{classlogger__col__cfg_ae4b90337e551749b1be1ab3a967f8a73}
+
+\begin{DoxyCompactList}\small\item\em The slope for converting raw data to what is saved. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__col__cfg_a386fa258ee9c035dcd67bebc44789899}{float \hyperlink{classlogger__col__cfg_a386fa258ee9c035dcd67bebc44789899}{offset}}\label{classlogger__col__cfg_a386fa258ee9c035dcd67bebc44789899}
+
+\begin{DoxyCompactList}\small\item\em The offset for converting the scaled data to what is saved. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__col__cfg_af82115d776b995020e0afd8061fcfa5a}{char $\ast$ \hyperlink{classlogger__col__cfg_af82115d776b995020e0afd8061fcfa5a}{p\-\_\-label}}\label{classlogger__col__cfg_af82115d776b995020e0afd8061fcfa5a}
+
+\begin{DoxyCompactList}\small\item\em The label (name) of the given column of data. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__col__cfg_adec0e9660a87545cefd316a0c99b9bc5}{\hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} $\ast$ \hyperlink{classlogger__col__cfg_adec0e9660a87545cefd316a0c99b9bc5}{p\-\_\-next}}\label{classlogger__col__cfg_adec0e9660a87545cefd316a0c99b9bc5}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the next configuration, or {\ttfamily N\-U\-L\-L} if this is the last one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Data for one sensor line in the logger configuration file. 
+
+This structure holds the data which is read from a single line of the logger configuration file. Each line configures one sensor with the following data\-:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Item }&{\bf Description  }\\\cline{1-2}
+Command &A one-\/character command that causes logging of this channel \\\cline{1-2}
+Slope &The slope for conversions from raw data to what is saved \\\cline{1-2}
+Offset &The number added to the scaled (by slope) data before saving \\\cline{1-2}
+\end{TabularC}
+This class is used as a simple data structure, so its data is public and methods aren't needed. 
+
+Definition at line 82 of file logger\-\_\-config.\-h.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{logger__config_8h}{logger\-\_\-config.\-h}\end{DoxyCompactItemize}

@@ -1,0 +1,636 @@
+//*************************************************************************************
+/** @file i2c_master.cpp
+ *    This file contains a base class for classes that use the I2C (also known as TWI)
+ *    interface on an AVR. The terms "I2C" (the two means squared) and "TWI" are
+ *    essentially equivalent; Philips has trademarked the former, and Atmel doesn't pay
+ *    them a license fee, so Atmel chips that meet exactly the same specification are
+ *    not allowed to use the "I2C" name, even though everything works the same. 
+ *
+ *    Note: The terms "master" and "slave" are standard terminology used in the
+ *    electronics industry to describe interactions between electronic components only.
+ *    The use of such terms in this documentation is made only for the purpose of 
+ *    usefully documenting electronic hardware and software, and such use must not be
+ *    misconstrued as diminishing our revulsion at the socially diseased human behavior 
+ *    which is described using the same terms, nor implying any insensitivity toward
+ *    people from any background who have been affected by such behavior. 
+ *
+ *  Revised:
+ *    @li 12-24-2012 JRR Original file, as a standalone HMC6352 compass driver
+ *    @li 12-28-2012 JRR I2C driver split off into a base class for optimal reusability
+ *    @li 02-12-2015 JRR Version made for STM32F4 processors
+ *
+ *  License:
+ *    This file is copyright 2012-15 by JR Ridgely and released under the Lesser GNU 
+ *    Public License, version 3. It is intended for educational use only, but its use
+ *    is not limited thereto. Portions of this software closely follow that of Tilen
+ *    Majerle; see http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
+ */
+/*    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+ *    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+ *    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ *    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+ *    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUEN-
+ *    TIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS 
+ *    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+ *    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+ *    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ *    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+//*************************************************************************************
+
+#include "FreeRTOS.h"                       // Main header for FreeRTOS
+#include "task.h"                           // Needed for the vTaskDelay() function
+#include "i2c_master.h"                     // Header for this class
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Create an I2C driver object and initialize the I2C port for it.
+ *  @details This constructor creates an I2C driver object. It turns on the I2C port 
+ *           and configures the I/O pins for the SDA and SCL lines. The bit rate is 
+ *           set to the value specified in @c I2C_BITRATE; the user must ensure that 
+ *           this bit rate is compatible with all devices which will be communicating 
+ *           on this I2C bus. 
+ *  @param   theI2C The I2C port data structure, such as @c I2C1, or @c I2C2, @e etc. 
+ *  @param   p_debug_port A serial port, often RS-232, for debugging text 
+ *               (default: NULL)
+ */
+
+i2c_master::i2c_master (
+						I2C_TypeDef* theI2C
+						#ifdef I2C_DBG
+							, emstream* p_debug_port
+						#endif
+					   )
+{
+	#ifdef I2C_DBG
+		p_serial = p_debug_port;            // Set the debugging serial port pointer
+	#endif
+
+	p_I2C = theI2C;                         // Save the pointer
+
+	GPIO_InitTypeDef GP_Init_Struct;        // Structure for setting up GPIO pins
+	I2C_InitTypeDef I2C_InitStruct;         // Structure for initializing I2C port
+
+	// Set parameters which are the same for all the I2C ports being used
+	GP_Init_Struct.GPIO_Mode = GPIO_Mode_AF;
+	GP_Init_Struct.GPIO_OType = GPIO_OType_OD;
+	GP_Init_Struct.GPIO_PuPd = GPIO_PuPd_NOPULL;       // Use external 4.7K resistors
+	GP_Init_Struct.GPIO_Speed = GPIO_Speed_50MHz;
+
+	I2C_InitStruct.I2C_ClockSpeed = I2C_BITRATE;
+	I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+	I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
+	I2C_InitStruct.I2C_OwnAddress1 = 0x00;
+	I2C_InitStruct.I2C_Ack = I2C_Ack_Disable;
+	I2C_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;
+
+	// Set parameters which are different for different I2C ports
+	if (theI2C == I2C1)
+	{
+		GP_Init_Struct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+		GPIO_Init (GPIOB, &GP_Init_Struct);
+		GPIO_PinAFConfig (GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
+		GPIO_PinAFConfig (GPIOB, GPIO_PinSource7, GPIO_AF_I2C1);
+		RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOB, ENABLE);
+		RCC_APB1PeriphClockCmd (RCC_APB1Periph_I2C1, ENABLE);
+	}
+	else if (theI2C == I2C2)
+	{
+		GP_Init_Struct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+		GPIO_Init (GPIOB, &GP_Init_Struct);
+		GPIO_PinAFConfig (GPIOB, GPIO_PinSource10, GPIO_AF_I2C2);
+		GPIO_PinAFConfig (GPIOB, GPIO_PinSource11, GPIO_AF_I2C2);
+		RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOB, ENABLE);
+		RCC_APB1PeriphClockCmd (RCC_APB1Periph_I2C2, ENABLE);
+	}
+	else if (theI2C == I2C3)
+	{
+		GP_Init_Struct.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+		GPIO_Init (GPIOA, &GP_Init_Struct);
+		GPIO_PinAFConfig (GPIOA, GPIO_PinSource8, GPIO_AF_I2C3);
+		GPIO_PinAFConfig (GPIOA, GPIO_PinSource9, GPIO_AF_I2C3);
+		RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOA, ENABLE);
+		RCC_APB1PeriphClockCmd (RCC_APB1Periph_I2C3, ENABLE);
+	}
+	else
+	{
+		I2C_DBG ("I2C Error: No such port" << endl);
+		return;
+	}
+
+	I2C_Cmd (theI2C, DISABLE);              // Turn I2C port off for maintenance
+	I2C_Init (theI2C, &I2C_InitStruct);     // Initialize the port
+	I2C_Cmd (theI2C, ENABLE);               // Re-enable the port
+// 	theI2C->CR1 |= I2C_CR1_PE;              // Enable the port
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Reset the I2C bus.
+ */
+
+void i2c_master::reset (void)
+{
+	p_I2C->CR1 |= (uint16_t)(~(uint16_t)I2C_CR1_PE);
+	for (volatile uint32_t blah = 0; blah < 10000L; blah++);
+	p_I2C->CR1 |= I2C_CR1_PE;
+	for (volatile uint32_t blah = 0; blah < 10000L; blah++);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Cause a start condition on the I2C bus.
+ *  @details This method causes a start condition on the I2C bus. In hardware, a start
+ *           condition means that the SDA line is dropped while the SCL line stays 
+ *           high. This gets the attention of all the other devices on the bus so that
+ *           they will listen for their addresses. 
+ *  @param   address The I2C bus address of the device to which we'll talk. The address
+ *                   should already have been shifted so that it fills the 7 @b most
+ *                   significant bits of the byte. 
+ *  @param   dir Whether transmitting (@c I2C_Direction_Transmitter) or receiving 
+ *               (@c I2C_Direction_Receiver)
+ *  @param   ack Whether to check for an acknowledgement
+ *  @return  @c true if there was an error, @c false if the I2C start was successful
+ */
+
+bool i2c_master::start (uint8_t address, uint8_t dir, bool ack)
+{
+	uint16_t timeout = I2C_TIMEOUT;
+	while (p_I2C->SR2 & I2C_SR2_BUSY)       // Wait until the I2C bus is no longer busy
+	{
+		if (--timeout == 0x00)
+		{
+			I2C_DBG ("<T0s>");
+			return (false);
+		}
+	}
+
+	// The rest of the starting process is the same as restart()
+	return (restart (address, dir, ack));
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Send a repeated start condition on the I2C bus.
+ *  @details This method causes a repeated start condition on the I2C bus. It should
+ *           only be used when a session has already been started with @c start(), a 
+ *           byte has been transmitted or received, and it's time for more bytes to be
+ *           transmitted or received to or from the same device. 
+ *  @param   address The I2C bus address of the device to which we'll talk. The address
+ *                   should already have been shifted so that it fills the 7 @b most
+ *                   significant bits of the byte. 
+ *  @param   dir Whether transmitting (@c I2C_Direction_Transmitter) or receiving 
+ *               (@c I2C_Direction_Receiver)
+ *  @param   ack Whether to check for an acknowledgement
+ *  @return  @c true if there was an error, @c false if the I2C start was successful
+ */
+
+bool i2c_master::restart (uint8_t address, uint8_t dir, bool ack)
+{
+	if (ack)    // Enable acknowledgement bit if needed and cause a (re)start condition
+	{
+		p_I2C->CR1 |= (I2C_CR1_ACK | I2C_CR1_START);
+	}
+	else
+	{
+		p_I2C->CR1 &= (uint16_t)~((uint16_t)I2C_CR1_ACK);
+		p_I2C->CR1 |= I2C_CR1_START;
+	}
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while (!(p_I2C->SR1 & I2C_SR1_SB))      // Wait until start condition generated
+	{
+		if (--timeout == 0x00)
+		{
+			I2C_DBG ("<T0r>");
+			return (false);
+		}
+	}
+
+	timeout = I2C_TIMEOUT;
+	uint32_t the_event;
+
+	if (dir == I2C_Direction_Receiver)      // If reading, set read bit after address
+	{
+		address |= 0x01;
+		the_event = I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED;
+	}
+	else
+	{
+		the_event = I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED;
+	}
+	p_I2C->DR = address;
+	while (!I2C_CheckEvent (p_I2C, the_event))
+	{
+		if (--timeout == 0x00)
+		{
+			p_I2C->CR1 |= I2C_CR1_STOP;
+			p_I2C->SR2;
+			I2C_DBG ("<T1r>");
+			return (true);
+		}
+	}
+
+	p_I2C->SR2;
+	return (false);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Send a stop condition onto the I2C bus.
+ *  @details This method causes a stop condition on the I2C bus. 
+ *  @return  @c true if an error occurred or @c false if the stop condition worked OK
+ */
+
+bool i2c_master::stop (void)
+{
+	p_I2C->CR1 |= I2C_CR1_STOP;             // Generate a stop
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while (!(p_I2C->SR2 & I2C_SR2_BUSY))
+	{
+		if (--timeout == 0x00)
+		{
+			I2C_DBG ("<T$>");
+			break;
+		}
+	}
+
+	return (false);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Read a byte from the I2C slave device and send a negative acknowledgement 
+ *           (NACK) to it.
+ *  @details This method reads one byte from the I2C slave device and sends a negative
+ *           acknowledgement bit. This is usually done when reading a byte of data 
+ *           being sent by the slave device and expecting more bytes after this one.
+ *           The slave device will respond to the NACK by sending more data if 
+ *           possible.
+ *  @return  The byte of data which was read from the slave device
+ */
+
+uint8_t i2c_master::read_byte_NACK (void)
+{
+// 	p_I2C->CR1 &= (uint16_t)~((uint16_t)I2C_CR1_ACK);
+
+// 	p_I2C->CR1 |= I2C_CR1_STOP;
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while (!I2C_CheckEvent (p_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
+	{
+		if (timeout-- == 0)
+		{
+			I2C_DBG ("<TN>");
+			return (0xFF);
+		}
+	}
+// 	I2C_DBG ('{' << dec << timeout << '}');
+
+// 	return (I2C_ReceiveData (p_I2C));
+	return (uint8_t)(p_I2C->DR);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Read a byte from the I2C slave device and send an acknowledgement to it.
+ *  @details This method reads one byte from the I2C slave device and sends an
+ *           acknowledgement bit. This is usually done when reading the last byte of
+ *           data being sent by the slave device, as the slave device will respond to
+ *           the acknowledgement by finishing its transmission of data.
+ *  @return  The byte of data which was read from the slave device
+ */
+
+uint8_t i2c_master::read_byte_ACK (void)
+{
+	p_I2C->CR1 |= I2C_CR1_ACK;
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while (!I2C_CheckEvent (p_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED))
+	{
+		if (timeout-- == 0)
+		{
+			I2C_DBG ("<TA>");
+			return (0xFF);
+		}
+	}
+
+// 	return (I2C_ReceiveData (p_I2C));
+	return (uint8_t)(p_I2C->DR);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Write a byte to the slave device which has already been selected.
+ *  @details This method writes one byte to an I2C slave device. The device must 
+ *           already have been selected by sending a start and the device's address.
+ *           This method waits until the I2C port has reached the end of the address
+ *           phase, using the @c I2C_SR2_TRA bit. 
+ *  @param   data The byte to be written to the device
+ */
+
+void i2c_master::write_byte_TRA (uint8_t data)
+{
+	p_I2C->DR = data;
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while ((p_I2C->SR2 & I2C_SR2_TRA) == 0)
+	{
+		if ((--timeout) == 0)
+		{
+			I2C_DBG ("<TWA>");
+			return;
+		}
+	}
+// 	p_I2C->SR1;
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Write a byte to the slave device which has already been selected.
+ *  @details This method writes one byte to an I2C slave device. The device must 
+ *           already have been selected by sending a start and the device's address.
+ *           This method waits until the I2C transmitter data register is empty before
+ *           sending anything. 
+ *  @param   data The byte to be written to the device
+ */
+
+void i2c_master::write_byte_TXE (uint8_t data)
+{
+	p_I2C->DR = data;
+
+	uint16_t timeout = I2C_TIMEOUT;
+	while ((p_I2C->SR1 & I2C_SR1_TXE) == 0)
+	{
+		if ((--timeout) == 0)
+		{
+			I2C_DBG ("<TWB>");
+			return;
+		}
+	}
+// 	p_I2C->SR1;
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Read one byte from a slave device on the I2C bus.
+ *  @details This method reads a single byte from the device on the I2C bus at the
+ *           given address.
+ *  @param   address The I2C address for the device. The address should already have 
+ *                   been shifted so that it fills the 7 @b most significant bits of 
+ *                   the byte. 
+ *  @param   reg The register address within the device from which to read
+ */
+
+uint8_t i2c_master::read (uint8_t address, uint8_t reg)
+{
+	start (address, I2C_Direction_Transmitter, true);
+
+	write_byte_TRA (reg);
+
+// 	stop ();
+	restart (address, I2C_Direction_Receiver, false);
+
+	uint8_t data = read_byte_NACK ();
+
+	stop ();
+
+	return (data);
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Read multiple bytes from a slave device on the I2C bus.
+ *  @details This method reads multiple bytes from the device on the I2C bus at the
+ *           given address.
+ *  @param   address The I2C address for the device. The address should already have 
+ *                   been shifted so that it fills the 7 @b most significant bits of 
+ *                   the byte. 
+ *  @param   reg The register address within the device from which to read
+ *  @param   p_buffer A pointer to a buffer in which the received bytes will be stored
+ *  @param   count The number of bytes to read from the device
+ */
+
+void i2c_master::read (uint8_t address, uint8_t reg, uint8_t *p_buffer, uint8_t count)
+{
+	start (address, I2C_Direction_Transmitter, false);
+	write_byte_TRA (reg);
+	stop ();
+	start (address, I2C_Direction_Receiver, false);
+	for (uint8_t index = count - 1; index > 0; index--)
+	{
+		*p_buffer++ = read_byte_ACK ();
+	}
+	*p_buffer = read_byte_NACK ();          // Last byte requires acknowledgement
+// 	stop ();
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Write one byte to a slave device on the I2C bus.
+ *  @details This method writes a single byte to the device on the I2C bus at the
+ *           given address.
+ *  @param   address The I2C address for the device. The address should already have 
+ *                   been shifted so that it fills the 7 @b most significant bits of 
+ *                   the byte. 
+ *  @param   reg The register address within the device to which to write
+ *  @param   data The byte of data to be written to the device
+ */
+
+void i2c_master::write (uint8_t address, uint8_t reg, uint8_t data)
+{
+	start (address, I2C_Direction_Transmitter, true);
+
+	write_byte_TXE (reg);
+// 	p_I2C->DR = reg;
+// 	uint16_t timeout = I2C_TIMEOUT;
+// 	while ((p_I2C->SR1 & I2C_SR1_TXE) == 0)
+// 	{
+// 		if ((--timeout) == 0)
+// 		{
+// 			I2C_DBG ("<TWB>");
+// 			return;
+// 		}
+// 		if (p_I2C->SR2 & I2C_SR1_AF)
+// 		{
+// 			I2C_DBG ("<TWAF>");
+// 			return;
+// 		}
+// 	}
+
+	write_byte_TXE (data);
+// 	p_I2C->DR = data;
+// 	timeout = I2C_TIMEOUT;
+// 	while ((p_I2C->SR1 & I2C_SR1_TXE) == 0)
+// 	{
+// 		if ((--timeout) == 0)
+// 		{
+// 			I2C_DBG ("<TWB>");
+// 			return;
+// 		}
+// 		if (p_I2C->SR2 & I2C_SR1_AF)
+// 		{
+// 			I2C_DBG ("<TWAF>");
+// 			return;
+// 		}
+// 	}
+
+	stop ();
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Write a bunch of bytes to a slave device on the I2C bus.
+ *  @details This method writes a number of bytes to the device on the I2C bus at the
+ *           given address.
+ *  @param   address The I2C address for the device. The address should already have 
+ *                   been shifted so that it fills the 7 @b most significant bits of 
+ *                   the byte. 
+ *  @param   reg The register address within the device to which to write
+ *  @param   p_buf Pointer to a memory address at which is found the bytes of data to 
+ *                 be written to the device
+ *  @param   count The number of bytes to be written from the buffer to the device
+ */
+
+void i2c_master::write (uint8_t address, uint8_t reg, uint8_t* p_buf, uint8_t count)
+{
+	start (address, I2C_Direction_Transmitter, false);
+	write_byte_TXE (reg);
+	for (uint8_t index = 0; index < count; index++)
+	{
+		write_byte_TXE (*p_buf++);
+	}
+	stop ();
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Check if a device is located at the given address.
+ *  @details This method causes an I2C start, then sends the given address and checks
+ *           for an acknowledgement. After that, it just sends a stop condition. 
+ *  @param   address The I2C address for the device. The address should already have 
+ *                   been shifted so that it fills the 7 @b most significant bits of 
+ *                   the byte. 
+ *  @return  @c true if a device acknowledged the given address, @c false if not
+ */
+
+bool i2c_master::ping (uint8_t address)
+{
+	uint16_t timeout = I2C_TIMEOUT;
+	while (p_I2C->SR2 & I2C_SR2_BUSY)       // Wait until the I2C bus is no longer busy
+	{
+		if (--timeout == 0x00)
+		{
+			I2C_DBG ("<T0p>");
+			return (false);
+		}
+	}
+
+	// Enable acknowledgement bit and cause a start condition
+	p_I2C->CR1 |= (I2C_CR1_ACK | I2C_CR1_START);
+
+	timeout = I2C_TIMEOUT;
+	while (!(p_I2C->SR1 & I2C_SR1_SB))
+	{
+		if (--timeout == 0x00)
+		{
+			I2C_DBG ("<T1p:" << hex << p_I2C->SR1 << dec << ">");
+			timeout = p_I2C->SR2;           // Read and discard SR2
+			stop ();
+			return (false);
+		}
+// 		if (p_I2C->SR1 & I2C_SR1_ADDR)      // If we happen to get an address match
+// 		{
+// 			p_I2C->CR1 |= I2C_CR1_STOP;     // Generate a stop
+// 			timeout = p_I2C->SR2;           // Read and discard SR2
+// 			return (true);
+// 		}
+	}
+
+	p_I2C->DR = address;                    // Send the I2C address in transmit mode
+
+	timeout = I2C_ADDR_TIMEOUT;             // Wait for the address to be sent
+	while (1)
+	{
+		// A successful address match sets the ADDR bit in SR1
+		if (p_I2C->SR1 & I2C_SR1_ADDR)
+		{
+			p_I2C->CR1 |= I2C_CR1_STOP;     // Generate a stop
+			timeout = p_I2C->SR2;           // Read and discard SR2
+			return (true);
+		}
+
+		// If an acknowledge failure was detected, nobody responded to this address
+		if (p_I2C->SR1 & I2C_SR1_AF)
+		{
+			p_I2C->CR1 |= I2C_CR1_STOP;
+			timeout = p_I2C->SR2;
+			return (false);
+		}
+
+		if (--timeout == 0x00)
+		{
+			p_I2C->CR1 |= I2C_CR1_STOP;
+			timeout = p_I2C->SR2;
+			if (p_serial) p_serial->putchar ('!');
+			return (false);
+		}
+	}
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Scan the I2C bus, pinging each address, and print the results.
+ *  @details This handy dandy utility function scans each address on the I2C bus and
+ *           prints a display showing the addresses at which devices responded to a 
+ *           "ping" with acknowledgement.
+ *  @param   p_ser A pointer to a serial device on which the scan results are printed
+ */
+
+void i2c_master::scan (emstream* p_ser)
+{
+	*p_ser << PMS ("   0 2 4 6 8 A C E") << hex << endl;
+	for (uint8_t row = 0x00; row < 0x10; row++)
+	{
+		*p_ser << (uint8_t)row << '0';
+		for (uint8_t col = 0; col < 0x10; col += 2)
+		{
+			p_ser->putchar (' ');
+			if (ping ((row << 4) | col))
+			{
+				p_ser->putchar ('@');
+			}
+			else
+			{
+				p_ser->putchar ('-');
+			}
+		}
+		*p_ser << endl;
+	}
+	*p_ser << dec;
+}
+
+
+//-------------------------------------------------------------------------------------
+/** @brief   Scan registers in one device on the I2C bus and print the results.
+ *  @details This nifty utility function scans each of the given registers in a device
+ *           at the given address on the I2C bus and prints a display showing the 
+ *           contents of those registers. 
+ *  @param   address The I2C address of the device to be scanned
+ *  @param   first_reg The first register address within the device to be scanned
+ *  @param   last_reg The last register address within the device to be scanned
+ *  @param   p_ser A pointer to a serial device on which the scan results are printed
+ */
+
+void i2c_master::scan (uint8_t address, uint8_t first_reg, uint8_t last_reg, 
+					   emstream* p_ser)
+{
+	*p_ser << "I2C device at 0x" << hex << address << ':' << endl;
+
+	for (uint8_t reg = first_reg; reg <= last_reg; reg++)
+	{
+		*p_ser << "0x" << reg << ':' << read (address, reg) << endl;
+	}
+	*p_ser << dec;
+}
+

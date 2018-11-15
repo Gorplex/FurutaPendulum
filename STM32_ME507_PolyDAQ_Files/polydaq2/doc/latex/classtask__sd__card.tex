@@ -1,0 +1,132 @@
+\hypertarget{classtask__sd__card}{\section{task\-\_\-sd\-\_\-card Class Reference}
+\label{classtask__sd__card}\index{task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}}
+}
+
+
+Task which saves data to an S\-D card.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-sd\-\_\-card.\-h$>$}
+
+Inheritance diagram for task\-\_\-sd\-\_\-card\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__sd__card}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__sd__card_a7947744fb5282ee4c2fddfeb7c40b822}{task\-\_\-sd\-\_\-card} (const char $\ast$p\-\_\-name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt)
+\begin{DoxyCompactList}\small\item\em Creates a S\-D card interface task object. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__sd__card_abcc6f28563aefe867e3ed0da77f5ddbe}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that saves data to an S\-D card. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__sd__card_a36f6f877f8359c84ff1a63ce8b505783}{write\-\_\-header} (emstream $\ast$p\-\_\-ser\-\_\-dev)
+\begin{DoxyCompactList}\small\item\em Write a header showing data items to be logged to a serial device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task which saves data to an S\-D card. 
+
+This task saves data to an S\-D card. The data is transferred to this task as a stream of bytes in a queue. 
+
+Definition at line 86 of file task\-\_\-sd\-\_\-card.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__sd__card_a7947744fb5282ee4c2fddfeb7c40b822}{\index{task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}!task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}}
+\index{task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}!task_sd_card@{task\-\_\-sd\-\_\-card}}
+\subsubsection[{task\-\_\-sd\-\_\-card}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-sd\-\_\-card\-::task\-\_\-sd\-\_\-card (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt}
+\end{DoxyParamCaption}
+)}}\label{classtask__sd__card_a7947744fb5282ee4c2fddfeb7c40b822}
+
+
+Creates a S\-D card interface task object. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a task object. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 45 of file task\-\_\-sd\-\_\-card.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__sd__card_abcc6f28563aefe867e3ed0da77f5ddbe}{\index{task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}!run@{run}}
+\index{run@{run}!task_sd_card@{task\-\_\-sd\-\_\-card}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-sd\-\_\-card\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__sd__card_abcc6f28563aefe867e3ed0da77f5ddbe}
+
+
+The run method that saves data to an S\-D card. 
+
+This run method waits for an S\-D card to be inserted in the socket. When a card is found in the socket, it opens a data file using an automatically generated, sequenced name. Then data which arrives in the data queue is saved to the card as soon as the data arrives.
+
+\begin{center}
+
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+\end{center}
+ 
+
+Definition at line 82 of file task\-\_\-sd\-\_\-card.\-cpp.
+
+
+
+References D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T, D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E, logger\-\_\-config\-::get\-\_\-ticks\-\_\-per\-\_\-sample(), logger\-\_\-config\-::is\-\_\-valid(), p\-\_\-led\-\_\-command\-\_\-queue, p\-\_\-logger\-\_\-config, p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue, p\-\_\-ticks\-\_\-per\-\_\-sd\-\_\-data, logger\-\_\-config\-::read(), sd\-\_\-card\-\_\-\-L\-E\-D, S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G, and write\-\_\-header().
+
+\hypertarget{classtask__sd__card_a36f6f877f8359c84ff1a63ce8b505783}{\index{task\-\_\-sd\-\_\-card@{task\-\_\-sd\-\_\-card}!write\-\_\-header@{write\-\_\-header}}
+\index{write\-\_\-header@{write\-\_\-header}!task_sd_card@{task\-\_\-sd\-\_\-card}}
+\subsubsection[{write\-\_\-header}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-sd\-\_\-card\-::write\-\_\-header (
+\begin{DoxyParamCaption}
+\item[{emstream $\ast$}]{p\-\_\-ser\-\_\-dev}
+\end{DoxyParamCaption}
+)}}\label{classtask__sd__card_a36f6f877f8359c84ff1a63ce8b505783}
+
+
+Write a header showing data items to be logged to a serial device. 
+
+This method writes a header line which shows the name of each of the items to be logged. Usually the logging is done to an S\-D card, and this line is a header for the logged data. The logger configuration object, which is pointed to by the shared variable {\ttfamily p\-\_\-logger\-\_\-config}, is used to get the data headers. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-ser\-\_\-dev} & A pointer to the serial device to which to write the header \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 283 of file task\-\_\-sd\-\_\-card.\-cpp.
+
+
+
+References logger\-\_\-config\-::get\-\_\-first\-\_\-channel(), logger\-\_\-config\-::get\-\_\-next\-\_\-channel(), logger\-\_\-col\-\_\-cfg\-::p\-\_\-label, and p\-\_\-logger\-\_\-config.
+
+
+
+Referenced by run().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__sd__card_8h}{task\-\_\-sd\-\_\-card.\-h}\item 
+\hyperlink{task__sd__card_8cpp}{task\-\_\-sd\-\_\-card.\-cpp}\end{DoxyCompactItemize}

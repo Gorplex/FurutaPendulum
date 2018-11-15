@@ -1,0 +1,13 @@
+STM32F4xx
+CMSIS
+STM32F4xx_StdPeriph_Driver
+ME405/misc
+ME405/serial
+ME405/rtcpp
+ME405/drivers
+ME405/drivers/sd_card
+freertos
+freertos/inc
+freertos/src
+freertos/ports/GCC/ARM_CM4F
+../polydaq2

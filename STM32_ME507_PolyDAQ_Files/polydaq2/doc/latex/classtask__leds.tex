@@ -1,0 +1,122 @@
+\hypertarget{classtask__leds}{\section{task\-\_\-leds Class Reference}
+\label{classtask__leds}\index{task\-\_\-leds@{task\-\_\-leds}}
+}
+
+
+Task which pulses an L\-E\-D on and off as another responds to a button.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-leds.\-h$>$}
+
+Inheritance diagram for task\-\_\-leds\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__leds}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__leds_a2668a7e5a5caf01d35aac71931c32144}{task\-\_\-leds} (const char $\ast$p\-\_\-name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt, \hyperlink{classpolydaq2}{polydaq2} $\ast$p\-\_\-polydaq2)
+\begin{DoxyCompactList}\small\item\em Constructor for an L\-E\-D task object. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__leds_a1313d40cbf49463320c6550a68dd99fa}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the L\-E\-D task code. \end{DoxyCompactList}\item 
+\hypertarget{classtask__leds_a31aba898d3c8fdae205d2461c949bf9d}{void \hyperlink{classtask__leds_a31aba898d3c8fdae205d2461c949bf9d}{off} (void)}\label{classtask__leds_a31aba898d3c8fdae205d2461c949bf9d}
+
+\begin{DoxyCompactList}\small\item\em Turn off the L\-E\-D, making sure it's not in an automatic mode. \end{DoxyCompactList}\item 
+\hypertarget{classtask__leds_a8debcc8582a950b9f184135c949625e7}{void \hyperlink{classtask__leds_a8debcc8582a950b9f184135c949625e7}{on} (void)}\label{classtask__leds_a8debcc8582a950b9f184135c949625e7}
+
+\begin{DoxyCompactList}\small\item\em Turn on the L\-E\-D, making sure it's not in an automatic mode. \end{DoxyCompactList}\item 
+\hypertarget{classtask__leds_a4c88fa3b0821e4071c653fc22d1b75e3}{void \hyperlink{classtask__leds_a4c88fa3b0821e4071c653fc22d1b75e3}{heartbeat} (void)}\label{classtask__leds_a4c88fa3b0821e4071c653fc22d1b75e3}
+
+\begin{DoxyCompactList}\small\item\em Put the L\-E\-D in automatic \char`\"{}heartbeat\char`\"{} display mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtask__leds_ab81a19ebec2f9bb3cd01ecddc133ba49}{int16\-\_\-t \hyperlink{classtask__leds_ab81a19ebec2f9bb3cd01ecddc133ba49}{brightness\-\_\-\-S\-D\-\_\-\-L\-E\-D}}\label{classtask__leds_ab81a19ebec2f9bb3cd01ecddc133ba49}
+
+\begin{DoxyCompactList}\small\item\em The current brightness of the L\-E\-D, as a P\-W\-M duty cycle. \end{DoxyCompactList}\item 
+\hypertarget{classtask__leds_a2a23f0cb348363f06ddb693ae7d6357c}{\hyperlink{classpolydaq2}{polydaq2} $\ast$ \hyperlink{classtask__leds_a2a23f0cb348363f06ddb693ae7d6357c}{my\-\_\-poly}}\label{classtask__leds_a2a23f0cb348363f06ddb693ae7d6357c}
+
+\begin{DoxyCompactList}\small\item\em Pointer to a Poly\-D\-A\-Q driver used by this task. \end{DoxyCompactList}\item 
+\hypertarget{classtask__leds_a0f57d30dfdf95e8d1834a69c95dd6dc5}{bool \hyperlink{classtask__leds_a0f57d30dfdf95e8d1834a69c95dd6dc5}{manual\-\_\-mode}}\label{classtask__leds_a0f57d30dfdf95e8d1834a69c95dd6dc5}
+
+\begin{DoxyCompactList}\small\item\em Flag which indicates whether L\-E\-D is in manual or heartbeat mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task which pulses an L\-E\-D on and off as another responds to a button. 
+
+This task controls some L\-E\-D's on the S\-T\-M32 Discovery board. The blue L\-E\-D uses a P\-W\-M to glow brighter and dimmer, and the orange one can be lit up or turned off by using the blue button. 
+
+Definition at line 47 of file task\-\_\-leds.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__leds_a2668a7e5a5caf01d35aac71931c32144}{\index{task\-\_\-leds@{task\-\_\-leds}!task\-\_\-leds@{task\-\_\-leds}}
+\index{task\-\_\-leds@{task\-\_\-leds}!task_leds@{task\-\_\-leds}}
+\subsubsection[{task\-\_\-leds}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-leds\-::task\-\_\-leds (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt, }
+\item[{{\bf polydaq2} $\ast$}]{p\-\_\-polydaq2}
+\end{DoxyParamCaption}
+)}}\label{classtask__leds_a2668a7e5a5caf01d35aac71931c32144}
+
+
+Constructor for an L\-E\-D task object. 
+
+This constructor calls its parent class's constructor to actually do the work of creating the two-\/\-L\-E\-D blinking task. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+{\em p\-\_\-polydaq2} & A pointer to the Poly\-D\-A\-Q 2 driver used to interface with the data acquisition board \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 40 of file task\-\_\-leds.\-cpp.
+
+
+
+References brightness\-\_\-\-S\-D\-\_\-\-L\-E\-D, and my\-\_\-poly.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__leds_a1313d40cbf49463320c6550a68dd99fa}{\index{task\-\_\-leds@{task\-\_\-leds}!run@{run}}
+\index{run@{run}!task_leds@{task\-\_\-leds}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-leds\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__leds_a1313d40cbf49463320c6550a68dd99fa}
+
+
+The run method that runs the L\-E\-D task code. 
+
+This method causes one L\-E\-D to pulse on and off and another to get brighter if the user presses a button. 
+
+Definition at line 57 of file task\-\_\-leds.\-cpp.
+
+
+
+References brightness\-\_\-\-S\-D\-\_\-\-L\-E\-D, polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D(), my\-\_\-poly, p\-\_\-led\-\_\-command\-\_\-queue, sd\-\_\-card\-\_\-\-L\-E\-D, S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M, and polydaq2\-::set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__leds_8h}{task\-\_\-leds.\-h}\item 
+\hyperlink{task__leds_8cpp}{task\-\_\-leds.\-cpp}\end{DoxyCompactItemize}

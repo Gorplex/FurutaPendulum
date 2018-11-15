@@ -1,0 +1,136 @@
+\hypertarget{appconfig_8h}{\section{appconfig.\-h File Reference}
+\label{appconfig_8h}\index{appconfig.\-h@{appconfig.\-h}}
+}
+{\ttfamily \#include \char`\"{}stm32f4xx.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stm32f4xx\-\_\-rcc.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stm32f4xx\-\_\-gpio.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stm32f4xx\-\_\-tim.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Free\-R\-T\-O\-S.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}task.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rs232.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{appconfig_8h_a850a1b340f5fa8779f5942628759b5f6}{A\-P\-P\-L\-\_\-\-N\-A\-M\-E}~\char`\"{}Poly\-D\-A\-Q 2\char`\"{}
+\begin{DoxyCompactList}\small\item\em The name of the application program. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_aaaaf06af113d488a9dcdbc89df9a7dcf}{A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N}~\char`\"{}2.\-1.\-5\char`\"{}
+\begin{DoxyCompactList}\small\item\em The version number of the program. \end{DoxyCompactList}\item 
+\hypertarget{appconfig_8h_a698acb89e1bf5837b33c30ef35c30044}{\#define \hyperlink{appconfig_8h_a698acb89e1bf5837b33c30ef35c30044}{V\-E\-R\-S\-I\-O\-N\-\_\-\-S\-T\-R\-I\-N\-G}~\hyperlink{appconfig_8h_a850a1b340f5fa8779f5942628759b5f6}{A\-P\-P\-L\-\_\-\-N\-A\-M\-E} \char`\"{} Version \char`\"{} A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N \char`\"{} compiled \char`\"{} \-\_\-\-\_\-\-D\-A\-T\-E\-\_\-\-\_\-}\label{appconfig_8h_a698acb89e1bf5837b33c30ef35c30044}
+
+\begin{DoxyCompactList}\small\item\em A string showing the name, version, and date of this application program. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_a62f3e750b86cbc2bdb8f3cdc84a4e6f9}{U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 0. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_af96faca82ec8092a74c769f7424c5465}{U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_ab0dfe9f36862770eb52d45dbeecb2e2e}{U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E}~1
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 2. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_a74666152860951297ef0ca9b2674e717}{U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E}~1
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 3. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_aa70c4423eeb8ba0bf798829f469795e2}{U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 4. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_a46af9ad33ce5763952f3ec627c93b1cd}{U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 5. \end{DoxyCompactList}\item 
+\#define \hyperlink{appconfig_8h_a047f174e4aec3c91ac1eac6c02a67092}{U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E}~0
+\begin{DoxyCompactList}\small\item\em Configuration switch to enable U\-A\-R\-T 6. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{appconfig_8h_a850a1b340f5fa8779f5942628759b5f6}{\index{appconfig.\-h@{appconfig.\-h}!A\-P\-P\-L\-\_\-\-N\-A\-M\-E@{A\-P\-P\-L\-\_\-\-N\-A\-M\-E}}
+\index{A\-P\-P\-L\-\_\-\-N\-A\-M\-E@{A\-P\-P\-L\-\_\-\-N\-A\-M\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{A\-P\-P\-L\-\_\-\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-P\-P\-L\-\_\-\-N\-A\-M\-E~\char`\"{}Poly\-D\-A\-Q 2\char`\"{}}}\label{appconfig_8h_a850a1b340f5fa8779f5942628759b5f6}
+
+
+The name of the application program. 
+
+This name is used to build the program version string which can be shown for debugging or tracking purposes. 
+
+Definition at line 23 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_aaaaf06af113d488a9dcdbc89df9a7dcf}{\index{appconfig.\-h@{appconfig.\-h}!A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N@{A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N}}
+\index{A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N@{A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\-P\-P\-L\-\_\-\-V\-E\-R\-S\-I\-O\-N~\char`\"{}2.\-1.\-5\char`\"{}}}\label{appconfig_8h_aaaaf06af113d488a9dcdbc89df9a7dcf}
+
+
+The version number of the program. 
+
+This string gives a version number for the program. It is combined with the application name and date to give a program identification string that can be used for debugging or tracking purposes. 
+
+Definition at line 30 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_aa70c4423eeb8ba0bf798829f469795e2}{\index{appconfig.\-h@{appconfig.\-h}!U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E@{U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E@{U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T\-\_\-4\-\_\-\-E\-N\-A\-B\-L\-E~0}}\label{appconfig_8h_aa70c4423eeb8ba0bf798829f469795e2}
+
+
+Configuration switch to enable U\-A\-R\-T 4. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 4 is to be used in this application or 0 if it is not. 
+
+Definition at line 67 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_a46af9ad33ce5763952f3ec627c93b1cd}{\index{appconfig.\-h@{appconfig.\-h}!U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E@{U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E@{U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-A\-R\-T\-\_\-5\-\_\-\-E\-N\-A\-B\-L\-E~0}}\label{appconfig_8h_a46af9ad33ce5763952f3ec627c93b1cd}
+
+
+Configuration switch to enable U\-A\-R\-T 5. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 5 is to be used in this application or 0 if it is not. 
+
+Definition at line 73 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_a62f3e750b86cbc2bdb8f3cdc84a4e6f9}{\index{appconfig.\-h@{appconfig.\-h}!U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-A\-R\-T\-\_\-0\-\_\-\-E\-N\-A\-B\-L\-E~0}}\label{appconfig_8h_a62f3e750b86cbc2bdb8f3cdc84a4e6f9}
+
+
+Configuration switch to enable U\-A\-R\-T 0. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 0 is to be used in this application or 0 if it is not. Note that U\-A\-R\-T 0 exists on most A\-V\-R processors, but there is no U\-A\-R\-T numbered 0 on S\-T\-M32's. 
+
+Definition at line 43 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_af96faca82ec8092a74c769f7424c5465}{\index{appconfig.\-h@{appconfig.\-h}!U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-A\-R\-T\-\_\-1\-\_\-\-E\-N\-A\-B\-L\-E~0}}\label{appconfig_8h_af96faca82ec8092a74c769f7424c5465}
+
+
+Configuration switch to enable U\-A\-R\-T 1. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 1 is to be used in this application or 0 if it is not. 
+
+Definition at line 49 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_ab0dfe9f36862770eb52d45dbeecb2e2e}{\index{appconfig.\-h@{appconfig.\-h}!U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-A\-R\-T\-\_\-2\-\_\-\-E\-N\-A\-B\-L\-E~1}}\label{appconfig_8h_ab0dfe9f36862770eb52d45dbeecb2e2e}
+
+
+Configuration switch to enable U\-A\-R\-T 2. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 2 is to be used in this application or 0 if it is not. 
+
+Definition at line 55 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_a74666152860951297ef0ca9b2674e717}{\index{appconfig.\-h@{appconfig.\-h}!U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-A\-R\-T\-\_\-3\-\_\-\-E\-N\-A\-B\-L\-E~1}}\label{appconfig_8h_a74666152860951297ef0ca9b2674e717}
+
+
+Configuration switch to enable U\-A\-R\-T 3. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 3 is to be used in this application or 0 if it is not. 
+
+Definition at line 61 of file appconfig.\-h.
+
+\hypertarget{appconfig_8h_a047f174e4aec3c91ac1eac6c02a67092}{\index{appconfig.\-h@{appconfig.\-h}!U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E}}
+\index{U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E@{U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E}!appconfig.h@{appconfig.\-h}}
+\subsubsection[{U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-A\-R\-T\-\_\-6\-\_\-\-E\-N\-A\-B\-L\-E~0}}\label{appconfig_8h_a047f174e4aec3c91ac1eac6c02a67092}
+
+
+Configuration switch to enable U\-A\-R\-T 6. 
+
+This preprocessor definition is set to 1 if U\-A\-R\-T (serial port) 6 is to be used in this application or 0 if it is not. 
+
+Definition at line 79 of file appconfig.\-h.
+

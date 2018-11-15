@@ -1,0 +1,85 @@
+This page describes how to connect a Poly\-D\-A\-Q to power and communication circuits.\hypertarget{pd_setup_pds_power}{}\section{Power}\label{pd_setup_pds_power}
+The Poly\-D\-A\-Q 2 has two power connections; either may be used\-:
+\begin{DoxyItemize}
+\item A mini-\/\-U\-S\-B connector supplies power and enables communication to a P\-C. If communication is not needed, a U\-S\-B charger can be used to power the board for data logging. Note that this is {\itshape not} a micro-\/\-U\-S\-B as is used by many cell phones and e-\/readers but a slightly larger \char`\"{}\-Mini B\char`\"{} plug.
+\item A standard \char`\"{}barrel jack\char`\"{} connector allows the Poly\-D\-A\-Q 2 to be supplied from a battery or a \char`\"{}wall wart\char`\"{} type plug-\/in power supply. Such an external power supply must be rated at 5 volts to 12 volts with at least 250m\-A of current capacity. Batteries should supply a voltage between 5 volts and 9 volts. A direct connection to an automotive electrical circuit should {\bfseries not} be used because most automotive circuits produce voltage spikes that can destroy a Poly\-D\-A\-Q. Use a separate battery or plug-\/in U\-S\-B charger for automotive applications.
+\end{DoxyItemize}\hypertarget{pd_setup_pds_serial}{}\section{Serial Communications}\label{pd_setup_pds_serial}
+The mini-\/\-U\-S\-B connector on the Poly\-D\-A\-Q 2 can be used for serial communication between the Poly\-D\-A\-Q and a desktop or laptop computer. When a Poly\-D\-A\-Q is connected via U\-S\-B to a properly configured P\-C, a U\-S\-B serial port connection is automatically made.
+\begin{DoxyItemize}
+\item {\bfseries Linux} computers are configured to communicate with a Poly\-D\-A\-Q out of the box -- no additional drivers are needed. The U\-S\-B serial port will be named {\ttfamily /dev/tty\-U\-S\-B0} if no other similar U\-S\-B serial device is connected. If other U\-S\-B serial devices are connected, the Poly\-D\-A\-Q can be named {\ttfamily /dev/tty\-U\-S\-B1}, or {\ttfamily /dev/tty\-U\-S\-B2}, {\itshape etc}.
+\item {\bfseries Windows(tm)} computers often need to have drivers installed for the U\-S\-B serial chip on the Poly\-D\-A\-Q. Windows(tm) often recognizes the U\-S\-B serial chip when it's plugged into the U\-S\-B port and automatically installs the correct drivers. When it does not, drivers for the F\-T232\-R\-L chip are available at {\ttfamily \href{http://www.ftdichip.com}{\tt http\-://www.\-ftdichip.\-com}}. When the drivers are working, the Poly\-D\-A\-Q's serial port will then be named {\ttfamily C\-O\-M3} or {\ttfamily C\-O\-M4} or {\ttfamily C\-O\-M5} or something similar, depending on how many virtual serial port devices have been plugged into the computer before.
+\item {\bfseries Mac(tm)} computers do something really cool and shiny but we're not sure what because we can't afford one. This section will be updated after we've had a chance to borrow a Mac(tm) from one of the Cool Kids and try it.
+\end{DoxyItemize}
+
+The U\-S\-B serial port can be accessed from a desktop or laptop computer using the Poly\-D\-A\-Q 2 G\-U\-I (see the \hyperlink{pd_py_gui}{Poly\-D\-A\-Q G\-U\-I} page for details) or through a dumb terminal emulator program. A \char`\"{}dumb terminal\char`\"{} is a program which allows the user to type characters which are immediately sent to the Poly\-D\-A\-Q and to see characters which the Poly\-D\-A\-Q has sent back; the terminal is called \char`\"{}dumb\char`\"{} because it does little or no processing of the characters -- it just sends and receives them unthinkingly. There are many dumb terminal programs available for free\-:
+\begin{DoxyItemize}
+\item {\bfseries Linux} computers can use Pu\-T\-T\-Y, G\-T\-Kterm, Screen, or Minicom.
+\item {\bfseries Windows(tm)} computers can use Pu\-T\-T\-Y; some older Windows computers have a program called \char`\"{}\-Hyperterminal\char`\"{} installed by default.
+\item {\bfseries Mac(tm)} computers can use Pu\-T\-T\-Y through Mac\-Ports, but this seems to be a lot of hassle to set up. One can also use the terminal program {\ttfamily screen} to talk to a serial port; see {\ttfamily \href{http://apple.stackexchange.com/questions/32834/is-there-an-os-x-terminal-program-that-can-access-serial-ports}{\tt http\-://apple.\-stackexchange.\-com/questions/32834/is-\/there-\/an-\/os-\/x-\/terminal-\/program-\/that-\/can-\/access-\/serial-\/ports}} for more details. Terminal emulators must be set to the correct communication mode and rate in order to successfully communicate with the Poly\-D\-A\-Q. The following settings must be used\-: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf }&\PBS\centering {\bf }\\\cline{1-2}
+Baud rate &\PBS\centering 115200 \\\cline{1-2}
+Parity &\PBS\centering None \\\cline{1-2}
+Data bits &\PBS\centering 8 \\\cline{1-2}
+Stop bits &\PBS\centering 1 \\\cline{1-2}
+Flow control &\PBS\centering None \\\cline{1-2}
+\end{TabularC}
+The Poly\-D\-A\-Q 2 has a simple terminal interface which allows the user to see status and data through the dumb terminal. Most commands are single letters. Tables of the commands that return measurement data are given on the \hyperlink{pd_channels}{Channel Commands} page. Example commands are\-:
+\item {\bfseries 0} through {\bfseries 9} -\/ Display the results of A/\-D conversions from the A/\-D converter's cannels 0 through 9. Many of these channels aren't connected to anything, so the results won't have meaning.
+\item {\bfseries A} through {\bfseries F} -\/ These are interpreted by the Poly\-D\-A\-Q as hexadecimal numbers from 10 (A) through 15 (F), and the Poly\-D\-A\-Q returns the results of A/\-D conversions from those channels.
+\item {\bfseries X}, {\bfseries Y}, and {\bfseries Z} -\/ The Poly\-D\-A\-Q returns a raw reading from one of the built-\/in accelerometer's axes (if an accelerometer is on the board).
+\item {\bfseries O} (uppercase letter O) -\/ Turn on oversampling. If on, all readings from all channels will be taken the given number of times and the average value returned. The {\bfseries O} must be followed by a number between 0 and 250, then a carriage return. Typed characters may not be echoed, so type carefully.
+\item {\bfseries h} or {\bfseries }? -\/ Show a help screen listing commands that can be used.
+\end{DoxyItemize}\hypertarget{pd_setup_pds_sd_card}{}\section{The Micro-\/\-S\-D Card for Data Logging}\label{pd_setup_pds_sd_card}
+The Poly\-D\-A\-Q 2 can log data to a Micro-\/\-S\-D card continuously at up to about 500 samples per second. Data is saved to comma-\/separated-\/variable (C\-S\-V) files which can be read easily by spreadsheet programs such as Open\-Office Calc and M\-S-\/\-Excel(tm) or imported into mathematical programs such as Matlab(tm) and G\-N\-U Octave. Inexpensive 8 G\-B cards have been used for testing. Logging is started automatically when a card is detected in the Poly\-D\-A\-Q and stopped when the card is removed. Data is written to files which are automatically named in sequence\-: {\ttfamily D\-A\-T\-A\-\_\-000.\-C\-S\-V}, {\ttfamily D\-A\-T\-A\-\_\-001.\-C\-S\-V}, {\ttfamily D\-A\-T\-A\-\_\-002.\-C\-S\-V}, and so on. It is not recommended to delete a file during a project because the Poly\-D\-A\-Q will re-\/use its file name, and there is no useful time and date information stored with a file, so it can become difficult to determine which data was taken into which file when.\hypertarget{pd_setup_pds_sd_led}{}\subsection{The Orange L\-E\-D}\label{pd_setup_pds_sd_led}
+When not logging data, the Poly\-D\-A\-Q's orange S\-D indicator L\-E\-D pulses smoothly on and off as a \char`\"{}heartbeat\char`\"{} indicator to show that the software is working properly. When data is being logged, the heartbeat signal is turned off, and the user should see a series of brief flashes from the orange L\-E\-D. Each flash indicates data being written to the S\-D card. Data which is taken after a flash from the L\-E\-D is not saved to the card until the next flash, and if the card is removed from its socket before the light flashes, that data will be lost. Therefore, the user should wait until seeing the S\-D indicator L\-E\-D flash at least once {\itshape after} having taken important data to remove the card or cut power to the Poly\-D\-A\-Q.\hypertarget{pd_setup_pds_sd_rate}{}\subsection{Data Rates}\label{pd_setup_pds_sd_rate}
+The rate at which data can be logged is limited by the speed at which it can be reliably written to the S\-D card. The larger the number of channels whose data is being logged, the more slowly each channel must be taken. If only one channel of data (plus time stamps) is being recorded, around 500 points per second can be saved. If four channels are being stored, the maximum rate is about 200 channels per second. These rates allow data to be taken continuously for hours, and the data files can grow to many megabytes in size. For large files, using scripts in a mathematical programming language such as Matlab(tm) or Octave is usually much more efficient than using a spreadsheet program for analysis. For small files, spreadsheets are very convenient.
+
+If one attempts to take data faster than the Poly\-D\-A\-Q can handle it, the results are not necessarily completely disastrous because the time at which each set of data is taken is written in the data file. This allows garbage data to be removed and whatever good data is available to be used. However, keeping safely within the speed limits of the Poly\-D\-A\-Q makes data analysis and filtering {\itshape much} easier.\hypertarget{pd_setup_pds_sd_config}{}\subsection{The Configuration File}\label{pd_setup_pds_sd_config}
+In order for data logging to work, there must be a file on the S\-D card called {\ttfamily polydaq2.\-cfg} containing information about which data is to be collected and how often. This file must contain at least the following lines\-:
+\begin{DoxyItemize}
+\item A time per data row line. This line begins with an uppercase {\ttfamily T} followed by a colon, space, and number of milliseconds per data line. To take data once every 20 milliseconds\-: 
+\begin{DoxyCode}
+T: 20
+\end{DoxyCode}
+
+\item One or more channel configuration lines. Each of these lines begins with an uppercase {\ttfamily C}, then has a channel command (see the \hyperlink{pd_channels}{Channel Commands} page) and numbers specifying calibration slope and offset. Last comes the channel's name in quotes. To measure strain from the {\ttfamily S1} channel (whose channel command is \char`\"{}9\char`\"{}), writing the A/\-D output without changing its scale or offset, one would put the following line into {\ttfamily polydaq2.\-cfg\-:} 
+\begin{DoxyCode}
+C: 9, 1.0, 0.0, \textcolor{stringliteral}{"Strain 1"}
+\end{DoxyCode}
+ An example configuration file follows. In this file, the angle potentiometer and accelerometer data are saved as calibrated data in physical units, while the strain data is saved as raw A/\-D bits, not changed into physical units before saving on the S\-D card\-: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{# PolyDAQ2 Logger Configuration File}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Header contains information about configuration of PolyDAQ card.}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# The number X-Y-Z shows (Thermocouple channels)-(Voltage channels)-(strain channels)}
+\textcolor{preprocessor}{}
+H: PolyDAQ 2 0-4-4
+
+\textcolor{preprocessor}{# Time per sample set, in milliseconds.}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# All configured channels will be measured at this rate}
+\textcolor{preprocessor}{}
+T: 5
+
+\textcolor{preprocessor}{# Channel configurations.  Each channel is configured with the following}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# columns, which must be in this order and separated by commas:}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# C:                The tag for a channel configuration line}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Channel command:  Command which reads the given channel}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Gain:             Raw data is multiplied by this before saving}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Offset:           This is added to data after multiplication}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Name:             Name of channel, put into column header in file}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Channels will be saved in columns in the data file in the order in}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# which channel configuration commands are put in the configuration file.}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{# Example:}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#   C: 9, 1.0, 0.0, "Cow Strain"}
+\textcolor{preprocessor}{}
+C: 0, 0.2176, 170.0, \textcolor{stringliteral}{"Angle Pot (deg)"}
+C: 9, 1.0, 0.0, \textcolor{stringliteral}{"Strain 1 (bits)"}
+C: X, 0.0000610, 0.0, \textcolor{stringliteral}{"Accel X (g)"}
+C: Y, 0.0000610, 0.0, \textcolor{stringliteral}{"Accel Y (g)"}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{pd_setup_pds_blue}{}\section{Bluetooth Connections}\label{pd_setup_pds_blue}
+Come Poly\-D\-A\-Q2 boards may be equipped with a Bluetooth serial module. Bluetooth capability is still being worked on at the time of this writing. When the wireless capability has been fully developed and tested, this section will be updated with instructions. 

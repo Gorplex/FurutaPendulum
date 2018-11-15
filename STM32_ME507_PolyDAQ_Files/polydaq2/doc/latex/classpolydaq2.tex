@@ -1,0 +1,689 @@
+\hypertarget{classpolydaq2}{\section{polydaq2 Class Reference}
+\label{classpolydaq2}\index{polydaq2@{polydaq2}}
+}
+
+
+Class which interacts with Poly\-D\-A\-Q 2 hardware.  
+
+
+
+
+{\ttfamily \#include $<$polydaq2.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classpolydaq2_ada78fa081faee4408043ed501b533805}{polydaq2} (emstream $\ast$serpt)
+\begin{DoxyCompactList}\small\item\em Create a Poly\-D\-A\-Q 2 interface object. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_ae38297802b53115b68a219ee90a51397}{initialize} (void)
+\begin{DoxyCompactList}\small\item\em Initialize components which need to be set up after the R\-T\-O\-S is started. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_ad2b04215b8b00e05595c14e74b6c203c}{get\-\_\-data} (char command)
+\begin{DoxyCompactList}\small\item\em Get and return raw data from one data channel. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_ab2525448837ee98187b453c31b2bd266}{get\-\_\-data\-\_\-oversampled} (char command, uint8\-\_\-t samples)
+\begin{DoxyCompactList}\small\item\em Get and return oversampled raw data from one data channel. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_a957565a13f1ac71238b0c13ba7b107f9}{strain\-\_\-raw} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Get a raw A/\-D reading from a strain gauge amplifier. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_ac35eb45623984ca51e96c805975824d0}{strain\-\_\-raw\-\_\-oversampled} (uint8\-\_\-t channel, uint8\-\_\-t samples)
+\begin{DoxyCompactList}\small\item\em Get an oversampled raw A/\-D reading from a strain gauge amplifier. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_a22fa21af6fa0be4017619f645d8ca8db}{strain\-\_\-auto\-\_\-balance} (uint8\-\_\-t channel, uint16\-\_\-t desired\-\_\-set=(A\-D\-C\-\_\-\-M\-A\-X\-\_\-\-O\-U\-T\-P\-U\-T/2))
+\begin{DoxyCompactList}\small\item\em Automatically zero a strain gauge bridge using the D/\-A converter. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_a745e78c13d4fa3d7e9a8b2c54a80c34b}{strain\-\_\-balancer\-\_\-off} (void)
+\begin{DoxyCompactList}\small\item\em Turn the D/\-A's which are used to balance the strain gauge bridges off. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_afd57303eaefe880c0eeff769ab109f44}{strain\-\_\-balancer\-\_\-on} (void)
+\begin{DoxyCompactList}\small\item\em Turn the D/\-A's which are used to balance the strain gauge bridges on. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_ace01e1bcf0895f63052c2914b3965c50}{voltage\-\_\-raw} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Get a raw voltage reading from the voltage amplifier. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_a624826a08c0819b15e2c3f37a1864e53}{temperature\-\_\-raw} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Get a raw temperature reading from a thermocouple amplifier. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_a087f1bcb158fa058560ff55d8defa039}{read\-\_\-\-A\-D\-C} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Read the given channel from the A/\-D converter. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_a89a98fa2fbc6959b4c9cfd828623d803}{set\-\_\-\-D\-A\-C} (uint8\-\_\-t channel, uint16\-\_\-t value)
+\begin{DoxyCompactList}\small\item\em Set the output of the given D/\-A channel to the given value. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classpolydaq2_aee8448f01c2acd373be480492e99a214}{get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Get the value most recently sent to the given D/\-A channel. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_a6431374db64f3bee17c417ce1904cd65}{init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the S\-D card's L\-E\-D to be used with P\-W\-M for fancy effects. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_a562843837eb728576876cfb4224b6b39}{set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness} (uint16\-\_\-t brightness)
+\begin{DoxyCompactList}\small\item\em Set the brightness of the S\-D card indicator L\-E\-D. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_aedf6a4bb904fe3e0dc8ad9b89c3cdc33}{get\-\_\-accel} (uint8\-\_\-t axis)
+\begin{DoxyCompactList}\small\item\em Read one channel of the Poly\-D\-A\-Q's accelerometer. \end{DoxyCompactList}\item 
+int16\-\_\-t \hyperlink{classpolydaq2_a4a7381f5d992f03cfaff21c5b88bb30c}{get\-\_\-ext\-\_\-accel} (uint8\-\_\-t channel)
+\begin{DoxyCompactList}\small\item\em Read one channel of an externally attached M\-M\-A8452\-Q accelerometer. \end{DoxyCompactList}\item 
+\hypertarget{classpolydaq2_ada5828197e8746b385b6461d0a924d42}{void \hyperlink{classpolydaq2_ada5828197e8746b385b6461d0a924d42}{set\-\_\-accel\-\_\-range} (mma8452q\-\_\-range\-\_\-t range)}\label{classpolydaq2_ada5828197e8746b385b6461d0a924d42}
+
+\begin{DoxyCompactList}\small\item\em Set the accelerometer's range to +/-\/2, +/-\/4, or +/-\/8 g's. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classpolydaq2_afac7f21b84a613f3aac3cd9f11a08654}{get\-\_\-\-I\-R\-\_\-temperature} (void)
+\begin{DoxyCompactList}\small\item\em Query the M\-L\-X90614 infrared thermometer for a temperature reading. \end{DoxyCompactList}\item 
+void \hyperlink{classpolydaq2_a42de5e039a7715870237630a2d7ba608}{scan\-\_\-\-I2\-C\-\_\-bus} (emstream $\ast$p\-\_\-ser\-\_\-pt)
+\begin{DoxyCompactList}\small\item\em Check all possible addresses on the I2\-C bus for sensors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+simple\-\_\-\-D\-A\-C $\ast$ \hyperlink{classpolydaq2_a073eef7409f849444cecfdfd862be831}{p\-\_\-dac}
+\item 
+adc\-\_\-driver $\ast$ \hyperlink{classpolydaq2_a3b12ada80e0c2fbf7608e6b804c4bb2b}{p\-\_\-adc}
+\item 
+emstream $\ast$ \hyperlink{classpolydaq2_a08c9b43abd6589c0981eddd3d8a87ba9}{p\-\_\-serial}
+\item 
+\hypertarget{classpolydaq2_a29d5cd87fbe8d5f5092225260cbefe9c}{uint16\-\_\-t \hyperlink{classpolydaq2_a29d5cd87fbe8d5f5092225260cbefe9c}{previous\-\_\-\-D\-A\-C\-\_\-output} \mbox{[}2\mbox{]}}\label{classpolydaq2_a29d5cd87fbe8d5f5092225260cbefe9c}
+
+\begin{DoxyCompactList}\small\item\em The value most recently sent to each digital to analog channel. \end{DoxyCompactList}\item 
+\hypertarget{classpolydaq2_abf5920486e0d72f42506220a5ba38082}{i2c\-\_\-master $\ast$ \hyperlink{classpolydaq2_abf5920486e0d72f42506220a5ba38082}{p\-\_\-i2c}}\label{classpolydaq2_abf5920486e0d72f42506220a5ba38082}
+
+\begin{DoxyCompactList}\small\item\em A pointer to the I2\-C bus on the Poly\-D\-A\-Q board. \end{DoxyCompactList}\item 
+\hypertarget{classpolydaq2_a85ba73b5f25017de468d41790dc78579}{mma8452q $\ast$ \hyperlink{classpolydaq2_a85ba73b5f25017de468d41790dc78579}{p\-\_\-accel}}\label{classpolydaq2_a85ba73b5f25017de468d41790dc78579}
+
+\begin{DoxyCompactList}\small\item\em A pointer to the M\-M\-A8452\-Q accelerometer on the board, if there is one. \end{DoxyCompactList}\item 
+\hypertarget{classpolydaq2_a2e71a76cf6b209fa6abcf0a3d984ce41}{mma8452q $\ast$ \hyperlink{classpolydaq2_a2e71a76cf6b209fa6abcf0a3d984ce41}{p\-\_\-ext\-\_\-accel}}\label{classpolydaq2_a2e71a76cf6b209fa6abcf0a3d984ce41}
+
+\begin{DoxyCompactList}\small\item\em A pointer to the extra external M\-M\-A8452\-Q accelerometer, if present. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class which interacts with Poly\-D\-A\-Q 2 hardware. 
+
+This class contains a set of utility functions which interact with the hardware on a Poly\-D\-A\-Q 2 board. This includes taking readings of voltage, temperature and strain; balancing the strain gauge bridges using the D/\-A converters; saving data on a Micro\-S\-D card; and other things which haven't been written yet. 
+
+Definition at line 145 of file polydaq2.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classpolydaq2_ada78fa081faee4408043ed501b533805}{\index{polydaq2@{polydaq2}!polydaq2@{polydaq2}}
+\index{polydaq2@{polydaq2}!polydaq2@{polydaq2}}
+\subsubsection[{polydaq2}]{\setlength{\rightskip}{0pt plus 5cm}polydaq2\-::polydaq2 (
+\begin{DoxyParamCaption}
+\item[{emstream $\ast$}]{serpt = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ada78fa081faee4408043ed501b533805}
+
+
+Create a Poly\-D\-A\-Q 2 interface object. 
+
+This constructor creates a new Poly\-D\-A\-Q 2 driver object. It saves pointers and creates new analog to digital and digital to analog converter driver objects. 
+\begin{DoxyParams}{Parameters}
+{\em serpt} & A pointer to a serial port that can be used for debugging (default\-: N\-U\-L\-L, meaning no debugging messages will be sent). \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 38 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-accel, p\-\_\-adc, p\-\_\-dac, p\-\_\-ext\-\_\-accel, p\-\_\-i2c, p\-\_\-serial, P\-D\-Q\-\_\-\-E\-X\-T\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R, P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R, and set\-\_\-\-D\-A\-C().
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classpolydaq2_aedf6a4bb904fe3e0dc8ad9b89c3cdc33}{\index{polydaq2@{polydaq2}!get\-\_\-accel@{get\-\_\-accel}}
+\index{get\-\_\-accel@{get\-\_\-accel}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-accel}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::get\-\_\-accel (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_aedf6a4bb904fe3e0dc8ad9b89c3cdc33}
+
+
+Read one channel of the Poly\-D\-A\-Q's accelerometer. 
+
+This function reads one channel of the accelerometer, if one is present. If the Poly\-D\-A\-Q is configured not to use an accelerometer, this method returns zero. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The accelerometer channel to read\-: X = 0, Y = 1, and Z = 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The accelerometer reading from the given channel or 0 if there's no accelerometer 
+\end{DoxyReturn}
+
+
+Definition at line 504 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-accel.
+
+
+
+Referenced by get\-\_\-data(), and task\-\_\-data\-\_\-acq\-::run\-\_\-daq\-\_\-command().
+
+\hypertarget{classpolydaq2_ad2b04215b8b00e05595c14e74b6c203c}{\index{polydaq2@{polydaq2}!get\-\_\-data@{get\-\_\-data}}
+\index{get\-\_\-data@{get\-\_\-data}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::get\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{char}]{command}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ad2b04215b8b00e05595c14e74b6c203c}
+
+
+Get and return raw data from one data channel. 
+
+This method acquires data from one of the available data channels and returns it. Channels may include an A/\-D converter, an accelerometer axis, or whatever other data source may be configured here. 
+\begin{DoxyParams}{Parameters}
+{\em command} & A one-\/character command such as {\ttfamily '6'} to get A/\-D channel 6 data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The raw data read from the given channel 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file polydaq2.\-cpp.
+
+
+
+References get\-\_\-accel(), get\-\_\-ext\-\_\-accel(), and read\-\_\-\-A\-D\-C().
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::acquire\-\_\-sd\-\_\-data(), get\-\_\-data\-\_\-oversampled(), task\-\_\-user\-::run(), and task\-\_\-data\-\_\-acq\-::run\-\_\-daq\-\_\-command().
+
+\hypertarget{classpolydaq2_ab2525448837ee98187b453c31b2bd266}{\index{polydaq2@{polydaq2}!get\-\_\-data\-\_\-oversampled@{get\-\_\-data\-\_\-oversampled}}
+\index{get\-\_\-data\-\_\-oversampled@{get\-\_\-data\-\_\-oversampled}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-data\-\_\-oversampled}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::get\-\_\-data\-\_\-oversampled (
+\begin{DoxyParamCaption}
+\item[{char}]{command, }
+\item[{uint8\-\_\-t}]{samples}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ab2525448837ee98187b453c31b2bd266}
+
+
+Get and return oversampled raw data from one data channel. 
+
+Get and return raw data from one data channel.
+
+This method acquires data from one of the available data channels and returns it. Channels may include an A/\-D converter, an accelerometer axis, or whatever other data source may be configured here. 
+\begin{DoxyParams}{Parameters}
+{\em command} & A one-\/character command such as {\ttfamily '6'} to get A/\-D channel 6 data \\
+\hline
+{\em samples} & The number of readings to average in the oversampling process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The raw data read from the given channel 
+\end{DoxyReturn}
+
+
+Definition at line 147 of file polydaq2.\-cpp.
+
+
+
+References get\-\_\-data().
+
+
+
+Referenced by task\-\_\-user\-::run().
+
+\hypertarget{classpolydaq2_a4a7381f5d992f03cfaff21c5b88bb30c}{\index{polydaq2@{polydaq2}!get\-\_\-ext\-\_\-accel@{get\-\_\-ext\-\_\-accel}}
+\index{get\-\_\-ext\-\_\-accel@{get\-\_\-ext\-\_\-accel}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-ext\-\_\-accel}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::get\-\_\-ext\-\_\-accel (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a4a7381f5d992f03cfaff21c5b88bb30c}
+
+
+Read one channel of an externally attached M\-M\-A8452\-Q accelerometer. 
+
+This function reads one channel of the external accelerometer, if one is present. If the Poly\-D\-A\-Q is configured not to use an accelerometer or there is no external accelerometer connected, this method returns zero. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The accelerometer channel to read\-: x = 0, y = 1, and z = 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The accelerometer reading from the given channel or 0 if there's no accelerometer there 
+\end{DoxyReturn}
+
+
+Definition at line 524 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-accel, and p\-\_\-ext\-\_\-accel.
+
+
+
+Referenced by get\-\_\-data().
+
+\hypertarget{classpolydaq2_afac7f21b84a613f3aac3cd9f11a08654}{\index{polydaq2@{polydaq2}!get\-\_\-\-I\-R\-\_\-temperature@{get\-\_\-\-I\-R\-\_\-temperature}}
+\index{get\-\_\-\-I\-R\-\_\-temperature@{get\-\_\-\-I\-R\-\_\-temperature}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-\-I\-R\-\_\-temperature}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t polydaq2\-::get\-\_\-\-I\-R\-\_\-temperature (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_afac7f21b84a613f3aac3cd9f11a08654}
+
+
+Query the M\-L\-X90614 infrared thermometer for a temperature reading. 
+
+If a Melexis M\-L\-X90614 infrared thermometer is present, this method will ask the sensor for a reading. \begin{DoxyReturn}{Returns}
+The temperature measured by the I\-R sensor in the M\-L\-X90614. 
+\end{DoxyReturn}
+
+
+Definition at line 541 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-i2c, and P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R.
+
+
+
+Referenced by task\-\_\-user\-::run().
+
+\hypertarget{classpolydaq2_aee8448f01c2acd373be480492e99a214}{\index{polydaq2@{polydaq2}!get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output@{get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output}}
+\index{get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output@{get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output}!polydaq2@{polydaq2}}
+\subsubsection[{get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t polydaq2\-::get\-\_\-prev\-\_\-\-D\-A\-C\-\_\-output (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classpolydaq2_aee8448f01c2acd373be480492e99a214}
+
+
+Get the value most recently sent to the given D/\-A channel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel, 1 or 2, whose output is to be returned \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 238 of file polydaq2.\-h.
+
+
+
+References previous\-\_\-\-D\-A\-C\-\_\-output.
+
+\hypertarget{classpolydaq2_a6431374db64f3bee17c417ce1904cd65}{\index{polydaq2@{polydaq2}!init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D@{init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D}}
+\index{init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D@{init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D}!polydaq2@{polydaq2}}
+\subsubsection[{init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a6431374db64f3bee17c417ce1904cd65}
+
+
+Initialize the S\-D card's L\-E\-D to be used with P\-W\-M for fancy effects. 
+
+This method initializes the L\-E\-D which is used to indicate S\-D card status (or to indicate something else if desired). The L\-E\-D is connected to a timer and G\-P\-I\-O pin specified in constants that are given in {\ttfamily \hyperlink{polydaq2_8h}{polydaq2.\-h}}. 
+
+Definition at line 423 of file polydaq2.\-cpp.
+
+
+
+References S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M, S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K, S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N, S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F, S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N, S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T, S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y, S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E, S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R, and S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K.
+
+
+
+Referenced by task\-\_\-leds\-::run().
+
+\hypertarget{classpolydaq2_ae38297802b53115b68a219ee90a51397}{\index{polydaq2@{polydaq2}!initialize@{initialize}}
+\index{initialize@{initialize}!polydaq2@{polydaq2}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::initialize (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ae38297802b53115b68a219ee90a51397}
+
+
+Initialize components which need to be set up after the R\-T\-O\-S is started. 
+
+This method sets up Poly\-D\-A\-Q 2 components which cannot be set up until the R\-T\-O\-S has been started. For example, and A/\-D converter and anything on the I2\-C bus can only be accessed with the R\-T\-O\-S running because a mutex is used to protect each such component and R\-T\-O\-S delays may be used in some code. 
+
+Definition at line 78 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-accel, p\-\_\-ext\-\_\-accel, p\-\_\-i2c, and p\-\_\-serial.
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::run().
+
+\hypertarget{classpolydaq2_a087f1bcb158fa058560ff55d8defa039}{\index{polydaq2@{polydaq2}!read\-\_\-\-A\-D\-C@{read\-\_\-\-A\-D\-C}}
+\index{read\-\_\-\-A\-D\-C@{read\-\_\-\-A\-D\-C}!polydaq2@{polydaq2}}
+\subsubsection[{read\-\_\-\-A\-D\-C}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::read\-\_\-\-A\-D\-C (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classpolydaq2_a087f1bcb158fa058560ff55d8defa039}
+
+
+Read the given channel from the A/\-D converter. 
+
+This method performs an A/\-D conversion on the given channel of the A/\-D converter, returning the raw binary number given by the A/\-D. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The A/\-D channel to be read, from 0 to 15 (internal S\-T\-M32 voltage and temperature channels are not supported) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The raw binary number returned by the A/\-D when it read the voltage on the given channel 
+\end{DoxyReturn}
+
+
+Definition at line 218 of file polydaq2.\-h.
+
+
+
+References p\-\_\-adc.
+
+
+
+Referenced by get\-\_\-data().
+
+\hypertarget{classpolydaq2_a42de5e039a7715870237630a2d7ba608}{\index{polydaq2@{polydaq2}!scan\-\_\-\-I2\-C\-\_\-bus@{scan\-\_\-\-I2\-C\-\_\-bus}}
+\index{scan\-\_\-\-I2\-C\-\_\-bus@{scan\-\_\-\-I2\-C\-\_\-bus}!polydaq2@{polydaq2}}
+\subsubsection[{scan\-\_\-\-I2\-C\-\_\-bus}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::scan\-\_\-\-I2\-C\-\_\-bus (
+\begin{DoxyParamCaption}
+\item[{emstream $\ast$}]{p\-\_\-ser\-\_\-pt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classpolydaq2_a42de5e039a7715870237630a2d7ba608}
+
+
+Check all possible addresses on the I2\-C bus for sensors. 
+
+This method calls the I2\-C's scan method, which prints a table of I2\-C bus addresses and whether a sensor has been found at each one. 
+
+Definition at line 269 of file polydaq2.\-h.
+
+
+
+References p\-\_\-i2c.
+
+
+
+Referenced by task\-\_\-user\-::run().
+
+\hypertarget{classpolydaq2_a89a98fa2fbc6959b4c9cfd828623d803}{\index{polydaq2@{polydaq2}!set\-\_\-\-D\-A\-C@{set\-\_\-\-D\-A\-C}}
+\index{set\-\_\-\-D\-A\-C@{set\-\_\-\-D\-A\-C}!polydaq2@{polydaq2}}
+\subsubsection[{set\-\_\-\-D\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::set\-\_\-\-D\-A\-C (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel, }
+\item[{uint16\-\_\-t}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classpolydaq2_a89a98fa2fbc6959b4c9cfd828623d803}
+
+
+Set the output of the given D/\-A channel to the given value. 
+
+This method calls the Poly\-D\-A\-Q 2's D/\-A converter driver, telling it to set the output of one of its channels to the requested value. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The D/\-A channel whose output is to be set, 1 or 2 \\
+\hline
+{\em value} & The value to be put in the D/\-A's output buffer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 229 of file polydaq2.\-h.
+
+
+
+References p\-\_\-dac, and previous\-\_\-\-D\-A\-C\-\_\-output.
+
+
+
+Referenced by polydaq2(), task\-\_\-user\-::run(), and strain\-\_\-auto\-\_\-balance().
+
+\hypertarget{classpolydaq2_a562843837eb728576876cfb4224b6b39}{\index{polydaq2@{polydaq2}!set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness@{set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness}}
+\index{set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness@{set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness}!polydaq2@{polydaq2}}
+\subsubsection[{set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{brightness}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a562843837eb728576876cfb4224b6b39}
+
+
+Set the brightness of the S\-D card indicator L\-E\-D. 
+
+This method sets the brightness of the L\-E\-D which is used as an indicator of S\-D card activity. This L\-E\-D may be used as a general purpose indicator if the S\-D card is not used. 
+\begin{DoxyParams}{Parameters}
+{\em brightness} & The brightness at which the L\-E\-D will shine, from {\ttfamily 0} to {\ttfamily S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M} (which is usually 1000) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 482 of file polydaq2.\-cpp.
+
+
+
+References S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M, and S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y.
+
+
+
+Referenced by task\-\_\-leds\-::off(), task\-\_\-leds\-::on(), and task\-\_\-leds\-::run().
+
+\hypertarget{classpolydaq2_a22fa21af6fa0be4017619f645d8ca8db}{\index{polydaq2@{polydaq2}!strain\-\_\-auto\-\_\-balance@{strain\-\_\-auto\-\_\-balance}}
+\index{strain\-\_\-auto\-\_\-balance@{strain\-\_\-auto\-\_\-balance}!polydaq2@{polydaq2}}
+\subsubsection[{strain\-\_\-auto\-\_\-balance}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::strain\-\_\-auto\-\_\-balance (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel, }
+\item[{uint16\-\_\-t}]{desired\-\_\-set = {\ttfamily (ADC\-\_\-MAX\-\_\-OUTPUT~/~2)}}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a22fa21af6fa0be4017619f645d8ca8db}
+
+
+Automatically zero a strain gauge bridge using the D/\-A converter. 
+
+This method uses the D/\-A converter in the S\-T\-M32 to balance (\char`\"{}zero\char`\"{}) a strain gauge bridge. Each strain gauge bridge has a D/\-A converter output connected to one side through a large (20\-K nominal) resistor; the voltage from the D/\-A is used to tweak the bridge output so that the zero-\/strain reading is as specified in {\ttfamily desired\-\_\-set}. A typical value for {\ttfamily desired\-\_\-set} is 2047, which is half the full scale for a 12-\/bit A/\-D converter; such a zero setting allows positive and negative strains to be measured. It is assumed that strain is zero when this method is called. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The strain bridge channel to balance (\char`\"{}zero\char`\"{}), either 1 or 2 \\
+\hline
+{\em desired\-\_\-set} & The A/\-D reading which is desired from the bridge amplifier when strain is zero (default value\-: A\-D\-C\-\_\-\-M\-A\-X\-\_\-\-O\-U\-T\-P\-U\-T / 2) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The zero-\/strain reading which was actually achieved; this may be slightly off the desired value if the system is noisy. If it isn't possible to balance the bridge, (-\/1) is returned 
+\end{DoxyReturn}
+
+
+Definition at line 288 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-serial, set\-\_\-\-D\-A\-C(), strain\-\_\-balance\-\_\-retries, strain\-\_\-balance\-\_\-tolerance, and strain\-\_\-raw\-\_\-oversampled().
+
+
+
+Referenced by task\-\_\-user\-::run(), and task\-\_\-data\-\_\-acq\-::run\-\_\-daq\-\_\-command().
+
+\hypertarget{classpolydaq2_a745e78c13d4fa3d7e9a8b2c54a80c34b}{\index{polydaq2@{polydaq2}!strain\-\_\-balancer\-\_\-off@{strain\-\_\-balancer\-\_\-off}}
+\index{strain\-\_\-balancer\-\_\-off@{strain\-\_\-balancer\-\_\-off}!polydaq2@{polydaq2}}
+\subsubsection[{strain\-\_\-balancer\-\_\-off}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::strain\-\_\-balancer\-\_\-off (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a745e78c13d4fa3d7e9a8b2c54a80c34b}
+
+
+Turn the D/\-A's which are used to balance the strain gauge bridges off. 
+
+This method deactivates the D/\-A converters attached to the strain gauge bridge and leaves the D/\-A pins set as analog inputs. This means that the pins float; they will not affect the voltage on the corners of the bridge. This setting saves a little bit of power. 
+
+Definition at line 231 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-dac.
+
+\hypertarget{classpolydaq2_afd57303eaefe880c0eeff769ab109f44}{\index{polydaq2@{polydaq2}!strain\-\_\-balancer\-\_\-on@{strain\-\_\-balancer\-\_\-on}}
+\index{strain\-\_\-balancer\-\_\-on@{strain\-\_\-balancer\-\_\-on}!polydaq2@{polydaq2}}
+\subsubsection[{strain\-\_\-balancer\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}void polydaq2\-::strain\-\_\-balancer\-\_\-on (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_afd57303eaefe880c0eeff769ab109f44}
+
+
+Turn the D/\-A's which are used to balance the strain gauge bridges on. 
+
+This method reactivates the D/\-A;s attached to a strain gauge bridge after the D/\-A's were deactivated by a call to {\ttfamily \hyperlink{classpolydaq2_a745e78c13d4fa3d7e9a8b2c54a80c34b}{strain\-\_\-balancer\-\_\-off()}}. 
+
+Definition at line 243 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-dac.
+
+\hypertarget{classpolydaq2_a957565a13f1ac71238b0c13ba7b107f9}{\index{polydaq2@{polydaq2}!strain\-\_\-raw@{strain\-\_\-raw}}
+\index{strain\-\_\-raw@{strain\-\_\-raw}!polydaq2@{polydaq2}}
+\subsubsection[{strain\-\_\-raw}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::strain\-\_\-raw (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a957565a13f1ac71238b0c13ba7b107f9}
+
+
+Get a raw A/\-D reading from a strain gauge amplifier. 
+
+This method gets an A/\-D reading from a channel connected to a strain gauge bridge amplifier on a Poly\-D\-A\-Q 2. The channels are connected as follows\-: \begin{DoxyItemize}
+\item Strain gauge bridge 1 -\/ A/\-D channel 14, pin P\-C4 \item Strain gauge bridge 2 -\/ A/\-D channel 15, pin P\-C5 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The strain bridge channel to read, either 1 or 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled, uncalibrated A/\-D converter output for the given reading, or (-\/1) if the channel requested was invalid 
+\end{DoxyReturn}
+\end{DoxyItemize}
+
+
+Definition at line 171 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-adc, and p\-\_\-serial.
+
+\hypertarget{classpolydaq2_ac35eb45623984ca51e96c805975824d0}{\index{polydaq2@{polydaq2}!strain\-\_\-raw\-\_\-oversampled@{strain\-\_\-raw\-\_\-oversampled}}
+\index{strain\-\_\-raw\-\_\-oversampled@{strain\-\_\-raw\-\_\-oversampled}!polydaq2@{polydaq2}}
+\subsubsection[{strain\-\_\-raw\-\_\-oversampled}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::strain\-\_\-raw\-\_\-oversampled (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel, }
+\item[{uint8\-\_\-t}]{samples}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ac35eb45623984ca51e96c805975824d0}
+
+
+Get an oversampled raw A/\-D reading from a strain gauge amplifier. 
+
+This method takes a bunch of A/\-D readings from a channel connected to a strain gauge bridge amplifier on a Poly\-D\-A\-Q 2, then computes the average reading and returns it. The channels are connected as follows\-: \begin{DoxyItemize}
+\item Strain gauge bridge 1 -\/ A/\-D channel 14, pin P\-C4 \item Strain gauge bridge 2 -\/ A/\-D channel 15, pin P\-C5 Oversampling is a conceptually simple way to provide low-\/pass filtering, usually used to reduce noise in measurements. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The strain bridge channel to read, either 1 or 2 \\
+\hline
+{\em samples} & The number of samples to take before computing the average. A maximum of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled, uncalibrated A/\-D converter output for the given reading, or (-\/1) if the channel requested was invalid 
+\end{DoxyReturn}
+\end{DoxyItemize}
+
+
+Definition at line 202 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-adc, and p\-\_\-serial.
+
+
+
+Referenced by strain\-\_\-auto\-\_\-balance().
+
+\hypertarget{classpolydaq2_a624826a08c0819b15e2c3f37a1864e53}{\index{polydaq2@{polydaq2}!temperature\-\_\-raw@{temperature\-\_\-raw}}
+\index{temperature\-\_\-raw@{temperature\-\_\-raw}!polydaq2@{polydaq2}}
+\subsubsection[{temperature\-\_\-raw}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::temperature\-\_\-raw (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_a624826a08c0819b15e2c3f37a1864e53}
+
+
+Get a raw temperature reading from a thermocouple amplifier. 
+
+This method returns the A/\-D output when the given thermocouple amplifier channel is read. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The thermocouple channel to be read, 1 or 2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled, uncalibrated A/\-D converter output for the given reading 
+\end{DoxyReturn}
+
+
+Definition at line 402 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-adc, and p\-\_\-serial.
+
+\hypertarget{classpolydaq2_ace01e1bcf0895f63052c2914b3965c50}{\index{polydaq2@{polydaq2}!voltage\-\_\-raw@{voltage\-\_\-raw}}
+\index{voltage\-\_\-raw@{voltage\-\_\-raw}!polydaq2@{polydaq2}}
+\subsubsection[{voltage\-\_\-raw}]{\setlength{\rightskip}{0pt plus 5cm}int16\-\_\-t polydaq2\-::voltage\-\_\-raw (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{channel}
+\end{DoxyParamCaption}
+)}}\label{classpolydaq2_ace01e1bcf0895f63052c2914b3965c50}
+
+
+Get a raw voltage reading from the voltage amplifier. 
+
+This method returns the output of the A/\-D converter when it reads the given voltage channel on the Poly\-D\-A\-Q 2. Voltage channels 1, 2, 3, and 4 on the circuit board are connected to A/\-D channels 10, 11, 12, and 13 on the microcontroller. 
+\begin{DoxyParams}{Parameters}
+{\em channel} & The channel whose voltage is to be measured \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The unscaled, uncalibrated A/\-D converter output for the given channel or (-\/1) if something went terribly wrong 
+\end{DoxyReturn}
+
+
+Definition at line 380 of file polydaq2.\-cpp.
+
+
+
+References p\-\_\-adc, and p\-\_\-serial.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classpolydaq2_a3b12ada80e0c2fbf7608e6b804c4bb2b}{\index{polydaq2@{polydaq2}!p\-\_\-adc@{p\-\_\-adc}}
+\index{p\-\_\-adc@{p\-\_\-adc}!polydaq2@{polydaq2}}
+\subsubsection[{p\-\_\-adc}]{\setlength{\rightskip}{0pt plus 5cm}adc\-\_\-driver$\ast$ polydaq2\-::p\-\_\-adc\hspace{0.3cm}{\ttfamily [protected]}}}\label{classpolydaq2_a3b12ada80e0c2fbf7608e6b804c4bb2b}
+This pointer points to an A/\-D converter driver which is created by the Poly\-D\-A\-Q driver. 
+
+Definition at line 156 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2(), read\-\_\-\-A\-D\-C(), strain\-\_\-raw(), strain\-\_\-raw\-\_\-oversampled(), temperature\-\_\-raw(), and voltage\-\_\-raw().
+
+\hypertarget{classpolydaq2_a073eef7409f849444cecfdfd862be831}{\index{polydaq2@{polydaq2}!p\-\_\-dac@{p\-\_\-dac}}
+\index{p\-\_\-dac@{p\-\_\-dac}!polydaq2@{polydaq2}}
+\subsubsection[{p\-\_\-dac}]{\setlength{\rightskip}{0pt plus 5cm}simple\-\_\-\-D\-A\-C$\ast$ polydaq2\-::p\-\_\-dac\hspace{0.3cm}{\ttfamily [protected]}}}\label{classpolydaq2_a073eef7409f849444cecfdfd862be831}
+This pointer allows access to a D/\-A converter driver created by the Poly\-D\-A\-Q driver. 
+
+Definition at line 151 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2(), set\-\_\-\-D\-A\-C(), strain\-\_\-balancer\-\_\-off(), and strain\-\_\-balancer\-\_\-on().
+
+\hypertarget{classpolydaq2_a08c9b43abd6589c0981eddd3d8a87ba9}{\index{polydaq2@{polydaq2}!p\-\_\-serial@{p\-\_\-serial}}
+\index{p\-\_\-serial@{p\-\_\-serial}!polydaq2@{polydaq2}}
+\subsubsection[{p\-\_\-serial}]{\setlength{\rightskip}{0pt plus 5cm}emstream$\ast$ polydaq2\-::p\-\_\-serial\hspace{0.3cm}{\ttfamily [protected]}}}\label{classpolydaq2_a08c9b43abd6589c0981eddd3d8a87ba9}
+This pointer points to a serial port which can be used for debugging. If left at {\ttfamily N\-U\-L\-L}, debugging printouts won't take place. 
+
+Definition at line 161 of file polydaq2.\-h.
+
+
+
+Referenced by initialize(), polydaq2(), strain\-\_\-auto\-\_\-balance(), strain\-\_\-raw(), strain\-\_\-raw\-\_\-oversampled(), temperature\-\_\-raw(), and voltage\-\_\-raw().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{polydaq2_8h}{polydaq2.\-h}\item 
+\hyperlink{polydaq2_8cpp}{polydaq2.\-cpp}\end{DoxyCompactItemize}

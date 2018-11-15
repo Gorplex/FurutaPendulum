@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['the_20python_20gui',['The Python GUI',['../pd_py_gui.html',1,'index']]],
+  ['task_5fdata_5facq',['task_data_acq',['../classtask__data__acq.html',1,'task_data_acq'],['../classtask__data__acq.html#af8239a8ad8e9f385f42364f446a2f358',1,'task_data_acq::task_data_acq()']]],
+  ['task_5fdata_5facq_2ecpp',['task_data_acq.cpp',['../task__data__acq_8cpp.html',1,'']]],
+  ['task_5fdata_5facq_2eh',['task_data_acq.h',['../task__data__acq_8h.html',1,'']]],
+  ['task_5fleds',['task_leds',['../classtask__leds.html',1,'task_leds'],['../classtask__leds.html#a2668a7e5a5caf01d35aac71931c32144',1,'task_leds::task_leds()']]],
+  ['task_5fleds_2ecpp',['task_leds.cpp',['../task__leds_8cpp.html',1,'']]],
+  ['task_5fleds_2eh',['task_leds.h',['../task__leds_8h.html',1,'']]],
+  ['task_5fpc',['task_pc',['../classtask__pc.html',1,'task_pc'],['../classtask__pc.html#af4f825f6eea2b0cb64fd5ea5944aae21',1,'task_pc::task_pc()']]],
+  ['task_5fpc_2ecpp',['task_pc.cpp',['../task__pc_8cpp.html',1,'']]],
+  ['task_5fpc_2eh',['task_pc.h',['../task__pc_8h.html',1,'']]],
+  ['task_5fprint',['task_print',['../classtask__print.html',1,'task_print'],['../classtask__print.html#abd3e08a5c207a448b6083e200019d4a3',1,'task_print::task_print()']]],
+  ['task_5fsd_5fcard',['task_sd_card',['../classtask__sd__card.html',1,'task_sd_card'],['../classtask__sd__card.html#a7947744fb5282ee4c2fddfeb7c40b822',1,'task_sd_card::task_sd_card()']]],
+  ['task_5fsd_5fcard_2ecpp',['task_sd_card.cpp',['../task__sd__card_8cpp.html',1,'']]],
+  ['task_5fsd_5fcard_2eh',['task_sd_card.h',['../task__sd__card_8h.html',1,'']]],
+  ['task_5fsd_5fdaq',['task_sd_daq',['../classtask__sd__daq.html',1,'task_sd_daq'],['../classtask__sd__daq.html#ac8550bd7c6e2868ca47699056fc3af25',1,'task_sd_daq::task_sd_daq()']]],
+  ['task_5fsd_5fdaq_2ecpp',['task_sd_daq.cpp',['../task__sd__daq_8cpp.html',1,'']]],
+  ['task_5fsd_5fdaq_2eh',['task_sd_daq.h',['../task__sd__daq_8h.html',1,'']]],
+  ['task_5fuser',['task_user',['../classtask__user.html',1,'task_user'],['../classtask__user.html#a17401926939e6b241f7b32397e020b2f',1,'task_user::task_user()']]],
+  ['task_5fuser_2ecpp',['task_user.cpp',['../task__user_8cpp.html',1,'']]],
+  ['task_5fuser_2eh',['task_user.h',['../task__user_8h.html',1,'']]],
+  ['temperature_5fraw',['temperature_raw',['../classpolydaq2.html#a624826a08c0819b15e2c3f37a1864e53',1,'polydaq2']]],
+  ['ticks_5fper_5freading',['ticks_per_reading',['../classlogger__config.html#a24d69cc1f5e9cea4f0d0b3cda10a0fd8',1,'logger_config']]],
+  ['ticks_5fper_5fsample',['ticks_per_sample',['../classtask__sd__daq.html#aa5514658115b89432355c9382a7aeac4',1,'task_sd_daq']]]
+];

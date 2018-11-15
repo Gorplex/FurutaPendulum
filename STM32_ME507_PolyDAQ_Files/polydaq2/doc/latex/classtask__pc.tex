@@ -1,0 +1,105 @@
+\hypertarget{classtask__pc}{\section{task\-\_\-pc Class Reference}
+\label{classtask__pc}\index{task\-\_\-pc@{task\-\_\-pc}}
+}
+
+
+Task for communication with the user or a P\-C based user interface.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-pc.\-h$>$}
+
+Inheritance diagram for task\-\_\-pc\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__pc}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__pc_af4f825f6eea2b0cb64fd5ea5944aae21}{task\-\_\-pc} (const char $\ast$name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt)
+\begin{DoxyCompactList}\small\item\em Creates a P\-C interface task object. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__pc_a13b52c6ffaf6fd24de7d0d003556d9c1}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the thread which talks to a P\-C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task for communication with the user or a P\-C based user interface. 
+
+This task interacts with the user. User input, which may be input from another computer, such as a P\-C running interface software written in Python, Matlab(tm) or Lab\-View(tm), is usually given as single character commands. The user interface responds with whatever the designer wishes to send to the user or other computer. The use of states is optional, unless this task implements the \char`\"{}vi\char`\"{} editor, in which case it's pretty much mandatory. 
+
+Definition at line 51 of file task\-\_\-pc.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__pc_af4f825f6eea2b0cb64fd5ea5944aae21}{\index{task\-\_\-pc@{task\-\_\-pc}!task\-\_\-pc@{task\-\_\-pc}}
+\index{task\-\_\-pc@{task\-\_\-pc}!task_pc@{task\-\_\-pc}}
+\subsubsection[{task\-\_\-pc}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-pc\-::task\-\_\-pc (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt}
+\end{DoxyParamCaption}
+)}}\label{classtask__pc_af4f825f6eea2b0cb64fd5ea5944aae21}
+
+
+Creates a P\-C interface task object. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a P\-C interface task object. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file task\-\_\-pc.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__pc_a13b52c6ffaf6fd24de7d0d003556d9c1}{\index{task\-\_\-pc@{task\-\_\-pc}!run@{run}}
+\index{run@{run}!task_pc@{task\-\_\-pc}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-pc\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__pc_a13b52c6ffaf6fd24de7d0d003556d9c1}
+
+
+The run method that runs the thread which talks to a P\-C. 
+
+\hypertarget{classtask__pc_cmd_codes}{}\subsection{\char`\"{}\-Command Codes\char`\"{}}\label{classtask__pc_cmd_codes}
+The following structure is used for commands sent from the P\-C to the microcontroller\-: \begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf 1 byte }&{\bf 0-\/4 bytes }&{\bf 1 byte  }\\\cline{1-3}
+command &data &checksum \\\cline{1-3}
+\end{TabularC}
+Commands\-: \begin{DoxyItemize}
+\item 0 -\/ F \-: No data \-: Send A/\-D reading from one channel, 0 through 15 \item More to come...\end{DoxyItemize}
+\hypertarget{classtask__pc_data_packets}{}\subsection{\char`\"{}\-Data Packets\char`\"{}}\label{classtask__pc_data_packets}
+The following structure is used for data sent by the microcontroller to the P\-C\-: \begin{DoxyItemize}
+\item Packet header\-: Begin with a byte which is 0x\-A\-A \item Time\-: 32-\/bit number containing milliseconds since program startup \item Time per point\-: 32-\/bit number containing microseconds per reading set \item Active channels\-: 16-\/bit bitmask, active channels being 1 \item A/\-D data\-: 16-\/bit number; 4 M\-S\-B's 0000; other 12 bits have the data \item C\-R\-C16 for packet \item Others...?\end{DoxyItemize}
+This method sets up the A/\-D converter, then waits for a signal to take data. Then it takes data and fills up a buffer with that data. 
+
+Definition at line 82 of file task\-\_\-pc.\-cpp.
+
+
+
+References p\-\_\-main\-\_\-text\-\_\-queue.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__pc_8h}{task\-\_\-pc.\-h}\item 
+\hyperlink{task__pc_8cpp}{task\-\_\-pc.\-cpp}\end{DoxyCompactItemize}

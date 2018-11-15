@@ -1,0 +1,55 @@
+/** @page pd_channels Channel Commands
+      This page contains tables showing which channels are accessed by which channel
+      commands on different versions of the PolyDAQ 2 board. These channel commands
+      can be used in the data logger configuration file and when communicating with
+      a PolyDAQ through the dumb terminal. 
+
+      All commands are @b case @b sensitive. For example, typing @b D will cause the
+      PolyDAQ to perform an A/D conversion on the channel specified by the 
+      hexadecimal number D (decimal 13), but typing @b d will cause the PolyDAQ to
+      show the results of a memory dump (a programming diagnostic tool). 
+
+      When a command is not understood by the PolyDAQ, it shows the command which
+      has confused it and asks, "What's That Function?"
+
+  @section pd_044 PolyDAQ 0-4-4
+      This version of the PolyDAQ 2 board is designed for use in the ME 410 course,
+      which makes heavy use of strain gauges.  It has four strain gauge bridge 
+      amplifiers and four voltage inputs.  Two of the voltage inputs accept -10 to 
+      +10V inputs and the other two accept 0 to 3.3V inputs with finer resolution. 
+      If present, an onboard MMA8452Q accelerometer provides 3 axes of acceleration
+      data. An external MMA8452Q accelerometer can be connected to the board's I2C 
+      bus; if present, the external accelerometer is accessed as shown in the table. 
+
+      The given calibration numbers (slope and offset) are approximate and for 
+      convenience only. The user should check all calibrations carefully using a 
+      high-accuracy voltmeter. In many cases, entering a slope of 1.0 and offset of
+      0.0 to cause raw A/D output numbers to be recorded is the best option. 
+
+      | Channel | Command | Slope | Offset | Description |
+      |:-------:|:-------:|:-----:|:------:|:------------|
+      | @c S1   |  @c E   | 0.00806 (1) | (2)  | Strain gauge bridge 1 |
+      | @c S2   |  @c F   | 0.00806 (1) | (2)  | Strain gauge bridge 2 |
+      | @c S3   |  @c 9   | 0.00806 (1) | (2)  | Strain gauge bridge 3 |
+      | @c S4   |  @c 8   | 0.00806 (1) | (2)  | Strain gauge bridge 4 |
+      |         |         |          |         |                       |
+      | @c V1   |  @c A   | 0.00513  | -8.8537 | Voltage channel 1 (-10 to +10V) |
+      | @c V2   |  @c B   | 0.00513  | -8.8537 | Voltage channel 2 (-10 to +10V) |
+      | @c V3   |  @c C   | 0.000806 |  0.0    | Voltage channel 3 (0 to +3.3V)  |
+      | @c V4   |  @c D   | 0.000806 |  0.0    | Voltage channel 4 (0 to +3.3V)  |
+      |         |         |          |         |                                 |
+      | @c X    |  @c X   | 0.000061 (3) | 0.0 | Onboard accelerometer X axis    |
+      | @c Y    |  @c Y   | 0.000061 (3) | 0.0 | Onboard accelerometer Y axis    |
+      | @c Z    |  @c Z   | 0.000061 (3) | 0.0 | Onboard accelerometer Z axis    |
+      |         |         |          |         |                                 |
+      | @c x    |  @c x   | 0.000061 (3) | 0.0 | External accelerometer X axis   |
+      | @c y    |  @c y   | 0.000061 (3) | 0.0 | External accelerometer Y axis   |
+      | @c z    |  @c z   | 0.000061 (3) | 0.0 | External accelerometer Z axis   |
+
+      Notes: <br>
+      (1) The given slope converts A/D output to bridge differential voltage
+      in mV. <br>
+      (2) Bridge amplifier offset varies depending on bridge balance. <br>
+      (3) When the accelerometer is configured for +/-2g range, as is its default.
+
+*/

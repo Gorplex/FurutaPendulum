@@ -1,0 +1,223 @@
+\hypertarget{polydaq2_8h}{\section{polydaq2.\-h File Reference}
+\label{polydaq2_8h}\index{polydaq2.\-h@{polydaq2.\-h}}
+}
+
+
+Headers for a class that drives the Poly\-D\-A\-Q 2 board's hardware.  
+
+
+{\ttfamily \#include \char`\"{}stm32f4xx\-\_\-tim.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}taskbase.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}adc\-\_\-driver.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dac\-\_\-driver.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sdio\-\_\-card.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}i2c\-\_\-bitbang.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mma8452q.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classpolydaq2}{polydaq2}
+\begin{DoxyCompactList}\small\item\em Class which interacts with Poly\-D\-A\-Q 2 hardware. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{polydaq2_8h_ac51434d0b11853a40baeec441286989e}{P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R}~0x5\-A
+\begin{DoxyCompactList}\small\item\em The I2\-C bus address of a Melexis M\-L\-X90614 I\-R thermometer, if present. \end{DoxyCompactList}\item 
+\#define \hyperlink{polydaq2_8h_a259c1cd3b60e70a8317e3aa512079ca5}{P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R}~0x38
+\begin{DoxyCompactList}\small\item\em The I2\-C bus address of the M\-M\-A8452\-Q accelerometer, if one is present. \end{DoxyCompactList}\item 
+\hypertarget{polydaq2_8h_ab8d5ef2197c778d69ed911c8390528dd}{\#define \hyperlink{polydaq2_8h_ab8d5ef2197c778d69ed911c8390528dd}{P\-D\-Q\-\_\-\-E\-X\-T\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R}~0x3\-A}\label{polydaq2_8h_ab8d5ef2197c778d69ed911c8390528dd}
+
+\begin{DoxyCompactList}\small\item\em The I2\-C bus address of the external M\-M\-A8452\-Q accelerometer, if present. \end{DoxyCompactList}\item 
+\#define \hyperlink{polydaq2_8h_a12147b124195f1d09b5515ac97c9321c}{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T}~G\-P\-I\-O\-B
+\item 
+\#define \hyperlink{polydaq2_8h_ae1dce24f32e7c75ee3219a7b9507b81a}{S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K}~R\-C\-C\-\_\-\-A\-H\-B1\-Periph\-\_\-\-G\-P\-I\-O\-B
+\item 
+\#define \hyperlink{polydaq2_8h_ae843151b838b64e5e7f077be17590745}{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E}~G\-P\-I\-O\-\_\-\-Pin\-Source8
+\item 
+\#define \hyperlink{polydaq2_8h_a0a4b861b2995525a9032bd908adba36a}{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R}~T\-I\-M4
+\item 
+\#define \hyperlink{polydaq2_8h_a2c72ed6b023dbd3427419785e8d7a08e}{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K}~R\-C\-C\-\_\-\-A\-P\-B1\-Periph\-\_\-\-T\-I\-M4
+\item 
+\#define \hyperlink{polydaq2_8h_a7b787760d6b797d568a4b84a32daa0ab}{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N}~T\-I\-M\-\_\-\-O\-C3\-Init
+\item 
+\#define \hyperlink{polydaq2_8h_a8e4ef92ddb9732c4b4b26142b1b1056b}{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F}~T\-I\-M\-\_\-\-O\-C3\-Preload\-Config
+\item 
+\#define \hyperlink{polydaq2_8h_abd8fd07111d8f48b037456c2546d238f}{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y}~T\-I\-M\-\_\-\-Set\-Compare3
+\item 
+\#define \hyperlink{polydaq2_8h_a6b5dfd9b16ab526555cd7a70d8f3a996}{S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M}~1000
+\begin{DoxyCompactList}\small\item\em The resolution of the S\-D card L\-E\-D's P\-W\-M timer. \end{DoxyCompactList}\item 
+\hypertarget{polydaq2_8h_a22b47de89cfc0c0b0ee4dd26979d33c2}{\#define \hyperlink{polydaq2_8h_a22b47de89cfc0c0b0ee4dd26979d33c2}{S\-D\-\_\-\-C\-R\-D\-\_\-\-S\-N\-S\-\_\-\-P\-O\-R\-T}~G\-P\-I\-O\-B}\label{polydaq2_8h_a22b47de89cfc0c0b0ee4dd26979d33c2}
+
+\begin{DoxyCompactList}\small\item\em The G\-P\-I\-O port used for the S\-D card sense bit. \end{DoxyCompactList}\item 
+\hypertarget{polydaq2_8h_aaf9b3362bd44fb9670ae18fe2db6b180}{\#define \hyperlink{polydaq2_8h_aaf9b3362bd44fb9670ae18fe2db6b180}{S\-D\-\_\-\-C\-R\-D\-\_\-\-S\-N\-S\-\_\-\-C\-L\-O\-C\-K}~R\-C\-C\-\_\-\-A\-H\-B1\-Periph\-\_\-\-G\-P\-I\-O\-B}\label{polydaq2_8h_aaf9b3362bd44fb9670ae18fe2db6b180}
+
+\begin{DoxyCompactList}\small\item\em The G\-P\-I\-O port clock used to make the S\-D card's card sense bit work. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint16\-\_\-t \hyperlink{polydaq2_8h_ac7ebfe1cf01a403d6f4b29c0cff913cb}{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N} = G\-P\-I\-O\-\_\-\-Pin\-\_\-8
+\item 
+\hypertarget{polydaq2_8h_a484dfe8157cd8b77be9f2559ca75ffba}{const uint16\-\_\-t \hyperlink{polydaq2_8h_a484dfe8157cd8b77be9f2559ca75ffba}{S\-D\-\_\-\-C\-R\-D\-\_\-\-S\-N\-S\-\_\-\-P\-I\-N} = G\-P\-I\-O\-\_\-\-Pin\-\_\-4}\label{polydaq2_8h_a484dfe8157cd8b77be9f2559ca75ffba}
+
+\begin{DoxyCompactList}\small\item\em The G\-P\-I\-O port bit used for the S\-D card sense switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Headers for a class that drives the Poly\-D\-A\-Q 2 board's hardware. This file contains the headers for a class that interacts with the hardware on a Poly\-D\-A\-Q 2 board. The hardware includes the S\-T\-M32's A/\-D and D/\-A converters, an S\-D card for data logging, an L\-E\-D used as a status indicator, and two serial ports (one U\-S\-B and one Bluetooth).
+
+Revisions\-: \begin{DoxyItemize}
+\item 09-\/03-\/2014 J\-R\-R Original file\end{DoxyItemize}
+License\-: This file is copyright 2012 by J\-R Ridgely and released under the Lesser G\-N\-U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{polydaq2_8h_source}{polydaq2.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{polydaq2_8h_ac51434d0b11853a40baeec441286989e}{\index{polydaq2.\-h@{polydaq2.\-h}!P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R@{P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R}}
+\index{P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R@{P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-D\-Q\-\_\-\-M\-L\-X90614\-\_\-\-A\-D\-D\-R~0x5\-A}}\label{polydaq2_8h_ac51434d0b11853a40baeec441286989e}
+
+
+The I2\-C bus address of a Melexis M\-L\-X90614 I\-R thermometer, if present. 
+
+This is the I2\-C bus address at which a Melexis M\-L\-X90614 passive I\-R thermal sensor may be found, if one is present. The factory default address is 0x5\-A. 
+
+Definition at line 47 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::get\-\_\-\-I\-R\-\_\-temperature().
+
+\hypertarget{polydaq2_8h_a259c1cd3b60e70a8317e3aa512079ca5}{\index{polydaq2.\-h@{polydaq2.\-h}!P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R@{P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R}}
+\index{P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R@{P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-D\-Q\-\_\-\-M\-M\-A8452\-Q\-\_\-\-A\-D\-D\-R~0x38}}\label{polydaq2_8h_a259c1cd3b60e70a8317e3aa512079ca5}
+
+
+The I2\-C bus address of the M\-M\-A8452\-Q accelerometer, if one is present. 
+
+This bus address must be left-\/shifted by one bit so that the read/write bit can occupy the least significant bit. Therefore, an M\-M\-A8452\-Q will be at address 0x3\-A if it is wired as shown for address 0x1\-D in the data sheets and at address 0x38 if wired as shown for 0x1\-C. If no M\-M\-A8452\-Q is in use, just undefine this preprocessor variable. 
+
+Definition at line 56 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::polydaq2().
+
+\hypertarget{polydaq2_8h_a6b5dfd9b16ab526555cd7a70d8f3a996}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M@{S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M}}
+\index{S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M@{S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-C\-A\-R\-D\-\_\-\-L\-E\-D\-\_\-\-M\-A\-X\-\_\-\-P\-W\-M~1000}}\label{polydaq2_8h_a6b5dfd9b16ab526555cd7a70d8f3a996}
+
+
+The resolution of the S\-D card L\-E\-D's P\-W\-M timer. 
+
+This constant specifies the number to which the S\-D card indicator L\-E\-D's P\-W\-M timer will count. The L\-E\-D duty cycle, and thus brightness, is specified as a number betwen 0 and this number. A higher number here gives a P\-W\-M whose duty cycle can be specified more precisely but which runs more slowly with the same prescaler. 
+
+Definition at line 119 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D(), task\-\_\-leds\-::on(), task\-\_\-leds\-::run(), and polydaq2\-::set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness().
+
+\hypertarget{polydaq2_8h_ae1dce24f32e7c75ee3219a7b9507b81a}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K@{S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K@{S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-C\-L\-O\-C\-K~R\-C\-C\-\_\-\-A\-H\-B1\-Periph\-\_\-\-G\-P\-I\-O\-B}}\label{polydaq2_8h_ae1dce24f32e7c75ee3219a7b9507b81a}
+This definition specifies which clock is to be turned on to make the S\-D card L\-E\-D's G\-P\-I\-O port works. 
+
+Definition at line 74 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_a7b787760d6b797d568a4b84a32daa0ab}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N@{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N@{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-I\-N\-I\-T\-\_\-\-F\-N~T\-I\-M\-\_\-\-O\-C3\-Init}}\label{polydaq2_8h_a7b787760d6b797d568a4b84a32daa0ab}
+This macro gives the name of the function used to enable the output compare for a given P\-W\-M. The output number for the given timer is the number in the function name, so {\ttfamily T\-I\-M\-\_\-\-O\-C4\-Init} means initialize output compare unit 4 for the timer. Poly\-D\-A\-Q 2.\-0 uses {\ttfamily T\-I\-M\-\_\-\-O\-C4\-Init} and Poly\-D\-A\-Q 2.\-1 uses {\ttfamily T\-I\-M\-\_\-\-O\-C3\-Init}. 
+
+Definition at line 95 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_a8e4ef92ddb9732c4b4b26142b1b1056b}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F@{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F@{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-O\-C\-\_\-\-P\-R\-N\-F~T\-I\-M\-\_\-\-O\-C3\-Preload\-Config}}\label{polydaq2_8h_a8e4ef92ddb9732c4b4b26142b1b1056b}
+This macro specifies the name of the function which enables P\-W\-M preload for a given P\-W\-M. The output number is the number in the function name, so {\ttfamily T\-I\-M\-\_\-\-O\-C4\-Preload\-Config} means enable preloading of output compare 4 in the timer. Poly\-D\-A\-Q 2.\-0 uses output 4, while Poly\-D\-A\-Q 2.\-1 uses {\ttfamily T\-I\-M\-\_\-\-O\-C3\-Preload\-Config}. 
+
+Definition at line 102 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_a12147b124195f1d09b5515ac97c9321c}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T@{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T@{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-O\-R\-T~G\-P\-I\-O\-B}}\label{polydaq2_8h_a12147b124195f1d09b5515ac97c9321c}
+This definition specifies which G\-P\-I\-O port is used by the S\-D card indicator L\-E\-D. 
+
+Definition at line 69 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_abd8fd07111d8f48b037456c2546d238f}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y@{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y@{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-E\-T\-\_\-\-D\-U\-T\-Y~T\-I\-M\-\_\-\-Set\-Compare3}}\label{polydaq2_8h_abd8fd07111d8f48b037456c2546d238f}
+This macro specifies the name of the function used to set the duty cycle of the S\-D card L\-E\-D. The number at the end of the function name is the number of the output for the given timer, so {\ttfamily T\-I\-M\-\_\-\-Set\-Compare4} sets the duty cycle of output number 4. That works for Poly\-D\-A\-Q 2.\-0, while Poly\-D\-A\-Q 2.\-1 needs {\ttfamily T\-I\-M\-\_\-\-Set\-Compare3}. 
+
+Definition at line 109 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D(), and polydaq2\-::set\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D\-\_\-brightness().
+
+\hypertarget{polydaq2_8h_ae843151b838b64e5e7f077be17590745}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E@{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E@{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-S\-O\-U\-R\-C\-E~G\-P\-I\-O\-\_\-\-Pin\-Source8}}\label{polydaq2_8h_ae843151b838b64e5e7f077be17590745}
+This macro specifies the pin source used by the S\-D card indicator L\-E\-D. It refers to the pin number. Poly\-D\-A\-Q 2.\-0 uses {\ttfamily G\-P\-I\-O\-\_\-\-Pin\-Source9}, while Poly\-D\-A\-Q 2.\-1 uses {\ttfamily G\-P\-I\-O\-\_\-\-Pin\-Source8}. 
+
+Definition at line 80 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_a0a4b861b2995525a9032bd908adba36a}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R@{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R@{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R~T\-I\-M4}}\label{polydaq2_8h_a0a4b861b2995525a9032bd908adba36a}
+This macro specifies the timer used to create the L\-E\-D for the S\-D card L\-E\-D. 
+
+Definition at line 84 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+\hypertarget{polydaq2_8h_a2c72ed6b023dbd3427419785e8d7a08e}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K@{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K@{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-L\-E\-D\-\_\-\-T\-I\-M\-E\-R\-\_\-\-C\-L\-O\-C\-K~R\-C\-C\-\_\-\-A\-P\-B1\-Periph\-\_\-\-T\-I\-M4}}\label{polydaq2_8h_a2c72ed6b023dbd3427419785e8d7a08e}
+This macro specifies which timer clock is used for the S\-D card L\-E\-D's P\-W\-M timer. 
+
+Definition at line 88 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{polydaq2_8h_ac7ebfe1cf01a403d6f4b29c0cff913cb}{\index{polydaq2.\-h@{polydaq2.\-h}!S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N@{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N}}
+\index{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N@{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N}!polydaq2.h@{polydaq2.\-h}}
+\subsubsection[{S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}const uint16\-\_\-t S\-D\-\_\-\-L\-E\-D\-\_\-\-P\-I\-N = G\-P\-I\-O\-\_\-\-Pin\-\_\-8}}\label{polydaq2_8h_ac7ebfe1cf01a403d6f4b29c0cff913cb}
+This constant is used to select the port pin used by the S\-D card indicator L\-E\-D. Poly\-D\-A\-Q 2.\-0 uses pin 9, while Poly\-D\-A\-Q 2.\-1 uses pin 8. 
+
+Definition at line 65 of file polydaq2.\-h.
+
+
+
+Referenced by polydaq2\-::init\-\_\-\-S\-D\-\_\-card\-\_\-\-L\-E\-D().
+

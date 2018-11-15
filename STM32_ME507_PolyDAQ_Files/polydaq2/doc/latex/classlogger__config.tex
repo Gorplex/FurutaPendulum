@@ -1,0 +1,402 @@
+\hypertarget{classlogger__config}{\section{logger\-\_\-config Class Reference}
+\label{classlogger__config}\index{logger\-\_\-config@{logger\-\_\-config}}
+}
+
+
+Parser for simple data logger configuration files.  
+
+
+
+
+{\ttfamily \#include $<$logger\-\_\-config.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlogger__config_acd6780a9ad347c4adedf2fe2ceb22757}{logger\-\_\-config} (sd\-\_\-card $\ast$p\-\_\-sdc, emstream $\ast$p\-\_\-ser\-\_\-dev)
+\begin{DoxyCompactList}\small\item\em Construct a logger configuration file reader object. \end{DoxyCompactList}\item 
+void \hyperlink{classlogger__config_a79c7dfd8b1fc2058724e0e0cb4b22ddb}{read} (char const $\ast$file\-\_\-name)
+\begin{DoxyCompactList}\small\item\em Read a data logger configuration file and figure out what it means. \end{DoxyCompactList}\item 
+bool \hyperlink{classlogger__config_a6bc93719808abe5135dc4abf8656f4b7}{read\-\_\-line} (void)
+\begin{DoxyCompactList}\small\item\em Read one line from the configuration file and respond to it. \end{DoxyCompactList}\item 
+void \hyperlink{classlogger__config_aeb468fb4654befe3e07c993760ed5d74}{read\-\_\-channel\-\_\-config} (void)
+\begin{DoxyCompactList}\small\item\em Read a channel configuration line from the configuration file. \end{DoxyCompactList}\item 
+void \hyperlink{classlogger__config_a30f5e9607e7207984ab80ecba9ffcdf4}{clear} (void)
+\begin{DoxyCompactList}\small\item\em Clear the logger configuration so that it can be re-\/read from scratch. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classlogger__config_a00ecb0198a63a6821bc3b22ab71707dc}{get\-\_\-ticks\-\_\-per\-\_\-sample} (void)
+\begin{DoxyCompactList}\small\item\em Get the number of R\-T\-O\-S ticks per sample set. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classlogger__config_ac23329790efe715df4951a7efae8c47a}{get\-\_\-ms\-\_\-per\-\_\-sample} (void)
+\begin{DoxyCompactList}\small\item\em Get the number of milliseconds per sample set. \end{DoxyCompactList}\item 
+bool \hyperlink{classlogger__config_ab5a799255ee75c91aedf52132ba538df}{is\-\_\-valid} (void)
+\begin{DoxyCompactList}\small\item\em Find out whether a valid configuration has been read. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__config_a82b78e3c8e3d361555f94aeb0ee602f2}{\hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} $\ast$ \hyperlink{classlogger__config_a82b78e3c8e3d361555f94aeb0ee602f2}{get\-\_\-first\-\_\-channel} (void)}\label{classlogger__config_a82b78e3c8e3d361555f94aeb0ee602f2}
+
+\begin{DoxyCompactList}\small\item\em Return a pointer to the first channel configuration. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__config_a1690a900cb93b0254085ef9eb76ddc45}{\hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} $\ast$ \hyperlink{classlogger__config_a1690a900cb93b0254085ef9eb76ddc45}{get\-\_\-next\-\_\-channel} (void)}\label{classlogger__config_a1690a900cb93b0254085ef9eb76ddc45}
+
+\begin{DoxyCompactList}\small\item\em Return a pointer to the next channel configuration in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sd\-\_\-card $\ast$ \hyperlink{classlogger__config_ab9beda58d9d147e75ce85b3b8024cc20}{p\-\_\-card}
+\begin{DoxyCompactList}\small\item\em A pointer to the S\-D card driver. \end{DoxyCompactList}\item 
+emstream $\ast$ \hyperlink{classlogger__config_ab21ca3930913e75c8e4c6cc2163f4bd7}{p\-\_\-serial}
+\begin{DoxyCompactList}\small\item\em Pointer to a serial device used for debugging messages. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classlogger__config_a24d69cc1f5e9cea4f0d0b3cda10a0fd8}{ticks\-\_\-per\-\_\-reading}
+\begin{DoxyCompactList}\small\item\em Number of R\-T\-O\-S ticks per sample set. \end{DoxyCompactList}\item 
+uint16\-\_\-t \hyperlink{classlogger__config_aced003cf2337160be6d8288f10f116d2}{ms\-\_\-per\-\_\-reading}
+\begin{DoxyCompactList}\small\item\em Number of milliseconds per sample set. \end{DoxyCompactList}\item 
+\hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} $\ast$ \hyperlink{classlogger__config_aa522d8c1a166234b677909cea6580cf5}{p\-\_\-first\-\_\-config\-\_\-data}
+\begin{DoxyCompactList}\small\item\em Pointer to the first structure of channel configuration data. \end{DoxyCompactList}\item 
+\hyperlink{classlogger__col__cfg}{logger\-\_\-col\-\_\-cfg} $\ast$ \hyperlink{classlogger__config_aaf8a326ecea11b1f24a574f96fb5e52f}{p\-\_\-current\-\_\-config\-\_\-data}
+\begin{DoxyCompactList}\small\item\em Pointer to the channel configuration currently being used. \end{DoxyCompactList}\item 
+\hypertarget{classlogger__config_a1b17eb2e849a07d44c2846b2599d57a5}{bool \hyperlink{classlogger__config_a1b17eb2e849a07d44c2846b2599d57a5}{config\-\_\-valid}}\label{classlogger__config_a1b17eb2e849a07d44c2846b2599d57a5}
+
+\begin{DoxyCompactList}\small\item\em This boolean is true only if a valid configuration has been read. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlogger__config_ac45c71eed6e2714623a9ab5badf2e9e4}{emstream \& \hyperlink{classlogger__config_ac45c71eed6e2714623a9ab5badf2e9e4}{operator$<$$<$} (emstream \&str, \hyperlink{classlogger__config}{logger\-\_\-config} \&log\-\_\-cfg)}\label{classlogger__config_ac45c71eed6e2714623a9ab5badf2e9e4}
+
+\begin{DoxyCompactList}\small\item\em Diagnostic printout of all the data from a logger configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Parser for simple data logger configuration files. 
+
+This class parses simple configuration files, kept on S\-D cards, for Swoop or Poly\-D\-A\-Q 2 data loggers. Data is recorded by taking measurements from the specified channels, at the given rate in milliseconds per sample. The data is scaled by a simple linear gain and offset, then written onto the S\-D card.
+
+The configuration file can contain the following\-: \begin{DoxyItemize}
+\item Comments which describe what's in the file. A comment begins with a {\ttfamily \char`\"{}\#\char`\"{}} and lasts to the end of a line. \item Empty lines, which are ignored. \item Data lines which begin with a single letter followed by a colon. Valid data lines include\-:\end{DoxyItemize}
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Letter }&{\bf Meaning  }\\\cline{1-2}
+\PBS\centering H &Header line showing type of Poly\-D\-A\-Q (not used) \\\cline{1-2}
+\PBS\centering B &Baud rate for serial interface to G\-U\-I (not used) \\\cline{1-2}
+\PBS\centering T &Time per data sample, in milliseconds \\\cline{1-2}
+\PBS\centering C &Channel configuration line, as detailed below \\\cline{1-2}
+\end{TabularC}
+Channel configuration lines look like the following\-: 
+\begin{DoxyCode}
+C: 9, 1.0, 0.0, \textcolor{stringliteral}{"Cow Strain"}
+\end{DoxyCode}
+ The items in the channel configuration line are as follows\-:
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf }&{\bf }\\\cline{1-2}
+\PBS\centering {\ttfamily 9} &The single-\/letter command to read data, such as {\ttfamily 5} or {\ttfamily X} \\\cline{1-2}
+\PBS\centering {\ttfamily 1.\-0} &Gain by which raw data is multiplied before being saved \\\cline{1-2}
+\PBS\centering {\ttfamily 0.\-0} &Offset added to data after gain and before data is saved \\\cline{1-2}
+\PBS\centering {\ttfamily \char`\"{}\-Cow Strain\char`\"{}} &Channel name written to data file as column header \\\cline{1-2}
+\end{TabularC}
+
+
+Definition at line 151 of file logger\-\_\-config.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classlogger__config_acd6780a9ad347c4adedf2fe2ceb22757}{\index{logger\-\_\-config@{logger\-\_\-config}!logger\-\_\-config@{logger\-\_\-config}}
+\index{logger\-\_\-config@{logger\-\_\-config}!logger_config@{logger\-\_\-config}}
+\subsubsection[{logger\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}logger\-\_\-config\-::logger\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{sd\-\_\-card $\ast$}]{p\-\_\-sd\-\_\-card, }
+\item[{emstream $\ast$}]{p\-\_\-ser\-\_\-dev}
+\end{DoxyParamCaption}
+)}}\label{classlogger__config_acd6780a9ad347c4adedf2fe2ceb22757}
+
+
+Construct a logger configuration file reader object. 
+
+This constructor creates a strain logger configuration file reader but does not yet read the configuration file. That's done in {\ttfamily \hyperlink{classlogger__config_a79c7dfd8b1fc2058724e0e0cb4b22ddb}{read()}}, so please be patient and scroll down to that function, and quit complaining. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-sd\-\_\-card} & A pointer to the S\-D card on which the configuration is stored \\
+\hline
+{\em p\-\_\-ser\-\_\-dev} & Serial device (such as a port) on which to show debugging information \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file logger\-\_\-config.\-cpp.
+
+
+
+References config\-\_\-valid, p\-\_\-card, p\-\_\-current\-\_\-config\-\_\-data, p\-\_\-first\-\_\-config\-\_\-data, p\-\_\-serial, and ticks\-\_\-per\-\_\-reading.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classlogger__config_a30f5e9607e7207984ab80ecba9ffcdf4}{\index{logger\-\_\-config@{logger\-\_\-config}!clear@{clear}}
+\index{clear@{clear}!logger_config@{logger\-\_\-config}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void logger\-\_\-config\-::clear (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classlogger__config_a30f5e9607e7207984ab80ecba9ffcdf4}
+
+
+Clear the logger configuration so that it can be re-\/read from scratch. 
+
+This method clears out all the logger configuration data. It deletes the memory used by the channel configurations if deletion is permitted by the memory model being used. 
+
+Definition at line 258 of file logger\-\_\-config.\-cpp.
+
+
+
+References config\-\_\-valid, p\-\_\-current\-\_\-config\-\_\-data, p\-\_\-first\-\_\-config\-\_\-data, logger\-\_\-col\-\_\-cfg\-::p\-\_\-next, and ticks\-\_\-per\-\_\-reading.
+
+
+
+Referenced by read().
+
+\hypertarget{classlogger__config_ac23329790efe715df4951a7efae8c47a}{\index{logger\-\_\-config@{logger\-\_\-config}!get\-\_\-ms\-\_\-per\-\_\-sample@{get\-\_\-ms\-\_\-per\-\_\-sample}}
+\index{get\-\_\-ms\-\_\-per\-\_\-sample@{get\-\_\-ms\-\_\-per\-\_\-sample}!logger_config@{logger\-\_\-config}}
+\subsubsection[{get\-\_\-ms\-\_\-per\-\_\-sample}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t logger\-\_\-config\-::get\-\_\-ms\-\_\-per\-\_\-sample (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classlogger__config_ac23329790efe715df4951a7efae8c47a}
+
+
+Get the number of milliseconds per sample set. 
+
+This method returns the number of milliseconds per data row specified in the configuration file. Each data row typically has several readings. \begin{DoxyReturn}{Returns}
+The number of milliseconds per sample set 
+\end{DoxyReturn}
+
+
+Definition at line 233 of file logger\-\_\-config.\-h.
+
+
+
+References ms\-\_\-per\-\_\-reading.
+
+\hypertarget{classlogger__config_a00ecb0198a63a6821bc3b22ab71707dc}{\index{logger\-\_\-config@{logger\-\_\-config}!get\-\_\-ticks\-\_\-per\-\_\-sample@{get\-\_\-ticks\-\_\-per\-\_\-sample}}
+\index{get\-\_\-ticks\-\_\-per\-\_\-sample@{get\-\_\-ticks\-\_\-per\-\_\-sample}!logger_config@{logger\-\_\-config}}
+\subsubsection[{get\-\_\-ticks\-\_\-per\-\_\-sample}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t logger\-\_\-config\-::get\-\_\-ticks\-\_\-per\-\_\-sample (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classlogger__config_a00ecb0198a63a6821bc3b22ab71707dc}
+
+
+Get the number of R\-T\-O\-S ticks per sample set. 
+
+This method returns the number of R\-T\-O\-S ticks per data row specified in the configuration file. \begin{DoxyReturn}{Returns}
+The number of R\-T\-O\-S ticks per sample set 
+\end{DoxyReturn}
+
+
+Definition at line 222 of file logger\-\_\-config.\-h.
+
+
+
+References ticks\-\_\-per\-\_\-reading.
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::run(), and task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{classlogger__config_ab5a799255ee75c91aedf52132ba538df}{\index{logger\-\_\-config@{logger\-\_\-config}!is\-\_\-valid@{is\-\_\-valid}}
+\index{is\-\_\-valid@{is\-\_\-valid}!logger_config@{logger\-\_\-config}}
+\subsubsection[{is\-\_\-valid}]{\setlength{\rightskip}{0pt plus 5cm}bool logger\-\_\-config\-::is\-\_\-valid (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classlogger__config_ab5a799255ee75c91aedf52132ba538df}
+
+
+Find out whether a valid configuration has been read. 
+
+This method returns a Boolean that indicates if a valid and complete configuration has been successfully read from the configuration file. \begin{DoxyReturn}{Returns}
+{\bfseries true} if the configuration data is valid, {\bfseries false} if not 
+\end{DoxyReturn}
+
+
+Definition at line 244 of file logger\-\_\-config.\-h.
+
+
+
+References config\-\_\-valid.
+
+
+
+Referenced by task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{classlogger__config_a79c7dfd8b1fc2058724e0e0cb4b22ddb}{\index{logger\-\_\-config@{logger\-\_\-config}!read@{read}}
+\index{read@{read}!logger_config@{logger\-\_\-config}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}void logger\-\_\-config\-::read (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{file\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{classlogger__config_a79c7dfd8b1fc2058724e0e0cb4b22ddb}
+
+
+Read a data logger configuration file and figure out what it means. 
+
+This method reads configuration data from a file of the given name and stores the configuration data in member variables belonging to this class. 
+\begin{DoxyParams}{Parameters}
+{\em file\-\_\-name} & The name of the file in which the configuration is stored \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file logger\-\_\-config.\-cpp.
+
+
+
+References C\-F\-G\-F\-\_\-\-D\-B\-G, clear(), config\-\_\-valid, p\-\_\-card, and read\-\_\-line().
+
+
+
+Referenced by task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{classlogger__config_aeb468fb4654befe3e07c993760ed5d74}{\index{logger\-\_\-config@{logger\-\_\-config}!read\-\_\-channel\-\_\-config@{read\-\_\-channel\-\_\-config}}
+\index{read\-\_\-channel\-\_\-config@{read\-\_\-channel\-\_\-config}!logger_config@{logger\-\_\-config}}
+\subsubsection[{read\-\_\-channel\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}void logger\-\_\-config\-::read\-\_\-channel\-\_\-config (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classlogger__config_aeb468fb4654befe3e07c993760ed5d74}
+
+
+Read a channel configuration line from the configuration file. 
+
+This method reads a single active line from the Poly\-D\-A\-Q 2 configuration file. It looks at the first non-\/whitespace character and calls the appropriate other method to deal with that character. 
+
+Definition at line 190 of file logger\-\_\-config.\-cpp.
+
+
+
+References logger\-\_\-col\-\_\-cfg\-::command, M\-A\-X\-\_\-\-C\-O\-L\-\_\-\-L\-A\-B\-E\-L\-\_\-\-L\-E\-N, logger\-\_\-col\-\_\-cfg\-::offset, p\-\_\-card, p\-\_\-current\-\_\-config\-\_\-data, p\-\_\-first\-\_\-config\-\_\-data, logger\-\_\-col\-\_\-cfg\-::p\-\_\-label, logger\-\_\-col\-\_\-cfg\-::p\-\_\-next, and logger\-\_\-col\-\_\-cfg\-::slope.
+
+
+
+Referenced by read\-\_\-line().
+
+\hypertarget{classlogger__config_a6bc93719808abe5135dc4abf8656f4b7}{\index{logger\-\_\-config@{logger\-\_\-config}!read\-\_\-line@{read\-\_\-line}}
+\index{read\-\_\-line@{read\-\_\-line}!logger_config@{logger\-\_\-config}}
+\subsubsection[{read\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}bool logger\-\_\-config\-::read\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classlogger__config_a6bc93719808abe5135dc4abf8656f4b7}
+
+
+Read one line from the configuration file and respond to it. 
+
+This method reads a active line from the Poly\-D\-A\-Q 2 configuration file. It runs a state machine to handle the various different types of characters that might be found on any given line. \begin{DoxyReturn}{Returns}
+{\ttfamily true} if there's more data to be read in the file, {\ttfamily false} if not 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file logger\-\_\-config.\-cpp.
+
+
+
+References C\-F\-G\-F\-\_\-\-D\-B\-G, config\-T\-I\-C\-K\-\_\-\-R\-A\-T\-E\-\_\-\-H\-Z, ms\-\_\-per\-\_\-reading, p\-\_\-card, read\-\_\-channel\-\_\-config(), and ticks\-\_\-per\-\_\-reading.
+
+
+
+Referenced by read().
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classlogger__config_aced003cf2337160be6d8288f10f116d2}{\index{logger\-\_\-config@{logger\-\_\-config}!ms\-\_\-per\-\_\-reading@{ms\-\_\-per\-\_\-reading}}
+\index{ms\-\_\-per\-\_\-reading@{ms\-\_\-per\-\_\-reading}!logger_config@{logger\-\_\-config}}
+\subsubsection[{ms\-\_\-per\-\_\-reading}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t logger\-\_\-config\-::ms\-\_\-per\-\_\-reading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_aced003cf2337160be6d8288f10f116d2}
+
+
+Number of milliseconds per sample set. 
+
+The number of milliseconds per sample set is what's read from the configuration file; it's converted into R\-T\-O\-S ticks to be used by the data acquisition task and kept in {\ttfamily ticks\-\_\-per\-\_\-reading}. 
+
+Definition at line 181 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by get\-\_\-ms\-\_\-per\-\_\-sample(), operator$<$$<$(), and read\-\_\-line().
+
+\hypertarget{classlogger__config_ab9beda58d9d147e75ce85b3b8024cc20}{\index{logger\-\_\-config@{logger\-\_\-config}!p\-\_\-card@{p\-\_\-card}}
+\index{p\-\_\-card@{p\-\_\-card}!logger_config@{logger\-\_\-config}}
+\subsubsection[{p\-\_\-card}]{\setlength{\rightskip}{0pt plus 5cm}sd\-\_\-card$\ast$ logger\-\_\-config\-::p\-\_\-card\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_ab9beda58d9d147e75ce85b3b8024cc20}
+
+
+A pointer to the S\-D card driver. 
+
+This pointer points to the S\-D card driver which is used to access the configuration file. 
+
+Definition at line 158 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by logger\-\_\-config(), read(), read\-\_\-channel\-\_\-config(), and read\-\_\-line().
+
+\hypertarget{classlogger__config_aaf8a326ecea11b1f24a574f96fb5e52f}{\index{logger\-\_\-config@{logger\-\_\-config}!p\-\_\-current\-\_\-config\-\_\-data@{p\-\_\-current\-\_\-config\-\_\-data}}
+\index{p\-\_\-current\-\_\-config\-\_\-data@{p\-\_\-current\-\_\-config\-\_\-data}!logger_config@{logger\-\_\-config}}
+\subsubsection[{p\-\_\-current\-\_\-config\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\-\_\-col\-\_\-cfg}$\ast$ logger\-\_\-config\-::p\-\_\-current\-\_\-config\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_aaf8a326ecea11b1f24a574f96fb5e52f}
+
+
+Pointer to the channel configuration currently being used. 
+
+This pointer is used to move through the list of channel configurations as a line of data is being saved to a file. 
+
+Definition at line 195 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by clear(), get\-\_\-first\-\_\-channel(), get\-\_\-next\-\_\-channel(), logger\-\_\-config(), and read\-\_\-channel\-\_\-config().
+
+\hypertarget{classlogger__config_aa522d8c1a166234b677909cea6580cf5}{\index{logger\-\_\-config@{logger\-\_\-config}!p\-\_\-first\-\_\-config\-\_\-data@{p\-\_\-first\-\_\-config\-\_\-data}}
+\index{p\-\_\-first\-\_\-config\-\_\-data@{p\-\_\-first\-\_\-config\-\_\-data}!logger_config@{logger\-\_\-config}}
+\subsubsection[{p\-\_\-first\-\_\-config\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\-\_\-col\-\_\-cfg}$\ast$ logger\-\_\-config\-::p\-\_\-first\-\_\-config\-\_\-data\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_aa522d8c1a166234b677909cea6580cf5}
+
+
+Pointer to the first structure of channel configuration data. 
+
+This pointer points to the first of the channel settings\-: which data channels are to be measured using what commands, and the calibrations for each channel. A linked list of channel configuration structures will hold the channel data to be taken. 
+
+Definition at line 189 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by clear(), get\-\_\-first\-\_\-channel(), logger\-\_\-config(), operator$<$$<$(), and read\-\_\-channel\-\_\-config().
+
+\hypertarget{classlogger__config_ab21ca3930913e75c8e4c6cc2163f4bd7}{\index{logger\-\_\-config@{logger\-\_\-config}!p\-\_\-serial@{p\-\_\-serial}}
+\index{p\-\_\-serial@{p\-\_\-serial}!logger_config@{logger\-\_\-config}}
+\subsubsection[{p\-\_\-serial}]{\setlength{\rightskip}{0pt plus 5cm}emstream$\ast$ logger\-\_\-config\-::p\-\_\-serial\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_ab21ca3930913e75c8e4c6cc2163f4bd7}
+
+
+Pointer to a serial device used for debugging messages. 
+
+This pointer points to a serial port which can be used for debugging. If left at {\ttfamily N\-U\-L\-L}, debugging printouts won't take place. 
+
+Definition at line 165 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by logger\-\_\-config().
+
+\hypertarget{classlogger__config_a24d69cc1f5e9cea4f0d0b3cda10a0fd8}{\index{logger\-\_\-config@{logger\-\_\-config}!ticks\-\_\-per\-\_\-reading@{ticks\-\_\-per\-\_\-reading}}
+\index{ticks\-\_\-per\-\_\-reading@{ticks\-\_\-per\-\_\-reading}!logger_config@{logger\-\_\-config}}
+\subsubsection[{ticks\-\_\-per\-\_\-reading}]{\setlength{\rightskip}{0pt plus 5cm}uint16\-\_\-t logger\-\_\-config\-::ticks\-\_\-per\-\_\-reading\hspace{0.3cm}{\ttfamily [protected]}}}\label{classlogger__config_a24d69cc1f5e9cea4f0d0b3cda10a0fd8}
+
+
+Number of R\-T\-O\-S ticks per sample set. 
+
+The R\-T\-O\-S timer which controls data recording runs much faster than we usually save data; data is only saved once in every this-\/many R\-T\-O\-S timer ticks. With an ordinary R\-T\-O\-S timer setting of one tick per millisecond, data is taken once in every this many milliseconds. 
+
+Definition at line 174 of file logger\-\_\-config.\-h.
+
+
+
+Referenced by clear(), get\-\_\-ticks\-\_\-per\-\_\-sample(), logger\-\_\-config(), operator$<$$<$(), and read\-\_\-line().
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{logger__config_8h}{logger\-\_\-config.\-h}\item 
+\hyperlink{logger__config_8cpp}{logger\-\_\-config.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,143 @@
+\hypertarget{classtask__sd__daq}{\section{task\-\_\-sd\-\_\-daq Class Reference}
+\label{classtask__sd__daq}\index{task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}}
+}
+
+
+Task which acquires Poly\-D\-A\-Q data for the S\-D card.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-sd\-\_\-daq.\-h$>$}
+
+Inheritance diagram for task\-\_\-sd\-\_\-daq\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__sd__daq}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__sd__daq_ac8550bd7c6e2868ca47699056fc3af25}{task\-\_\-sd\-\_\-daq} (const char $\ast$name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt, \hyperlink{classpolydaq2}{polydaq2} $\ast$p\-\_\-polydaq2)
+\begin{DoxyCompactList}\small\item\em This constructor creates a S\-D card data acquisition task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classtask__sd__daq_a0c3a781def3c1de43ab9c66ac89869e0}{acquire\-\_\-sd\-\_\-data} (\hyperlink{classlogger__config}{logger\-\_\-config} $\ast$p\-\_\-log\-\_\-config)
+\begin{DoxyCompactList}\small\item\em Take one row of data for the S\-D card. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__sd__daq_a83e5968bd2d7b812a68560f703492445}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the data acquisition task code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classtask__sd__daq_aa5514658115b89432355c9382a7aeac4}{port\-Tick\-Type \hyperlink{classtask__sd__daq_aa5514658115b89432355c9382a7aeac4}{ticks\-\_\-per\-\_\-sample}}\label{classtask__sd__daq_aa5514658115b89432355c9382a7aeac4}
+
+\begin{DoxyCompactList}\small\item\em The number of milliseconds per sample taken by this task. \end{DoxyCompactList}\item 
+\hypertarget{classtask__sd__daq_a9e84d9575b597ca3e78bec411eecdcae}{\hyperlink{classpolydaq2}{polydaq2} $\ast$ \hyperlink{classtask__sd__daq_a9e84d9575b597ca3e78bec411eecdcae}{my\-\_\-poly}}\label{classtask__sd__daq_a9e84d9575b597ca3e78bec411eecdcae}
+
+\begin{DoxyCompactList}\small\item\em Pointer to a Poly\-D\-A\-Q driver used by this task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task which acquires Poly\-D\-A\-Q data for the S\-D card. 
+
+This task acquires data. It is run at a high priority so that data can be taken at precise time intervals. The data is then put into a queue so that it can be written to an S\-D card at a rate at which the card can accept it. 
+
+Definition at line 59 of file task\-\_\-sd\-\_\-daq.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__sd__daq_ac8550bd7c6e2868ca47699056fc3af25}{\index{task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}!task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}}
+\index{task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}!task_sd_daq@{task\-\_\-sd\-\_\-daq}}
+\subsubsection[{task\-\_\-sd\-\_\-daq}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-sd\-\_\-daq\-::task\-\_\-sd\-\_\-daq (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt, }
+\item[{{\bf polydaq2} $\ast$}]{p\-\_\-polydaq2}
+\end{DoxyParamCaption}
+)}}\label{classtask__sd__daq_ac8550bd7c6e2868ca47699056fc3af25}
+
+
+This constructor creates a S\-D card data acquisition task. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a data acquisition task. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+{\em p\-\_\-polydaq2} & A pointer to the Poly\-D\-A\-Q 2 driver used to interface with the data acquisition board \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file task\-\_\-sd\-\_\-daq.\-cpp.
+
+
+
+References my\-\_\-poly, and ticks\-\_\-per\-\_\-sample.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__sd__daq_a0c3a781def3c1de43ab9c66ac89869e0}{\index{task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}!acquire\-\_\-sd\-\_\-data@{acquire\-\_\-sd\-\_\-data}}
+\index{acquire\-\_\-sd\-\_\-data@{acquire\-\_\-sd\-\_\-data}!task_sd_daq@{task\-\_\-sd\-\_\-daq}}
+\subsubsection[{acquire\-\_\-sd\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-sd\-\_\-daq\-::acquire\-\_\-sd\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{{\bf logger\-\_\-config} $\ast$}]{p\-\_\-log\-\_\-config}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classtask__sd__daq_a0c3a781def3c1de43ab9c66ac89869e0}
+
+
+Take one row of data for the S\-D card. 
+
+This method acquires one row of data for the S\-D card and places the text representing the data into the S\-D card's text queue. The S\-D card task will write the data to the card when it can. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-log\-\_\-config} & Pointer to the data logger configuration object to be used \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file task\-\_\-sd\-\_\-daq.\-cpp.
+
+
+
+References logger\-\_\-col\-\_\-cfg\-::command, D\-A\-Q\-\_\-\-E\-O\-L, polydaq2\-::get\-\_\-data(), logger\-\_\-config\-::get\-\_\-first\-\_\-channel(), logger\-\_\-config\-::get\-\_\-next\-\_\-channel(), my\-\_\-poly, logger\-\_\-col\-\_\-cfg\-::offset, p\-\_\-led\-\_\-command\-\_\-queue, p\-\_\-sd\-\_\-card\-\_\-text\-\_\-queue, and logger\-\_\-col\-\_\-cfg\-::slope.
+
+
+
+Referenced by run().
+
+\hypertarget{classtask__sd__daq_a83e5968bd2d7b812a68560f703492445}{\index{task\-\_\-sd\-\_\-daq@{task\-\_\-sd\-\_\-daq}!run@{run}}
+\index{run@{run}!task_sd_daq@{task\-\_\-sd\-\_\-daq}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-sd\-\_\-daq\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classtask__sd__daq_a83e5968bd2d7b812a68560f703492445}
+
+
+The run method that runs the data acquisition task code. 
+
+This method sets up the A/\-D converter, then waits for a signal to take data. Then it takes data and fills up a buffer with that data. 
+
+Definition at line 98 of file task\-\_\-sd\-\_\-daq.\-cpp.
+
+
+
+References acquire\-\_\-sd\-\_\-data(), logger\-\_\-config\-::get\-\_\-ticks\-\_\-per\-\_\-sample(), polydaq2\-::initialize(), my\-\_\-poly, and p\-\_\-logger\-\_\-config.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__sd__daq_8h}{task\-\_\-sd\-\_\-daq.\-h}\item 
+\hyperlink{task__sd__daq_8cpp}{task\-\_\-sd\-\_\-daq.\-cpp}\end{DoxyCompactItemize}

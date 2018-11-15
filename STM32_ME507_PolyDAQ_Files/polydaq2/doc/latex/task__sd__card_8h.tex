@@ -1,0 +1,108 @@
+\hypertarget{task__sd__card_8h}{\section{task\-\_\-sd\-\_\-card.\-h File Reference}
+\label{task__sd__card_8h}\index{task\-\_\-sd\-\_\-card.\-h@{task\-\_\-sd\-\_\-card.\-h}}
+}
+
+
+Headers for a task which saves data to an S\-D card.  
+
+
+{\ttfamily \#include \char`\"{}taskbase.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sdio\-\_\-card.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}logger\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}shares.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classtask__sd__card}{task\-\_\-sd\-\_\-card}
+\begin{DoxyCompactList}\small\item\em Task which saves data to an S\-D card. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{task__sd__card_8h_a80b1adfd8bda130e0cfdbbb3f943f4e7}{S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G}(x)~if (p\-\_\-serial) $\ast$p\-\_\-serial $<$$<$ x
+\begin{DoxyCompactList}\small\item\em Switch to turn S\-D card task serial debugging messages on or off. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint16\-\_\-t \hyperlink{task__sd__card_8h_a583233f3de4cfe2f47c306fcc1621158}{S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C} = 1000
+\begin{DoxyCompactList}\small\item\em Time in milliseconds between forced buffer writes to the S\-D card. \end{DoxyCompactList}\item 
+const char \hyperlink{task__sd__card_8h_ab0a2d7dc24248a592b423dbc7efde902}{D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E} \mbox{[}$\,$\mbox{]} = \char`\"{}data\-\_\-\char`\"{}
+\begin{DoxyCompactList}\small\item\em Base name of the data file for the logger; a number is added after this name. \end{DoxyCompactList}\item 
+const char \hyperlink{task__sd__card_8h_a5d526e1e8a7ea73e0e0859b9e383dc25}{D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T} \mbox{[}$\,$\mbox{]} = \char`\"{}csv\char`\"{}
+\begin{DoxyCompactList}\small\item\em Extension of the data file name for the logger. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Headers for a task which saves data to an S\-D card. This file contains the headers for a task that saves data using the S\-D card on a Poly\-D\-A\-Q board. Commands and data are sent to this task by other tasks, and this task handles the saving of data as fast as the S\-D card can write it.
+
+Revisions\-: \begin{DoxyItemize}
+\item ??-\/??-\/2013 G\-D\-S Original file from the Chibi\-O\-S collection of stuff \item 06-\/14-\/2014 J\-R\-R Data acquisition task (thread) split off from {\ttfamily main.\-c} \item 07-\/02-\/2014 J\-R\-R User interface spun off from the other tasks \item 07-\/25-\/2014 J\-R\-R P\-C interface cloned from the user interface and modified \item 10-\/15-\/2014 J\-R\-R S\-D card task made from the P\-C interface task\end{DoxyItemize}
+License\-: This file is copyright 2014 by J\-R Ridgely and released under the Lesser G\-N\-U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{task__sd__card_8h_source}{task\-\_\-sd\-\_\-card.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{task__sd__card_8h_a80b1adfd8bda130e0cfdbbb3f943f4e7}{\index{task\-\_\-sd\-\_\-card.\-h@{task\-\_\-sd\-\_\-card.\-h}!S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G@{S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G}}
+\index{S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G@{S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G}!task_sd_card.h@{task\-\_\-sd\-\_\-card.\-h}}
+\subsubsection[{S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~if (p\-\_\-serial) $\ast$p\-\_\-serial $<$$<$ x}}\label{task__sd__card_8h_a80b1adfd8bda130e0cfdbbb3f943f4e7}
+
+
+Switch to turn S\-D card task serial debugging messages on or off. 
+
+We can turn serial port debugging for the S\-D card task on or off with this define. Defining {\ttfamily S\-D\-\_\-\-T\-S\-K\-\_\-\-D\-B\-G} as a serial port write makes it active; defining it as nothing blocks debugging printouts from this task. 
+
+Definition at line 76 of file task\-\_\-sd\-\_\-card.\-h.
+
+
+
+Referenced by task\-\_\-sd\-\_\-card\-::run().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{task__sd__card_8h_a5d526e1e8a7ea73e0e0859b9e383dc25}{\index{task\-\_\-sd\-\_\-card.\-h@{task\-\_\-sd\-\_\-card.\-h}!D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T@{D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T}}
+\index{D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T@{D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T}!task_sd_card.h@{task\-\_\-sd\-\_\-card.\-h}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T}]{\setlength{\rightskip}{0pt plus 5cm}const char D\-A\-T\-A\-\_\-\-F\-\_\-\-E\-X\-T\mbox{[}$\,$\mbox{]} = \char`\"{}csv\char`\"{}}}\label{task__sd__card_8h_a5d526e1e8a7ea73e0e0859b9e383dc25}
+
+
+Extension of the data file name for the logger. 
+
+This is the extension of the data file name, which is the part after the period. The data file name must be at most 8 characters long and the extension at most 3 characters long in the ancient M\-S-\/\-D\-O\-S(tm) style. Recommended extensions are C\-S\-V, for Comma Separated Variable which is a format easily read by spreadsheet formats, or T\-X\-T, which just means that the data is stored in a text format. 
+
+Definition at line 69 of file task\-\_\-sd\-\_\-card.\-h.
+
+
+
+Referenced by task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{task__sd__card_8h_ab0a2d7dc24248a592b423dbc7efde902}{\index{task\-\_\-sd\-\_\-card.\-h@{task\-\_\-sd\-\_\-card.\-h}!D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E@{D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E}}
+\index{D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E@{D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E}!task_sd_card.h@{task\-\_\-sd\-\_\-card.\-h}}
+\subsubsection[{D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}const char D\-A\-T\-A\-\_\-\-F\-\_\-\-N\-A\-M\-E\mbox{[}$\,$\mbox{]} = \char`\"{}data\-\_\-\char`\"{}}}\label{task__sd__card_8h_ab0a2d7dc24248a592b423dbc7efde902}
+
+
+Base name of the data file for the logger; a number is added after this name. 
+
+This is the base of the file name used for automatically generated data files. It should be the first five characters of an eight-\/character name, with the last three characters being an automatically generated number. 
+
+Definition at line 59 of file task\-\_\-sd\-\_\-card.\-h.
+
+
+
+Referenced by task\-\_\-sd\-\_\-card\-::run().
+
+\hypertarget{task__sd__card_8h_a583233f3de4cfe2f47c306fcc1621158}{\index{task\-\_\-sd\-\_\-card.\-h@{task\-\_\-sd\-\_\-card.\-h}!S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C@{S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C}}
+\index{S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C@{S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C}!task_sd_card.h@{task\-\_\-sd\-\_\-card.\-h}}
+\subsubsection[{S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C}]{\setlength{\rightskip}{0pt plus 5cm}const uint16\-\_\-t S\-D\-\_\-\-T\-I\-C\-K\-S\-\_\-\-P\-E\-R\-\_\-\-S\-Y\-N\-C = 1000}}\label{task__sd__card_8h_a583233f3de4cfe2f47c306fcc1621158}
+
+
+Time in milliseconds between forced buffer writes to the S\-D card. 
+
+This value controls how often a write to the S\-D card is forced by a call to the card's {\ttfamily send\-\_\-now} modifier. Forcing the buffer to be written is helpful in that it ensures data will be written to the disk when the card is removed or power is turned off; however, forcing writes too often can slow the system down, which may cause trouble when data is being taken at a high rate. A typical value might be 1000 ms, forcing the buffer to be written to the S\-D card once per second. 
+
+Definition at line 51 of file task\-\_\-sd\-\_\-card.\-h.
+

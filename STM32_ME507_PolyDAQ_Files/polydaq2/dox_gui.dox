@@ -1,0 +1,82 @@
+/** @page pd_py_gui The Python GUI
+        This page describes how to use the PolyDAQ GUI application. This application
+        is written in the Python language, is open source to all who dare try to read
+        and deal with it, and runs on many platforms -- at least Windows<sup>TM</sup>, 
+        Mac<sup>TM</sup>, and Linux<sup>TM</sup>. 
+   
+    @image html gui_screenshot_1.png
+    @image latex gui_screenshot_1.png
+
+    @section gui_steps Running the GUI
+        To set up and start data collection, follow the following steps: 
+        -# <b>Initilize the communication port:</b> Under Initial Settings, click 
+           @c CHOOSE @c PORT and select the port corresponding to your hardware
+           (Linux: usually @c /dev/ttyUSB0; Windows<sup>TM</sup>: usually @c COM3 or
+           @c COM4, always @c COM @e something.) 
+           The status window will indicate that the hardware has been connected and 
+           the rest of the interface will be activated.  
+           Note:  If the interface is not activated, check the status window: the 
+           hardware may not have been connected, or you may not have permission to
+           access the serial port.  
+        -# <b>Change data filename</b> (optional):  The default filename is the date 
+           and time you opened the program.  This name is unique and will help you 
+           identify your file later; however, you may change the file name if you wish.
+        -# <b>Select channels</b> and edit channel names:  Click the boxes coresponding 
+           to the channels you wish to record.  You may also customize the names of any
+           channel in order to make data labels more meaningful.  These names are what 
+           will appear in your data file.
+        -# <b>Balance strain gauge bridges:</b> Strain gauge Wheatstone bridges require
+           balancing prior to start. To run an auto-balance on the strain bridges, 
+           go to the main menu bar and select 
+           @c Hardware -> <code>Auto-balance Strain Gauges...</code>
+        -# <b>Choose sample rate</b> and options: Select the desired sample rate using
+           the combo box.  The sample rate varies slightly due to how the hardware 
+           works, but the data file records actual time of measurements, so accurate 
+           signal-time plots can still be made.
+
+           Some sample rates are only achievable if you select fewer channels; this is 
+           noted in the combo box. 
+
+           You can set the DAQ to record until a specified time, then automatically 
+           stop. By default, data is taken until you manually stop it.
+        -# <b>Start and Stop:</b>  These two buttons do exactly what one would expect. 
+           Note that after the DAQ is started, the control panel is inactivated;
+           you cannot change data acquisition parameters while collecting data.
+
+    @section gui_nav Live Data Navigation
+        You can explore the data while it is being collected.  The latest numerical 
+        value for each channel is displayed in the plot legend.  The live plot can be 
+        navigated in the following ways:
+        - <b>y-axis controls:</b> Right-clicking on the y axis opens a menu where you
+          can
+           - Zoom all y: expands the y axis to include the entire range of y values 
+             collected @e so @e far
+           - Manually set axis limits
+           - Turn AutoScale on/off: automatically adjust the y-axis limits as data is 
+             being collected
+        - <b>time axis controls:</b> Right-clicking the time axis opens a menu where
+          you can
+           - Zoom all time: zooms out to display the entire time data has been
+             collected
+           - Manually set axis limits
+           - Synchronize time axes:  When more than one plot is displayed, this 
+             function updates all plots to the same time range when you pan or zoom 
+             in another plot
+        - <b>Line display controls:</b> Right-clicking on any signal in the plot legend
+          to the right of the plot allows you to
+           - Turn the curve off, to make viewing other channels' data easier.  Making 
+             the line invisible from the plot does not affect the data being recorded 
+             to the data file
+           - Change the line properties like color and line thickness
+        - <b>Mouse controls:</b> allow panning and zooming
+           - Zoom Window: left click-and-drag draws a rectangle on the plot, then the
+             view zooms in to that rectangle
+           - Scroll-wheel Zoom: using the scroll wheel on your mouse also zooms in or
+             out
+           - Pan: clicking and dragging on the scroll wheel (middle mouse button) 
+             allows you to pan within the plot
+           - Undo zoom: right-clicking anywhere within the plot returns the plot to 
+             the previous zoom state
+ */
+
+

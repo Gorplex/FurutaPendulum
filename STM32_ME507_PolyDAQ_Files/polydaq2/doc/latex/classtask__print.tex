@@ -1,0 +1,97 @@
+\hypertarget{classtask__print}{\section{task\-\_\-print Class Reference}
+\label{classtask__print}\index{task\-\_\-print@{task\-\_\-print}}
+}
+
+
+Task which prints out characters in the main print queue.  
+
+
+
+
+{\ttfamily \#include $<$task\-\_\-user.\-h$>$}
+
+Inheritance diagram for task\-\_\-print\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtask__print}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classtask__print_abd3e08a5c207a448b6083e200019d4a3}{task\-\_\-print} (const char $\ast$name, unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E prio, size\-\_\-t stacked, emstream $\ast$serpt)
+\begin{DoxyCompactList}\small\item\em Creates a printing task object. \end{DoxyCompactList}\item 
+void \hyperlink{classtask__print_a568efc42203ca707a55ec464c6f420b9}{run} (void)
+\begin{DoxyCompactList}\small\item\em The run method that runs the main queue printing thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Task which prints out characters in the main print queue. 
+
+This task prints characters which are in the main print queue which is pointed to be {\ttfamily p\-\_\-main\-\_\-text\-\_\-queue}. If the queue is empty, this task is blocked by its {\ttfamily getchar()} method and does nothing. 
+
+Definition at line 71 of file task\-\_\-user.\-h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classtask__print_abd3e08a5c207a448b6083e200019d4a3}{\index{task\-\_\-print@{task\-\_\-print}!task\-\_\-print@{task\-\_\-print}}
+\index{task\-\_\-print@{task\-\_\-print}!task_print@{task\-\_\-print}}
+\subsubsection[{task\-\_\-print}]{\setlength{\rightskip}{0pt plus 5cm}task\-\_\-print\-::task\-\_\-print (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\-\_\-name, }
+\item[{unsigned port\-B\-A\-S\-E\-\_\-\-T\-Y\-P\-E}]{prio, }
+\item[{size\-\_\-t}]{stacked, }
+\item[{emstream $\ast$}]{serpt}
+\end{DoxyParamCaption}
+)}}\label{classtask__print_abd3e08a5c207a448b6083e200019d4a3}
+
+
+Creates a printing task object. 
+
+This constructor calls its parent class's constructor to actually do the work of creating a task object which prints things from the text queue. 
+\begin{DoxyParams}{Parameters}
+{\em p\-\_\-name} & A name for this task \\
+\hline
+{\em prio} & The priority at which this task will run (should be low) \\
+\hline
+{\em stacked} & The stack space to be used by the task (not much) \\
+\hline
+{\em serpt} & A pointer to a serial device on which debugging messages are shown \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 265 of file task\-\_\-user.\-cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classtask__print_a568efc42203ca707a55ec464c6f420b9}{\index{task\-\_\-print@{task\-\_\-print}!run@{run}}
+\index{run@{run}!task_print@{task\-\_\-print}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void task\-\_\-print\-::run (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{classtask__print_a568efc42203ca707a55ec464c6f420b9}
+
+
+The run method that runs the main queue printing thread. 
+
+This method checks for characters in the main print queue whose address is at {\ttfamily p\-\_\-main\-\_\-text\-\_\-queue} and prints any characters found. \begin{DoxyReturn}{Returns}
+This method should never return; if it hypothetically did, it would return an O\-S message of zero. 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file task\-\_\-user.\-cpp.
+
+
+
+References p\-\_\-main\-\_\-text\-\_\-queue.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{task__user_8h}{task\-\_\-user.\-h}\item 
+\hyperlink{task__user_8cpp}{task\-\_\-user.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\hypertarget{task__data__acq_8h}{\section{task\-\_\-data\-\_\-acq.\-h File Reference}
+\label{task__data__acq_8h}\index{task\-\_\-data\-\_\-acq.\-h@{task\-\_\-data\-\_\-acq.\-h}}
+}
+{\ttfamily \#include \char`\"{}polydaq2.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}taskbase.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}shares.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}adc\-\_\-driver.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classtask__data__acq}{task\-\_\-data\-\_\-acq}
+\begin{DoxyCompactList}\small\item\em Task which acquires Poly\-D\-A\-Q data at precise time intervals. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{task__data__acq_8h_afe494a9f98561b9be6566f60927c1141}{D\-A\-Q\-\_\-\-E\-O\-L}~'\textbackslash{}n'
+\begin{DoxyCompactList}\small\item\em End-\/of-\/line character or characters used in data log files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the headers for a demonstration task for an S\-T\-M32\-F4 Discovery board. The task uses the S\-T\-M32's A/\-D converter(s) to take some data.
+
+Revisions\-: \begin{DoxyItemize}
+\item ??-\/??-\/2013 Original file from the Chibi\-O\-S collection of stuff \item 06-\/14-\/2014 J\-R\-R Data acquisition task (thread) split off from {\ttfamily main.\-c} \item 08-\/27-\/2014 J\-R\-R Converted to the latest Poly\-D\-A\-Q 2 version in Free\-R\-T\-O\-S\end{DoxyItemize}
+License\-: This file is copyright 2014 by J\-R Ridgely and released under the Lesser G\-N\-U Public License, version 2. It intended for educational use only, but its use is not limited thereto. 
+
+Definition in file \hyperlink{task__data__acq_8h_source}{task\-\_\-data\-\_\-acq.\-h}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{task__data__acq_8h_afe494a9f98561b9be6566f60927c1141}{\index{task\-\_\-data\-\_\-acq.\-h@{task\-\_\-data\-\_\-acq.\-h}!D\-A\-Q\-\_\-\-E\-O\-L@{D\-A\-Q\-\_\-\-E\-O\-L}}
+\index{D\-A\-Q\-\_\-\-E\-O\-L@{D\-A\-Q\-\_\-\-E\-O\-L}!task_data_acq.h@{task\-\_\-data\-\_\-acq.\-h}}
+\subsubsection[{D\-A\-Q\-\_\-\-E\-O\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-A\-Q\-\_\-\-E\-O\-L~'\textbackslash{}n'}}\label{task__data__acq_8h_afe494a9f98561b9be6566f60927c1141}
+
+
+End-\/of-\/line character or characters used in data log files. 
+
+This macro defines the character or characters which will be written to the end of each line of data which is being saved to the S\-D card. The file is typically written in C\-S\-V format so it can be easily read by spreadsheet and mathematical analysis programs. Different operating systems use different standards for end-\/of-\/line characters; for example, M\-S-\/\-D\-O\-S(tm) and Windows(tm) use {\ttfamily \char`\"{}\textbackslash{}r\textbackslash{}n\char`\"{}}, while Unix(tm), Linux(tm), and Mac\-O\-S\-X(tm) use {\ttfamily '\textbackslash{}n'}. Many spreadsheet programs seem to work best with the single carriage return character {\ttfamily '\textbackslash{}n'}. 
+
+Definition at line 48 of file task\-\_\-data\-\_\-acq.\-h.
+
+
+
+Referenced by task\-\_\-sd\-\_\-daq\-::acquire\-\_\-sd\-\_\-data().
+
