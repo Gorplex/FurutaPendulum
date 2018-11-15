@@ -24,6 +24,16 @@
  *      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 //**************************************************************************************
 
+//BREAK SPACE
+#define RCC_AHB1Periph_GPIOA 1
+#define GPIO_Mode_AF GPIO_Mode_AF_PP 
+#define GPIO_OType_PP 1
+#define GPIO_PuPd_NOPULL 1
+#define GPIO_AF_TIM1 1
+#define RCC_AHB1PeriphClockCmd(A,B) 1
+#define GPIO_PinAFConfig(A,B,C) 1 
+//END BREAK SPACE
+
 #include "freq_timer.h"                     // Header for A/D converter driver class
 
 
@@ -102,8 +112,8 @@ freq_timer::freq_timer (TIM_TypeDef* timer, uint32_t timer_clock, uint16_t chann
 	GPIO_InitStruct.GPIO_Pin   = GPIO_Pin_8;
 	GPIO_InitStruct.GPIO_Mode  = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+	//GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+	//GPIO_InitStruct.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 	GPIO_Init (GPIOA, &GPIO_InitStruct);
 
 	GPIO_PinAFConfig (GPIOA, GPIO_PinSource8, GPIO_AF_TIM1);
