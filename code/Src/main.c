@@ -315,7 +315,7 @@ void StartDefaultTask(void const * argument)
    GPIO_InitStructure.Pull = GPIO_NOPULL;
    HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
-   uint32_t count;
+   uint32_t count=0;
   /* Infinite loop */
   for(;;)
   {
