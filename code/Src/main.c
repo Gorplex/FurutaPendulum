@@ -293,7 +293,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOA);
-
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_GPIOB);
 }
 
 /* USER CODE BEGIN 4 */
@@ -312,7 +312,7 @@ void StartDefaultTask(void const * argument)
  
    GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
    GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
-   GPIO_InitStructure.Pull = GPIO_NOPULL;
+   //GPIO_InitStructure.Pull = GPIO_NOPULL;
    HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
    uint32_t count=0;
@@ -320,10 +320,10 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
     osDelay(1);
-    if ( count == 5000) {
+    if ( count == 500) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
     }
-    if (count == 10000) {
+    if (count == 700) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
        count=0;
     }
