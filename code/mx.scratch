@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>/home/luke/Backup/info/projects/furutaPendulum_me507/code/furutaPendulum/\furutaPendulum</ProjectName>
+<ProjectName>/home/luke/Backup/info/projects/FurutaPendulum/code/\code</ProjectName>
 <ProjectNature>C</ProjectNature> 
 <CMSIS>Drivers/CMSIS</CMSIS>
 <HAL_Driver>/home/luke/STM32Cube/Repository//STM32Cube_FW_F1_V1.6.1/Drivers/CMSIS</HAL_Driver>
@@ -22,7 +22,7 @@
 
 <configs>
   <config>
-    <name>furutaPendulum</name>				
+    <name>code</name>				
     <device>STM32F103C8Tx</device>		 
     <heapSize>0x200</heapSize>
     <stackSize>0x400</stackSize>
@@ -32,7 +32,7 @@
     <usedDebug>true</usedDebug>
     	<debugprobe></debugprobe>
     <optimization></optimization>
-    <icfloc>1</icfloc>
+    <icfloc>0</icfloc>
     <Adefines>
         <define></define>
     </Adefines>   
@@ -42,13 +42,13 @@
 	   			<include>/Inc</include>
     </Aincludes>
     <Cdefines>
-        <define>USE_FULL_LL_DRIVER</define>
     </Cdefines>
     <definestoremove>
         <Adefines>
             <define></define>
         </Adefines>
         <Cdefines>
+            <define>USE_FULL_LL_DRIVER</define>
             <define>MBEDTLS_CONFIG_FILE=&quot;mbedtls_config.h&quot;</define>
             <define>_TIMEVAL_DEFINED</define>
             <define>_SYS_TIME_H_</define>
@@ -112,13 +112,10 @@
 							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c</name>
 						</file>
 						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.c</name>
+							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c</name>
 						</file>
 						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_spi.c</name>
-						</file>
-						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_dma.c</name>
+							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi_ex.c</name>
 						</file>
 						<file>
 							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c</name>
@@ -127,16 +124,7 @@
 							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c</name>
 						</file>
 						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usart.c</name>
-						</file>
-						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.c</name>
-						</file>
-						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c</name>
-						</file>
-						<file>
-							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_exti.c</name>
+							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c</name>
 						</file>
 						<file>
 							<name>Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c</name>

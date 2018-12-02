@@ -52,24 +52,21 @@
 #define __MAIN_H__
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f1xx_ll_rcc.h"
-#include "stm32f1xx_ll_bus.h"
-#include "stm32f1xx_ll_system.h"
-#include "stm32f1xx_ll_exti.h"
-#include "stm32f1xx_ll_cortex.h"
-#include "stm32f1xx_ll_utils.h"
-#include "stm32f1xx_ll_pwr.h"
-#include "stm32f1xx_ll_dma.h"
-#include "stm32f1xx_ll_spi.h"
-#include "stm32f1xx_ll_usart.h"
-#include "stm32f1xx.h"
-#include "stm32f1xx_ll_gpio.h"
 
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
+
+#define phaseA_Pin GPIO_PIN_0
+#define phaseA_GPIO_Port GPIOA
+#define phaseB_Pin GPIO_PIN_1
+#define phaseB_GPIO_Port GPIOA
+#define phaseC_Pin GPIO_PIN_2
+#define phaseC_GPIO_Port GPIOA
+#define pwmIn_Pin GPIO_PIN_6
+#define pwmIn_GPIO_Port GPIOA
 
 /* ########################## Assert Selection ############################## */
 /**
