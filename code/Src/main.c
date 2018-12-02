@@ -378,6 +378,13 @@ void StartDefaultTask(void const * argument)
     if (count == 600) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
        count=0;
+
+       char buffer[] = "test\n";
+       /* HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET); */
+       HAL_UART_Transmit(&huart1, buffer,sizeof(buffer) , HAL_MAX_DELAY);
+
+       /* HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET); */
+       
     }
     count++;
 
