@@ -59,12 +59,6 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define phaseA_Pin GPIO_PIN_0
-#define phaseA_GPIO_Port GPIOA
-#define phaseB_Pin GPIO_PIN_1
-#define phaseB_GPIO_Port GPIOA
-#define phaseC_Pin GPIO_PIN_2
-#define phaseC_GPIO_Port GPIOA
 #define pwmIn_Pin GPIO_PIN_6
 #define pwmIn_GPIO_Port GPIOA
 
