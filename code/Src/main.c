@@ -83,7 +83,9 @@ void StartDefaultTask(void const * argument);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+char * debug;
+uint32_t period = 7;
+uint32_t pulse = 6;
 /* USER CODE END 0 */
 
 /**
@@ -249,7 +251,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 0;
+  htim3.Init.Period = 65535;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_IC_Init(&htim3) != HAL_OK)
@@ -367,6 +369,14 @@ void StartDefaultTask(void const * argument)
    //GPIO_InitStructure.Pull = GPIO_NOPULL;
    HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
+   debug = "none";
+
+   //Enable interrupt
+   HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_2);
+   HAL_TIM_IC_Start(&htim3, TIM_CHANNEL_1);
+
+
+   
    uint32_t count=0;
   /* Infinite loop */
   for(;;)
@@ -379,11 +389,9 @@ void StartDefaultTask(void const * argument)
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
        count=0;
 
-       char buffer[] = "test\n";
-       /* HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET); */
-       HAL_UART_Transmit(&huart1, buffer,sizeof(buffer) , HAL_MAX_DELAY);
-
-       /* HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET); */
+       char buffer[100];
+       sprintf(buffer, "period: %ld, pulse: %ld\n", htim3.Instance->CCR1, htim3.Instance->CCR2);
+       HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
        
     }
     count++;
@@ -391,6 +399,7 @@ void StartDefaultTask(void const * argument)
   }
   /* USER CODE END 5 */ 
 }
+
 
 /**
   * @brief  Period elapsed callback in non blocking mode
@@ -403,7 +412,6 @@ void StartDefaultTask(void const * argument)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
-
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM4) {
     HAL_IncTick();
