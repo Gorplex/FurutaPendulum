@@ -85,7 +85,8 @@ Src/stm32f1xx_hal_msp.c \
 Src/main.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c \
-Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi_ex.c
+Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi_ex.c \
+Src/trig.c
 
 # ASM sources
 ASM_SOURCES =  \

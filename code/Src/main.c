@@ -52,7 +52,7 @@
 #include "cmsis_os.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "trig.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -404,9 +404,9 @@ static void MX_GPIO_Init(void)
 inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    /* for some reason, the polarity must be low for the numbers
       to make sense (i.e. bigger == longer high pulse) */
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, a); 
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, b);
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c);
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, a << 4 ); 
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, b << 4 );
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 4 );
 }
 
 /* USER CODE END 4 */
@@ -437,27 +437,35 @@ void StartDefaultTask(void const * argument)
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3); 
    uint32_t count=0;
-   uint32_t pwmDuty=0;
+   uint32_t theta=0;
+   uint32_t turns = 0;
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
-    if ( count == 100) {
+     /* if(count % 50 == 0) { */
+     /* 	osDelay(1); */
+     /* } */
+    if ( count == 10) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
     }
-    if (count == 600) {
+    if (count == 4095) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
+       turns++;
+       /* if( turns == 7) { */
+       /* 	  for(;;) {} */
+       /* } */
        count=0;
 
        char buffer[100];
-       sprintf(buffer, "period: %ld, pulse: %ld\n", htim3.Instance->CCR1, htim3.Instance->CCR2);
+       sprintf(buffer, "theta: %ld, pulse: %ld period: %ld\n", theta, htim3.Instance->CCR2, htim3.Instance->CCR1);
        HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
 
     }
     count++;
-    /* 65535 */
-    pwmOut( 65535 * .1, 65535 * .3, 65535 * .75);
 
+
+    theta = (4097 * 7 * htim3.Instance->CCR2 / 65535) % 4097;
+    pwmOut(sinShift03(theta),sinShift13(theta),sinShift23(theta));
     
   }
   /* USER CODE END 5 */ 
