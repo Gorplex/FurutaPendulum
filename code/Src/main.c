@@ -409,6 +409,31 @@ inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 4 );
 }
 
+void setMotorTorque( int16_t torque) {
+   uint16_t theta;
+
+   
+   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + torque ) % 4096;
+   /* theta = 0; */
+   pwmOut(sinShift03(theta),sinShift13(theta),sinShift23(theta));
+
+   /* At theta = 0, pulse =
+      64389 <-- ~zero  (0-1146)
+      54784
+      45064
+      35581
+      26081
+      16398
+      6892
+
+      1/7th of 2^16-1 ~= 9362
+      1/7th / 4 (to get 90 degrees ahead) ~= 2341
+      2341 - 1146 = 1195  <-- this is ~90 degrees to zero (maybe?)
+ */
+   
+
+}
+
 /* USER CODE END 4 */
 
 /* StartDefaultTask function */
@@ -437,35 +462,27 @@ void StartDefaultTask(void const * argument)
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3); 
    uint32_t count=0;
-   uint32_t theta=0;
-   uint32_t turns = 0;
   /* Infinite loop */
   for(;;)
   {
      /* if(count % 50 == 0) { */
      /* 	osDelay(1); */
      /* } */
-    if ( count == 10) {
+    if ( count == 2000) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
     }
     if (count == 4095) {
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
-       turns++;
-       /* if( turns == 7) { */
-       /* 	  for(;;) {} */
-       /* } */
        count=0;
 
        char buffer[100];
-       sprintf(buffer, "theta: %ld, pulse: %ld period: %ld\n", theta, htim3.Instance->CCR2, htim3.Instance->CCR1);
+       sprintf(buffer, "pulse: %ld period: %ld\n", htim3.Instance->CCR2, htim3.Instance->CCR1);
        HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
 
     }
     count++;
 
-
-    theta = (4097 * 7 * htim3.Instance->CCR2 / 65535) % 4097;
-    pwmOut(sinShift03(theta),sinShift13(theta),sinShift23(theta));
+    setMotorTorque(-1146 +1195 );
     
   }
   /* USER CODE END 5 */ 
