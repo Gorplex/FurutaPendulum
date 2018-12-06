@@ -498,6 +498,19 @@ uint16_t spiRead16(uint8_t addr) {
 
 /* USER CODE END 4 */
 
+
+#define KP 1
+float getNewTorque(int setpoint){
+    float out = KP*(setpoint-htim3.Instance->CCR2); //65535 
+    if(out>1){
+        out = 1;
+    } 
+    if(out<-1){
+        out = -1;
+    } 
+    return out;
+}
+
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
 {
@@ -543,16 +556,18 @@ void StartDefaultTask(void const * argument)
 
     }
     count++;
+    
 
     setMotorTorque( 1);
-
+    //setMotorTorque(getNewTorque(0));
+/*
     uint8_t pTxData[] = { 0xC0, 0x42, 0x21 };
-   uint8_t pRxData[100];
-   uint16_t num = 0x1234;
-   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
-   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
-
+    uint8_t pRxData[100];
+    uint16_t num = 0x1234;
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+    HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+*/
     
   }
   /* USER CODE END 5 */ 
