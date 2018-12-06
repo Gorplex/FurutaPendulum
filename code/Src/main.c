@@ -233,11 +233,11 @@ static void MX_SPI1_Init(void)
   hspi1.Instance = SPI1;
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi1.Init.DataSize = SPI_DATASIZE_16BIT;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
+  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -392,11 +392,20 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : PB12 */
   GPIO_InitStruct.Pin = GPIO_PIN_12;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PA15 */
+  GPIO_InitStruct.Pin = GPIO_PIN_15;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
@@ -409,14 +418,23 @@ inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 4 );
 }
 
-void setMotorTorque( int16_t torque) {
+void setMotorTorque( float torque) {
    uint16_t theta;
+   int16_t offset = 2341;//-1146;
+   
+   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;
+   /* theta = 0; */
+   pwmOut( torque * sinShift03(theta) + (torque<0 ? 4096: 0),
+	   torque * sinShift13(theta) + (torque<0 ? 4096: 0),
+	   torque * sinShift23(theta) + (torque<0 ? 4096: 0));
+
 
    
-   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + torque ) % 4096;
-   /* theta = 0; */
-   pwmOut(sinShift03(theta),sinShift13(theta),sinShift23(theta));
+   char buffer[100];
+   sprintf(buffer, "theta: %ld\n", htim3.Instance->CCR2);
+   HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
 
+   
    /* At theta = 0, pulse =
       64389 <-- ~zero  (0-1146)
       54784
@@ -429,9 +447,34 @@ void setMotorTorque( int16_t torque) {
       1/7th of 2^16-1 ~= 9362
       1/7th / 4 (to get 90 degrees ahead) ~= 2341
       2341 - 1146 = 1195  <-- this is ~90 degrees to zero (maybe?)
- */
-   
 
+      theta min:
+      
+
+   */
+
+}
+
+uint16_t spiWrite(uint8_t addr, uint8_t val) {
+   uint16_t num = 0x4000 | addr << 8 | val;
+   uint16_t rxData;
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+   HAL_SPI_TransmitReceive(&hspi1, & num, &rxData, 1, 0xFF);
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+   return rxData;
+}
+
+void spiRead16(uint8_t addr) {
+   uint16_t num = addr << 8;
+   uint16_t pRxData;
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+
+   num = 0;
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
 }
 
 /* USER CODE END 4 */
@@ -475,14 +518,22 @@ void StartDefaultTask(void const * argument)
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
        count=0;
 
-       char buffer[100];
-       sprintf(buffer, "pulse: %ld period: %ld\n", htim3.Instance->CCR2, htim3.Instance->CCR1);
-       HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
+       /* char buffer[100]; */
+       /* sprintf(buffer, "pulse: %ld period: %ld\n", htim3.Instance->CCR2, htim3.Instance->CCR1); */
+       /* HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY); */
 
     }
     count++;
 
-    setMotorTorque(-1146 +1195 );
+    setMotorTorque( 1);
+
+    uint8_t pTxData[] = { 0xC0, 0x42, 0x21 };
+   uint8_t pRxData[100];
+   uint16_t num = 0x1234;
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+
     
   }
   /* USER CODE END 5 */ 
