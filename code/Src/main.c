@@ -53,6 +53,7 @@
 
 /* USER CODE BEGIN Includes */
 #include "trig.h"
+#include "math.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -259,7 +260,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 65535;
+  htim2.Init.Period = 65535/2;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
@@ -413,26 +414,38 @@ static void MX_GPIO_Init(void)
 inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    /* for some reason, the polarity must be low for the numbers
       to make sense (i.e. bigger == longer high pulse) */
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, a << 4 ); 
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, b << 4 );
-   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 4 );
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, a << 3 ); 
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_2, b << 3 );
+   __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 3 );
 }
 
-void setMotorTorque( float torque) {
+void setHoldingTorque( uint16_t torque) {
+   /* not used */
    uint16_t theta;
-   int16_t offset = 2341;//-1146;
+   int16_t offset = -1195 - 150 +65535/28; //65536/28;//-1146;
+   /* int16_t offset = -1195/2; //65536/28;//-1146; */
+
+   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;
+   /* theta = 0; */
+   pwmOut( torque * sinShift03(theta)/1000,
+	   torque * sinShift13(theta)/1000,
+	   torque * sinShift23(theta)/1000);
+}
+void setMotorTorque( int16_t torque) {
+   uint16_t theta;
+   int16_t offset = -1195 - 150; //65536/28;//-1146;
+   /* int16_t offset = -1195/2; //65536/28;//-1146; */
+
    
    theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;
    /* theta = 0; */
-   pwmOut( torque * sinShift03(theta) + (torque<0 ? 4096: 0),
-	   torque * sinShift13(theta) + (torque<0 ? 4096: 0),
-	   torque * sinShift23(theta) + (torque<0 ? 4096: 0));
-
-
+   pwmOut( torque * sinShift03(theta)/1000 + (torque<0 ? 4096: 0),
+	   torque * sinShift13(theta)/1000 + (torque<0 ? 4096: 0),
+	   torque * sinShift23(theta)/1000 + (torque<0 ? 4096: 0));
    
-   char buffer[100];
-   sprintf(buffer, "theta: %ld\n", htim3.Instance->CCR2);
-   HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY);
+   /* char buffer[100]; */
+   /* sprintf(buffer, "theta: <%ld>\n", htim3.Instance->CCR2); */
+   /* HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY); */
 
    
    /* At theta = 0, pulse =
@@ -482,7 +495,7 @@ uint16_t spiWrite(uint8_t addr, uint8_t val) {
    return rxData;
 }
 
-uint16_t spiRead16(uint8_t addr) {
+uint16_t spiRead(uint8_t addr) {
    uint16_t num = addr << 8;
    uint16_t pRxData;
    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
@@ -498,18 +511,30 @@ uint16_t spiRead16(uint8_t addr) {
 
 /* USER CODE END 4 */
 
+int16_t getNewTorque(int16_t setpoint){
+   int32_t out = (htim3.Instance->CCR2 -setpoint +65536/2) % 65536 -65536/2; //65535
+   out = out >> 4;
 
-#define KP 1
-float getNewTorque(int setpoint){
-    float out = KP*(setpoint-htim3.Instance->CCR2); //65535 
-    if(out>1){
-        out = 1;
+   out = 32*sqrt(abs(out)) * out /abs(out) ;
+
+
+    if(out>1000){
+        out = 1000;
     } 
-    if(out<-1){
-        out = -1;
-    } 
+    if(out<-1000){
+        out = -1000;
+    }
+
+    
+    /* out = out -500; */
+    /* char buffer[100]; */
+    /* sprintf(buffer, "out: <%ld>, pulse: <%ld>\n", out, htim3.Instance->CCR2); */
+    /* HAL_UART_Transmit(&huart1, buffer ,strlen(buffer) , HAL_MAX_DELAY); */
+
     return out;
 }
+
+
 
 /* StartDefaultTask function */
 void StartDefaultTask(void const * argument)
@@ -535,8 +560,20 @@ void StartDefaultTask(void const * argument)
    
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); 
    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3); 
+   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+
+   setMotorTorque(0);
+   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
+   osDelay(100);
+   
+   spiWrite(CTRL, 0xC0);
+   spiWrite(CTRL, 0xC0);
+   spiWrite(CTRL+1, CDS_KEYCODE);
+   spiRead(ANG);
+
+   
    uint32_t count=0;
+   uint32_t loop=0;
   /* Infinite loop */
   for(;;)
   {
@@ -550,24 +587,26 @@ void StartDefaultTask(void const * argument)
        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
        count=0;
 
-       /* char buffer[100]; */
-       /* sprintf(buffer, "pulse: %ld period: %ld\n", htim3.Instance->CCR2, htim3.Instance->CCR1); */
-       /* HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY); */
+       /* loop++; */
+
+       /* if(loop == 300) { */
+       /* 	  setMotorTorque( -250); */
+       /* } */
+       /* if(loop == 600) { */
+       /* 	  setMotorTorque( 250); */
+       /* 	  loop=0; */
+       // }       
+       char buffer[100];
+       sprintf(buffer, "Angle: %d\n", spiRead(ANG));
+       HAL_UART_Transmit(&huart1, buffer ,strlen(buffer) , HAL_MAX_DELAY);
 
     }
     count++;
     
 
-    setMotorTorque( 1);
-    //setMotorTorque(getNewTorque(0));
-/*
-    uint8_t pTxData[] = { 0xC0, 0x42, 0x21 };
-    uint8_t pRxData[100];
-    uint16_t num = 0x1234;
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
-*/
+    setMotorTorque(getNewTorque(10000));
+
+
     
   }
   /* USER CODE END 5 */ 
