@@ -455,6 +455,24 @@ void setMotorTorque( float torque) {
 
 }
 
+
+//define addresses (lowest if multiple bytes) (lowest byte in higest addr)
+
+#define EWA 0x02 //2 bytes Extended Write Address 
+#define EWD 0x04 //4 bytes Extended Write Data 
+#define EWCS 0x08 //2 bytes Extended Write Control and Status 
+#define ERA 0x0A //2 bytes Extended Read Address 
+#define ERCS 0x0C //2 bytes Extended Read Control and Status 
+#define ERD 0x0E //4 bytes Extended Read Data 
+
+#define CTRL 0x1E //2 bytes 
+#define ANG 0x20 //2 bytes 
+#define STA 0x22 //2 bytes 
+#define FIELD 0x2A //2 bytes 
+#define CDS_KEYCODE 0x46 
+
+#define ORATE 0b100 //see ORATE table 0x100 16 samples avg evry 512us
+
 uint16_t spiWrite(uint8_t addr, uint8_t val) {
    uint16_t num = 0x4000 | addr << 8 | val;
    uint16_t rxData;
@@ -464,17 +482,18 @@ uint16_t spiWrite(uint8_t addr, uint8_t val) {
    return rxData;
 }
 
-void spiRead16(uint8_t addr) {
+uint16_t spiRead16(uint8_t addr) {
    uint16_t num = addr << 8;
    uint16_t pRxData;
    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+   HAL_SPI_TransmitReceive(&hspi1, & num, &pRxData, 1, 0xFF);
    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
 
    num = 0;
    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-   HAL_SPI_TransmitReceive(&hspi1, & num, pRxData, 1, 0xFF);
+   HAL_SPI_TransmitReceive(&hspi1, & num, &pRxData, 1, 0xFF);
    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+   return pRxData;
 }
 
 /* USER CODE END 4 */

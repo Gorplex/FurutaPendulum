@@ -2255,7 +2255,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/8.2.0/thumb/v7-m/nofp/crtn.o
                 0x0000000000000733       0x1d /usr/lib/gcc/arm-none-eabi/8.2.0/thumb/v7-m/nofp/crtn.o
 OUTPUT(build/code.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x1fea6
+.debug_info     0x0000000000000000    0x1fea9
  .debug_info    0x0000000000000000     0x10f0 build/stm32f1xx_hal_gpio.o
  .debug_info    0x00000000000010f0     0x180b build/stm32f1xx_hal_cortex.o
  .debug_info    0x00000000000028fb     0x28c2 build/cmsis_os.o
@@ -2271,12 +2271,12 @@ OUTPUT(build/code.elf elf32-littlearm)
  .debug_info    0x00000000000148ed      0xc8d build/list.o
  .debug_info    0x000000000001557a      0x582 build/port.o
  .debug_info    0x0000000000015afc     0x1d33 build/stm32f1xx_hal_msp.o
- .debug_info    0x000000000001782f     0x2a0a build/main.o
- .debug_info    0x000000000001a239     0x23bb build/stm32f1xx_hal_uart.o
- .debug_info    0x000000000001c5f4     0x26eb build/stm32f1xx_hal_spi.o
- .debug_info    0x000000000001ecdf     0x1064 build/stm32f1xx_hal_spi_ex.o
- .debug_info    0x000000000001fd43      0x141 build/trig.o
- .debug_info    0x000000000001fe84       0x22 build/startup_stm32f103xb.o
+ .debug_info    0x000000000001782f     0x2a0d build/main.o
+ .debug_info    0x000000000001a23c     0x23bb build/stm32f1xx_hal_uart.o
+ .debug_info    0x000000000001c5f7     0x26eb build/stm32f1xx_hal_spi.o
+ .debug_info    0x000000000001ece2     0x1064 build/stm32f1xx_hal_spi_ex.o
+ .debug_info    0x000000000001fd46      0x141 build/trig.o
+ .debug_info    0x000000000001fe87       0x22 build/startup_stm32f103xb.o
 
 .debug_abbrev   0x0000000000000000     0x3e08
  .debug_abbrev  0x0000000000000000      0x30a build/stm32f1xx_hal_gpio.o
@@ -2390,7 +2390,7 @@ OUTPUT(build/code.elf elf32-littlearm)
  .debug_ranges  0x00000000000010a8       0x20 build/trig.o
  .debug_ranges  0x00000000000010c8       0x20 build/startup_stm32f103xb.o
 
-.debug_line     0x0000000000000000     0xec4f
+.debug_line     0x0000000000000000     0xec50
  .debug_line    0x0000000000000000      0x604 build/stm32f1xx_hal_gpio.o
  .debug_line    0x0000000000000604      0x5c0 build/stm32f1xx_hal_cortex.o
  .debug_line    0x0000000000000bc4     0x1180 build/cmsis_os.o
@@ -2406,12 +2406,12 @@ OUTPUT(build/code.elf elf32-littlearm)
  .debug_line    0x0000000000009810      0x38d build/list.o
  .debug_line    0x0000000000009b9d      0x4d6 build/port.o
  .debug_line    0x000000000000a073      0x495 build/stm32f1xx_hal_msp.o
- .debug_line    0x000000000000a508      0x91d build/main.o
- .debug_line    0x000000000000ae25     0x1a23 build/stm32f1xx_hal_uart.o
- .debug_line    0x000000000000c848     0x2051 build/stm32f1xx_hal_spi.o
- .debug_line    0x000000000000e899      0x261 build/stm32f1xx_hal_spi_ex.o
- .debug_line    0x000000000000eafa       0xe3 build/trig.o
- .debug_line    0x000000000000ebdd       0x72 build/startup_stm32f103xb.o
+ .debug_line    0x000000000000a508      0x91e build/main.o
+ .debug_line    0x000000000000ae26     0x1a23 build/stm32f1xx_hal_uart.o
+ .debug_line    0x000000000000c849     0x2051 build/stm32f1xx_hal_spi.o
+ .debug_line    0x000000000000e89a      0x261 build/stm32f1xx_hal_spi_ex.o
+ .debug_line    0x000000000000eafb       0xe3 build/trig.o
+ .debug_line    0x000000000000ebde       0x72 build/startup_stm32f103xb.o
 
 .debug_str      0x0000000000000000     0x524d
  .debug_str     0x0000000000000000      0x771 build/stm32f1xx_hal_gpio.o
