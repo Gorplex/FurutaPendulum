@@ -90,8 +90,6 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN 0 */
 char * debug;
-uint32_t period = 7;
-uint32_t pulse = 6;
 /* USER CODE END 0 */
 
 /**
@@ -411,6 +409,18 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+//-------------------------------------------------------------------------------------
+/** @brief    Set PWM duty cycle for a, b, and c outputs (12 bit inputs)
+ *  @details  This function is used to set the duty cycle for each of the
+ *            3 pwm output waveforms by setting the timer compare register.
+ *            It assumes a 12 bit input, thus bit shift..
+ *          
+ *  @param   a The 12 bit duty cycle for tim2 channel 1 output
+ *  @param   b The 12 bit duty cycle for tim2 channel 1 output
+ *  @param   c The 12 bit duty cycle for tim2 channel 1 output
+ */
+
 inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    /* for some reason, the polarity must be low for the numbers
       to make sense (i.e. bigger == longer high pulse) */
@@ -419,35 +429,24 @@ inline void pwmOut( uint16_t a, uint16_t b, uint16_t c) {
    __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, c << 3 );
 }
 
-void setHoldingTorque( uint16_t torque) {
-   /* not used */
-   uint16_t theta;
-   int16_t offset = -1195 - 150 +65535/28; //65536/28;//-1146;
-   /* int16_t offset = -1195/2; //65536/28;//-1146; */
 
-   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;
-   /* theta = 0; */
-   pwmOut( torque * sinShift03(theta)/1000,
-	   torque * sinShift13(theta)/1000,
-	   torque * sinShift23(theta)/1000);
-}
+
+//-------------------------------------------------------------------------------------
+/** @brief   When called, update the PWM output to keep specified torque (12 bit)
+ *  @details This function uses the encoder to calculate the correct phase
+ *           to output via PWM to generate a field 90 degrees to the current
+ *           location. Then this value is scaled by the ratio of torque/1000
+ *  @param   torque Controls how much 'torque' is applied from -1000 to 1000
+ */
 void setMotorTorque( int16_t torque) {
    uint16_t theta;
    int16_t offset = -1195 - 150; //65536/28;//-1146;
-   /* int16_t offset = -1195/2; //65536/28;//-1146; */
-
    
-   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;
-   /* theta = 0; */
+   theta = ( (4095 * 7 * htim3.Instance->CCR2 / 65535) + offset ) % 4096;n
    pwmOut( torque * sinShift03(theta)/1000 + (torque<0 ? 4096: 0),
 	   torque * sinShift13(theta)/1000 + (torque<0 ? 4096: 0),
 	   torque * sinShift23(theta)/1000 + (torque<0 ? 4096: 0));
-   
-   /* char buffer[100]; */
-   /* sprintf(buffer, "theta: <%ld>\n", htim3.Instance->CCR2); */
-   /* HAL_UART_Transmit(&huart1, buffer ,sizeof(buffer) , HAL_MAX_DELAY); */
-
-   
+      
    /* At theta = 0, pulse =
       64389 <-- ~zero  (0-1146)
       54784
@@ -461,9 +460,6 @@ void setMotorTorque( int16_t torque) {
       1/7th / 4 (to get 90 degrees ahead) ~= 2341
       2341 - 1146 = 1195  <-- this is ~90 degrees to zero (maybe?)
 
-      theta min:
-      
-
    */
 
 }
@@ -471,21 +467,42 @@ void setMotorTorque( int16_t torque) {
 
 //define addresses (lowest if multiple bytes) (lowest byte in higest addr)
 
-#define EWA 0x02 //2 bytes Extended Write Address 
-#define EWD 0x04 //4 bytes Extended Write Data 
-#define EWCS 0x08 //2 bytes Extended Write Control and Status 
-#define ERA 0x0A //2 bytes Extended Read Address 
-#define ERCS 0x0C //2 bytes Extended Read Control and Status 
-#define ERD 0x0E //4 bytes Extended Read Data 
 
+/** @brief 2 bytes Extended Write Address **/
+#define EWA 0x02
+/** @brief 4 bytes Extended Write Data **/
+#define EWD 0x04 //
+/** @brief 2 bytes Extended Write Control and Status **/
+#define EWCS 0x08 //
+/** @brief 2 bytes Extended Read Address **/
+#define ERA 0x0A //
+/** @brief 2 bytes Extended Read Control and Status **/
+#define ERCS 0x0C //
+/** @brief 4 bytes Extended Read Data **/
+#define ERD 0x0E //
+
+/** @brief Address of the control register  **/
 #define CTRL 0x1E //2 bytes 
+/** @brief address of the Angle register**/
 #define ANG 0x20 //2 bytes 
+/** @brief address of the status register**/
 #define STA 0x22 //2 bytes 
+/** @brief address of the field strength register**/
 #define FIELD 0x2A //2 bytes 
+/** @brief key needed to start running spi encoder**/
 #define CDS_KEYCODE 0x46 
 
-#define ORATE 0b100 //see ORATE table 0x100 16 samples avg evry 512us
 
+
+//-------------------------------------------------------------------------------------
+/** @brief   Writes val to the addr via SPI
+ *  @details This function sets SS pin low, transmits the 16 bits
+ *           (0x4000 | addr << 8 | val) and then releases SS pin.
+ *           it returns the data recieved via spi.
+ *  @param   addr The address to write to
+ *  @param   val The value to put in the address
+ *  @return   The data recieved via spi
+ */
 uint16_t spiWrite(uint8_t addr, uint8_t val) {
    uint16_t num = 0x4000 | addr << 8 | val;
    uint16_t rxData;
@@ -495,6 +512,14 @@ uint16_t spiWrite(uint8_t addr, uint8_t val) {
    return rxData;
 }
 
+//-------------------------------------------------------------------------------------
+/** @brief   Reads the value at the given address
+ *  @details Transmits the address to read, then transmits again to
+ *           get the response. This function then returns the value
+ *           recieved via spi
+ *  @param   addr The address to read from the spi encoder
+ *  @return   The value at the given address
+ */
 uint16_t spiRead(uint8_t addr) {
    uint16_t num = addr << 8;
    uint16_t pRxData;
@@ -509,15 +534,24 @@ uint16_t spiRead(uint8_t addr) {
    return pRxData;
 }
 
-/* USER CODE END 4 */
 
+//-------------------------------------------------------------------------------------
+/** @brief   Calculate the torque to return motor to setpoint (using simple P controller)
+ *  @details This functions returns the torque calculated by a simple P controller
+ *           that attempts to keep a constant setpoint. The output is not linear with
+ *           positon, but instead has an adjustment to increase low end values to make
+ *           sure the motor has enough torque at the low end to reach the target.
+ *  @param   setpoint The position that the motor tries to maintain (16 bit number)
+ *  @return  The new torque value that should be sent to the motor from -1000 to 1000
+ */
 int16_t getNewTorque(int16_t setpoint){
-   int32_t out = (htim3.Instance->CCR2 -setpoint +65536/2) % 65536 -65536/2; //65535
-   out = out >> 4;
+   int32_t out = (htim3.Instance->CCR2 -setpoint +65536/2) % 65536 -65536/2;
+   out = out >> 4;		/* bit shift to get scalling right */
 
+   /* Adjusting the respones of our motor so that there is more torque on the low end*/
    out = 32*sqrt(abs(out)) * out /abs(out) ;
 
-
+   /* constrain output to valid numbers */
     if(out>1000){
         out = 1000;
     } 
@@ -525,18 +559,21 @@ int16_t getNewTorque(int16_t setpoint){
         out = -1000;
     }
 
-    
-    /* out = out -500; */
-    /* char buffer[100]; */
-    /* sprintf(buffer, "out: <%ld>, pulse: <%ld>\n", out, htim3.Instance->CCR2); */
-    /* HAL_UART_Transmit(&huart1, buffer ,strlen(buffer) , HAL_MAX_DELAY); */
-
     return out;
 }
 
+/* USER CODE END 4 */
 
 
-/* StartDefaultTask function */
+
+//-------------------------------------------------------------------------------------
+/** @brief   Task that sets up the pins, timers, etc. and run basic constant torque example
+ *  @details This task configures the gpio to blink an led, enables interrupts for
+ *           pwm input, starts the 3 pwm output channels, configures the spi encoder.
+ *           Then, this task loops, blinking the led, updating torque, and printing
+ *           the current angle of the motor via uart.
+ *  @param   argument Not used, but kept for rtos
+ */
 void StartDefaultTask(void const * argument)
 {
 
@@ -604,7 +641,8 @@ void StartDefaultTask(void const * argument)
     count++;
     
 
-    setMotorTorque(getNewTorque(10000));
+    /* setMotorTorque(getNewTorque(10000)); */
+    setMotorTorque(1000);
 
 
     

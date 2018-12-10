@@ -1,0 +1,372 @@
+\hypertarget{main_8c}{}\section{main.\+c File Reference}
+\label{main_8c}\index{main.\+c@{main.\+c}}
+
+
+\+: Main program body  
+
+
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f1xx\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cmsis\+\_\+os.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}trig.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a061c43d0f8df286760b0f5ef74ca0740}\label{main_8c_a061c43d0f8df286760b0f5ef74ca0740}} 
+\#define \mbox{\hyperlink{main_8c_a061c43d0f8df286760b0f5ef74ca0740}{E\+WA}}~0x02
+\begin{DoxyCompactList}\small\item\em 2 bytes Extended Write Address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a8150135bcd893f42bf165efec4a74c35}\label{main_8c_a8150135bcd893f42bf165efec4a74c35}} 
+\#define \mbox{\hyperlink{main_8c_a8150135bcd893f42bf165efec4a74c35}{E\+WD}}~0x04
+\begin{DoxyCompactList}\small\item\em 4 bytes Extended Write Data \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a96cf236dee7a71003279848dd32fc58f}\label{main_8c_a96cf236dee7a71003279848dd32fc58f}} 
+\#define \mbox{\hyperlink{main_8c_a96cf236dee7a71003279848dd32fc58f}{E\+W\+CS}}~0x08
+\begin{DoxyCompactList}\small\item\em 2 bytes Extended Write Control and Status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a9414b87ec9a21c674418cadd463d4882}\label{main_8c_a9414b87ec9a21c674418cadd463d4882}} 
+\#define \mbox{\hyperlink{main_8c_a9414b87ec9a21c674418cadd463d4882}{E\+RA}}~0x0A
+\begin{DoxyCompactList}\small\item\em 2 bytes Extended Read Address \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_ab9123729909be90606ca547b3eb50a79}\label{main_8c_ab9123729909be90606ca547b3eb50a79}} 
+\#define \mbox{\hyperlink{main_8c_ab9123729909be90606ca547b3eb50a79}{E\+R\+CS}}~0x0C
+\begin{DoxyCompactList}\small\item\em 2 bytes Extended Read Control and Status \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_ad4d3e92bc7103262c71876982bfe4edd}\label{main_8c_ad4d3e92bc7103262c71876982bfe4edd}} 
+\#define \mbox{\hyperlink{main_8c_ad4d3e92bc7103262c71876982bfe4edd}{E\+RD}}~0x0E
+\begin{DoxyCompactList}\small\item\em 4 bytes Extended Read Data \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_af5bcf329d3c9613928c46e186752d618}\label{main_8c_af5bcf329d3c9613928c46e186752d618}} 
+\#define \mbox{\hyperlink{main_8c_af5bcf329d3c9613928c46e186752d618}{C\+T\+RL}}~0x1E
+\begin{DoxyCompactList}\small\item\em Address of the control register. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a85de93bf64f8c1bf3d66ec68247ffe06}\label{main_8c_a85de93bf64f8c1bf3d66ec68247ffe06}} 
+\#define \mbox{\hyperlink{main_8c_a85de93bf64f8c1bf3d66ec68247ffe06}{A\+NG}}~0x20
+\begin{DoxyCompactList}\small\item\em address of the Angle register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a83e3fea5be2b0854b6351e79d4315b2a}\label{main_8c_a83e3fea5be2b0854b6351e79d4315b2a}} 
+\#define \mbox{\hyperlink{main_8c_a83e3fea5be2b0854b6351e79d4315b2a}{S\+TA}}~0x22
+\begin{DoxyCompactList}\small\item\em address of the status register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_abbab477a47201196b8e02020a1c022a1}\label{main_8c_abbab477a47201196b8e02020a1c022a1}} 
+\#define \mbox{\hyperlink{main_8c_abbab477a47201196b8e02020a1c022a1}{F\+I\+E\+LD}}~0x2A
+\begin{DoxyCompactList}\small\item\em address of the field strength register \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_ae7d389149d69aeb17b7f9e6c7c96ecbc}\label{main_8c_ae7d389149d69aeb17b7f9e6c7c96ecbc}} 
+\#define \mbox{\hyperlink{main_8c_ae7d389149d69aeb17b7f9e6c7c96ecbc}{C\+D\+S\+\_\+\+K\+E\+Y\+C\+O\+DE}}~0x46
+\begin{DoxyCompactList}\small\item\em key needed to start running spi encoder \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config}} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a016544463b4842ced7191baf8f449cea}{Start\+Default\+Task}} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Task that sets up the pins, timers, etc. and run basic constant torque example. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ae70bce6c39d0b570a7523b86738cec4b}{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init}} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\item 
+int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\begin{DoxyCompactList}\small\item\em The application entry point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ab64a64c7cdc7b4a05fe080e48d91fa63}{pwm\+Out}} (uint16\+\_\+t a, uint16\+\_\+t b, uint16\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Set P\+WM duty cycle for a, b, and c outputs (12 bit inputs) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a4c09fb3d250c6fa4c6dd5b5d51813d51}{set\+Motor\+Torque}} (int16\+\_\+t torque)
+\begin{DoxyCompactList}\small\item\em When called, update the P\+WM output to keep specified torque (12 bit) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8c_a57920e2267e299e26a57f55cb2740700}{spi\+Write}} (uint8\+\_\+t addr, uint8\+\_\+t val)
+\begin{DoxyCompactList}\small\item\em Writes val to the addr via S\+PI. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8c_a461bd44f53e3e2dd3ad8a8e867e4f83c}{spi\+Read}} (uint8\+\_\+t addr)
+\begin{DoxyCompactList}\small\item\em Reads the value at the given address. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{main_8c_a940af67854dc3032ba3994378d7830bb}{get\+New\+Torque}} (int16\+\_\+t setpoint)
+\begin{DoxyCompactList}\small\item\em Calculate the torque to return motor to setpoint (using simple P controller) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_a829116a51f1db1a72ebd1120f60719d5}{\+\_\+\+Error\+\_\+\+Handler}} (char $\ast$file, int line)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8c_a9c6222bae4d0328dd843ae099623b40b}\label{main_8c_a9c6222bae4d0328dd843ae099623b40b}} 
+S\+P\+I\+\_\+\+Handle\+Type\+Def {\bfseries hspi1}
+\item 
+\mbox{\Hypertarget{main_8c_a2c80fd5510e2990a59a5c90d745c716c}\label{main_8c_a2c80fd5510e2990a59a5c90d745c716c}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim2}
+\item 
+\mbox{\Hypertarget{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}\label{main_8c_aac3d2c59ee0e3bbae1b99529a154eb62}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim3}
+\item 
+\mbox{\Hypertarget{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}\label{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}} 
+U\+A\+R\+T\+\_\+\+Handle\+Type\+Def {\bfseries huart1}
+\item 
+\mbox{\Hypertarget{main_8c_aa658fe134a5d1309d7a15c8116fa142c}\label{main_8c_aa658fe134a5d1309d7a15c8116fa142c}} 
+os\+Thread\+Id {\bfseries default\+Task\+Handle}
+\item 
+\mbox{\Hypertarget{main_8c_a9d0f2b98cf19c569f7b3851fbff05504}\label{main_8c_a9d0f2b98cf19c569f7b3851fbff05504}} 
+char $\ast$ {\bfseries debug}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\+: Main program body 
+
+This notice applies to any and all portions of this file that are not between comment pairs U\+S\+ER C\+O\+DE B\+E\+G\+IN and U\+S\+ER C\+O\+DE E\+ND. Other portions of this file, whether inserted by the user or by software development tools are owned by their respective copyright owners.
+
+Copyright (c) 2018 S\+T\+Microelectronics International N.\+V. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted, provided that the following conditions are met\+:
+
+
+\begin{DoxyEnumerate}
+\item Redistribution of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of S\+T\+Microelectronics nor the names of other contributors to this software may be used to endorse or promote products derived from this software without specific written permission.
+\item This software, including modifications and/or derivative works of this software, must execute solely and exclusively on microcontroller or microprocessor devices manufactured by or for S\+T\+Microelectronics.
+\item Redistribution and use of this software other than as permitted under this license is void and will automatically terminate your rights under this license.
+\end{DoxyEnumerate}
+
+T\+H\+IS S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED BY S\+T\+M\+I\+C\+R\+O\+E\+L\+E\+C\+T\+R\+O\+N\+I\+CS A\+ND C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS \char`\"{}\+A\+S I\+S\char`\"{} A\+ND A\+NY E\+X\+P\+R\+E\+SS, I\+M\+P\+L\+I\+ED OR S\+T\+A\+T\+U\+T\+O\+RY W\+A\+R\+R\+A\+N\+T\+I\+ES, I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, T\+HE I\+M\+P\+L\+I\+ED W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N-\/\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT OF T\+H\+I\+RD P\+A\+R\+TY I\+N\+T\+E\+L\+L\+E\+C\+T\+U\+AL P\+R\+O\+P\+E\+R\+TY R\+I\+G\+H\+TS A\+RE D\+I\+S\+C\+L\+A\+I\+M\+ED TO T\+HE F\+U\+L\+L\+E\+ST E\+X\+T\+E\+NT P\+E\+R\+M\+I\+T\+T\+ED BY L\+AW. IN NO E\+V\+E\+NT S\+H\+A\+LL S\+T\+M\+I\+C\+R\+O\+E\+L\+E\+C\+T\+R\+O\+N\+I\+CS OR C\+O\+N\+T\+R\+I\+B\+U\+T\+O\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY D\+I\+R\+E\+CT, I\+N\+D\+I\+R\+E\+CT, I\+N\+C\+I\+D\+E\+N\+T\+AL, S\+P\+E\+C\+I\+AL, E\+X\+E\+M\+P\+L\+A\+RY, OR C\+O\+N\+S\+E\+Q\+U\+E\+N\+T\+I\+AL D\+A\+M\+A\+G\+ES (I\+N\+C\+L\+U\+D\+I\+NG, B\+UT N\+OT L\+I\+M\+I\+T\+ED TO, P\+R\+O\+C\+U\+R\+E\+M\+E\+NT OF S\+U\+B\+S\+T\+I\+T\+U\+TE G\+O\+O\+DS OR S\+E\+R\+V\+I\+C\+ES; L\+O\+SS OF U\+SE, D\+A\+TA, OR P\+R\+O\+F\+I\+TS; OR B\+U\+S\+I\+N\+E\+SS I\+N\+T\+E\+R\+R\+U\+P\+T\+I\+ON) H\+O\+W\+E\+V\+ER C\+A\+U\+S\+ED A\+ND ON A\+NY T\+H\+E\+O\+RY OF L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN C\+O\+N\+T\+R\+A\+CT, S\+T\+R\+I\+CT L\+I\+A\+B\+I\+L\+I\+TY, OR T\+O\+RT (I\+N\+C\+L\+U\+D\+I\+NG N\+E\+G\+L\+I\+G\+E\+N\+CE OR O\+T\+H\+E\+R\+W\+I\+SE) A\+R\+I\+S\+I\+NG IN A\+NY W\+AY O\+UT OF T\+HE U\+SE OF T\+H\+IS S\+O\+F\+T\+W\+A\+RE, E\+V\+EN IF A\+D\+V\+I\+S\+ED OF T\+HE P\+O\+S\+S\+I\+B\+I\+L\+I\+TY OF S\+U\+CH D\+A\+M\+A\+GE. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a829116a51f1db1a72ebd1120f60719d5}\label{main_8c_a829116a51f1db1a72ebd1120f60719d5}} 
+\index{main.\+c@{main.\+c}!\+\_\+\+Error\+\_\+\+Handler@{\+\_\+\+Error\+\_\+\+Handler}}
+\index{\+\_\+\+Error\+\_\+\+Handler@{\+\_\+\+Error\+\_\+\+Handler}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{\+\_\+\+Error\+\_\+\+Handler()}{\_Error\_Handler()}}
+{\footnotesize\ttfamily void \+\_\+\+Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{char $\ast$}]{file,  }\item[{int}]{line }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The file name as string. \\
+\hline
+{\em line} & The line in file as a number. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 679 of file main.\+c.
+
+
+
+Referenced by System\+Clock\+\_\+\+Config().
+
+\mbox{\Hypertarget{main_8c_a940af67854dc3032ba3994378d7830bb}\label{main_8c_a940af67854dc3032ba3994378d7830bb}} 
+\index{main.\+c@{main.\+c}!get\+New\+Torque@{get\+New\+Torque}}
+\index{get\+New\+Torque@{get\+New\+Torque}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{get\+New\+Torque()}{getNewTorque()}}
+{\footnotesize\ttfamily int16\+\_\+t get\+New\+Torque (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{setpoint }\end{DoxyParamCaption})}
+
+
+
+Calculate the torque to return motor to setpoint (using simple P controller) 
+
+This functions returns the torque calculated by a simple P controller that attempts to keep a constant setpoint. The output is not linear with positon, but instead has an adjustment to increase low end values to make sure the motor has enough torque at the low end to reach the target. 
+\begin{DoxyParams}{Parameters}
+{\em setpoint} & The position that the motor tries to maintain (16 bit number) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new torque value that should be sent to the motor from -\/1000 to 1000 
+\end{DoxyReturn}
+
+
+Definition at line 547 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_ae70bce6c39d0b570a7523b86738cec4b}\label{main_8c_ae70bce6c39d0b570a7523b86738cec4b}} 
+\index{main.\+c@{main.\+c}!H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init}}
+\index{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init()}{HAL\_TIM\_MspPostInit()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Msp\+Post\+Init (\begin{DoxyParamCaption}\item[{T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+T\+I\+M2 G\+P\+IO Configuration ~\newline
+P\+A0-\/\+W\+K\+UP -\/-\/-\/---$>$ T\+I\+M2\+\_\+\+C\+H1 P\+A1 -\/-\/-\/---$>$ T\+I\+M2\+\_\+\+C\+H2 P\+A2 -\/-\/-\/---$>$ T\+I\+M2\+\_\+\+C\+H3
+
+Definition at line 199 of file stm32f1xx\+\_\+hal\+\_\+msp.\+c.
+
+\mbox{\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}} 
+\index{main.\+c@{main.\+c}!H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}}
+\index{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when T\+I\+M4 interrupt took place, inside H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+I\+R\+Q\+Handler(). It makes a direct call to H\+A\+L\+\_\+\+Inc\+Tick() to increment a global variable \char`\"{}uw\+Tick\char`\"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: T\+IM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 661 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+The application entry point. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 100 of file main.\+c.
+
+
+
+References System\+Clock\+\_\+\+Config().
+
+\mbox{\Hypertarget{main_8c_ab64a64c7cdc7b4a05fe080e48d91fa63}\label{main_8c_ab64a64c7cdc7b4a05fe080e48d91fa63}} 
+\index{main.\+c@{main.\+c}!pwm\+Out@{pwm\+Out}}
+\index{pwm\+Out@{pwm\+Out}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{pwm\+Out()}{pwmOut()}}
+{\footnotesize\ttfamily void pwm\+Out (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{a,  }\item[{uint16\+\_\+t}]{b,  }\item[{uint16\+\_\+t}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set P\+WM duty cycle for a, b, and c outputs (12 bit inputs) 
+
+This function is used to set the duty cycle for each of the 3 pwm output waveforms by setting the timer compare register. It assumes a 12 bit input, thus bit shift..
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The 12 bit duty cycle for tim2 channel 1 output \\
+\hline
+{\em b} & The 12 bit duty cycle for tim2 channel 1 output \\
+\hline
+{\em c} & The 12 bit duty cycle for tim2 channel 1 output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 424 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a4c09fb3d250c6fa4c6dd5b5d51813d51}\label{main_8c_a4c09fb3d250c6fa4c6dd5b5d51813d51}} 
+\index{main.\+c@{main.\+c}!set\+Motor\+Torque@{set\+Motor\+Torque}}
+\index{set\+Motor\+Torque@{set\+Motor\+Torque}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{set\+Motor\+Torque()}{setMotorTorque()}}
+{\footnotesize\ttfamily void set\+Motor\+Torque (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{torque }\end{DoxyParamCaption})}
+
+
+
+When called, update the P\+WM output to keep specified torque (12 bit) 
+
+This function uses the encoder to calculate the correct phase to output via P\+WM to generate a field 90 degrees to the current location. Then this value is scaled by the ratio of torque/1000 
+\begin{DoxyParams}{Parameters}
+{\em torque} & Controls how much \textquotesingle{}torque\textquotesingle{} is applied from -\/1000 to 1000 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 441 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a461bd44f53e3e2dd3ad8a8e867e4f83c}\label{main_8c_a461bd44f53e3e2dd3ad8a8e867e4f83c}} 
+\index{main.\+c@{main.\+c}!spi\+Read@{spi\+Read}}
+\index{spi\+Read@{spi\+Read}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{spi\+Read()}{spiRead()}}
+{\footnotesize\ttfamily uint16\+\_\+t spi\+Read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr }\end{DoxyParamCaption})}
+
+
+
+Reads the value at the given address. 
+
+Transmits the address to read, then transmits again to get the response. This function then returns the value recieved via spi 
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address to read from the spi encoder \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value at the given address 
+\end{DoxyReturn}
+
+
+Definition at line 523 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a57920e2267e299e26a57f55cb2740700}\label{main_8c_a57920e2267e299e26a57f55cb2740700}} 
+\index{main.\+c@{main.\+c}!spi\+Write@{spi\+Write}}
+\index{spi\+Write@{spi\+Write}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{spi\+Write()}{spiWrite()}}
+{\footnotesize\ttfamily uint16\+\_\+t spi\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr,  }\item[{uint8\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+
+
+Writes val to the addr via S\+PI. 
+
+This function sets SS pin low, transmits the 16 bits (0x4000 $\vert$ addr $<$$<$ 8 $\vert$ val) and then releases SS pin. it returns the data recieved via spi. 
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address to write to \\
+\hline
+{\em val} & The value to put in the address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The data recieved via spi 
+\end{DoxyReturn}
+
+
+Definition at line 506 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a016544463b4842ced7191baf8f449cea}\label{main_8c_a016544463b4842ced7191baf8f449cea}} 
+\index{main.\+c@{main.\+c}!Start\+Default\+Task@{Start\+Default\+Task}}
+\index{Start\+Default\+Task@{Start\+Default\+Task}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Start\+Default\+Task()}{StartDefaultTask()}}
+{\footnotesize\ttfamily void Start\+Default\+Task (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Task that sets up the pins, timers, etc. and run basic constant torque example. 
+
+This task configures the gpio to blink an led, enables interrupts for pwm input, starts the 3 pwm output channels, configures the spi encoder. Then, this task loops, blinking the led, updating torque, and printing the current angle of the motor via uart. 
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used, but kept for rtos \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 577 of file main.\+c.
+
+\mbox{\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.\+c@{main.\+c}!System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}}
+\index{System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{System\+Clock\+\_\+\+Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Configure the Systick interrupt time
+
+Configure the Systick
+
+Definition at line 181 of file main.\+c.
+
+
+
+References \+\_\+\+Error\+\_\+\+Handler().
+
+
+
+Referenced by main().
+
